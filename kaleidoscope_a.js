@@ -1,3 +1,5 @@
+import Abstract from './images/abstract_1.jpg';
+
 const canvas = document.querySelector('#app');
 const context = canvas.getContext('2d');
 const vw = window.innerWidth;
@@ -12,7 +14,7 @@ const settings = {
   offsetX: 0,
   offsetY: 0,
   radius: vw,
-  slices: 8,
+  slices: 12,
   zoom: 1.5,
 };
 
@@ -20,9 +22,21 @@ canvas.width = settings.radius * 2;
 canvas.height = settings.radius * 2;
 
 const img = new Image();
-img.src =
-  'https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1920&q=80';
-const fill = context.createPattern(img, 'repeat');
+// img.src =
+//   'https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1920&q=80';
+
+let fill;
+img.src = `${window.origin}${Abstract}`;
+img.onload = () => {
+  fill = context.createPattern(img, 'repeat');
+};
+
+// console.log(img);
+// const fill = context.createPattern(img, 'repeat');
+
+// img.onload = () => {
+//   console.log(fill);
+// };
 
 const scale =
   settings.zoom * (settings.radius / Math.min(img.width, img.height));
