@@ -8,8 +8,6 @@ const vw = window.innerWidth;
 const vh = window.innerHeight;
 const ease = 0.005;
 
-console.log(vw);
-
 const settings = {
   offsetRotation: 0,
   offsetScale: 0.8,
@@ -24,21 +22,11 @@ canvas.width = settings.radius * 2;
 canvas.height = settings.radius * 2;
 
 const img = new Image();
-// img.src =
-//   'https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1920&q=80';
-
 let fill;
 img.src = Abstract;
 img.onload = () => {
   fill = context.createPattern(img, 'repeat');
 };
-
-// console.log(img);
-// const fill = context.createPattern(img, 'repeat');
-
-// img.onload = () => {
-//   console.log(fill);
-// };
 
 const scale =
   settings.zoom * (settings.radius / Math.min(img.width, img.height));
