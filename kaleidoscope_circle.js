@@ -1,19 +1,24 @@
-// import Abstract from './images/abstract_1.jpg';
-// import Abstract from './images/abstract_2.jpg';
-import Abstract from './images/abstract_3.jpg';
+import AbsA from './images/abstract_1.jpg';
+import AbsB from './images/abstract_2.jpg';
+import AbsC from './images/abstract_3.jpg';
 
-const canvas = document.querySelector('#app');
+const canvas = document.createElement('canvas');
+document.querySelector('#app').appendChild(canvas);
+
 const context = canvas.getContext('2d');
 const vw = window.innerWidth;
 const vh = window.innerHeight;
-const ease = 0.005;
+const ease = 0.1;
+
+const Abstracts = [AbsA, AbsB, AbsC];
+const Abstract = Abstracts[Math.floor(Math.random() * Abstracts.length)];
 
 const settings = {
   offsetRotation: 0,
   offsetScale: 0.8,
   offsetX: 0,
   offsetY: 0,
-  radius: vw,
+  radius: vw / 6,
   slices: 12,
   zoom: 1.5,
 };
@@ -57,8 +62,6 @@ function draw() {
 let tx = settings.offsetX;
 let ty = settings.offsetY;
 let tr = settings.offsetRotation;
-// let cx;
-// let cy;
 let dx;
 let dy;
 let hx;
@@ -67,10 +70,8 @@ let hy;
 window.addEventListener(
   'mousemove',
   (e) => {
-    // cx = vw / 2;
-    // cy = vh / 2;
-    dx = e.pageX / vw;
-    dy = e.pageY / vh;
+    dx = e.pageX / settings.radius;
+    dy = e.pageY / settings.radius;
     hx = dx - 0.1;
     hy = dy - 0.1;
     tx = hx * settings.radius * -0.8;
