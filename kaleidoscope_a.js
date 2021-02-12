@@ -1,4 +1,6 @@
-import Abstract from './images/abstract_1.jpg';
+// import Abstract from './images/abstract_1.jpg';
+// import Abstract from './images/abstract_2.jpg';
+import Abstract from './images/abstract_3.jpg';
 
 const canvas = document.querySelector('#app');
 const context = canvas.getContext('2d');
@@ -26,7 +28,7 @@ const img = new Image();
 //   'https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1920&q=80';
 
 let fill;
-img.src = `${window.origin}${Abstract}`;
+img.src = Abstract;
 img.onload = () => {
   fill = context.createPattern(img, 'repeat');
 };
