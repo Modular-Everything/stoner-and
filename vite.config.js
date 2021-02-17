@@ -5,7 +5,10 @@ module.exports = {
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        nested: resolve(__dirname, 'circle.html'),
+        nested: [
+          resolve(__dirname, 'circle.html'),
+          resolve(__dirname, 'photography.html'),
+        ],
       },
     },
   },
