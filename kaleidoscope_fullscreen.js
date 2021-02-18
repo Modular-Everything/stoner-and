@@ -86,6 +86,8 @@ canvas.style.marginTop = `${-settings.radius}px`;
 canvas.style.left = '50%';
 canvas.style.top = '50%';
 
+let paused = false;
+
 function update() {
   tr -= 0.002;
 
@@ -94,7 +96,19 @@ function update() {
   settings.offsetRotation += (tr - settings.offsetRotation) * ease;
 
   draw();
-  requestAnimationFrame(update);
+  if (!paused) {
+    requestAnimationFrame(update);
+  }
 }
+
+window.addEventListener('click', () => {
+  if (paused) {
+    paused = false;
+    update();
+  } else {
+    paused = true;
+    update();
+  }
+});
 
 update();
