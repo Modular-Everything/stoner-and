@@ -1,17 +1,11 @@
-# 💎 Stoner&
+# Modular Everything Starter
 
-Web experiment for Stoner&
+A starter for Gatsby that includes:
 
-## Using this starter...
-
-1. Run `npm outdated` and update any outdated dependencies. This starter has very little that could break by doing this, so go for it.
-2. Run `npm install` to install all dependencies
-3. Run `vite` to start the development server
-
-## Workflow
-
-- `ESLint` and `Prettier` preconfigured
+- ESLint and Prettier set up from Wes Bos with autoformatting.
+- `gatsby-browser.js` and `gatsby-ssr.js` files for wrapping content in `<Layout>`.
 - `normalize.css` for setting up a nice baseline to work from.
+- `styled-components` for scoped styles, but also a `GlobalStyles.js` for defining, well, global styles.
 - `stylelint` with the `order` plugin, using SMACSS rules for setting the correct order
 
 ## Git Styleguide
@@ -45,3 +39,7 @@ It can exist a cross multiple lines and can...
 (footer)
 The footer is optional and is used to reference issue tracker IDs.
 ```
+
+## To do:
+
+- [x] Add stylelint with autoformatting and ordering
