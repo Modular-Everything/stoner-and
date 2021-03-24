@@ -11,6 +11,12 @@ const GlobalStyles = createGlobalStyle`
     --white: #fff;
 
     --highlight: var(--off-white);
+
+    --fade-dark: linear-gradient(180deg, rgba(17, 17, 17, 0.15) 0%, rgba(17, 17, 17, 0) 100%);
+
+    --ease-links: 250ms ease-in-out color;
+
+    --gutter: 2.4rem;
   }
 
   html {
