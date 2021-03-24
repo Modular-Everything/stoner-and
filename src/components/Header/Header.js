@@ -45,6 +45,8 @@ const HeaderContainer = styled(Container)`
 `;
 
 const HeaderSC = styled.header`
+  position: relative;
+  z-index: 500;
   height: 7.7rem;
   background: var(--fade-dark);
 
