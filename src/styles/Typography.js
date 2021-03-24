@@ -17,6 +17,11 @@ const Typography = createGlobalStyle`
     margin: 0;
   }
 
+  ::selection {
+    background: var(--off-white);
+    color: var(--black);
+  }
+
   mark, .mark {
     display: inline;
     margin: 0;
