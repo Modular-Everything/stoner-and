@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Pivot as Hamburger } from 'hamburger-react';
 import { Link } from 'gatsby';
 
+import { ThemeContext } from '../../contexts/ThemeContext';
 import Logo from '../../images/logo.inline.svg';
 import Container from '../Container';
 
@@ -11,9 +12,10 @@ import Container from '../Container';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   return (
-    <HeaderSC>
+    <HeaderSC theme={theme}>
       <HeaderContainer>
         <div className="logo">
           <Link to="/">
@@ -53,14 +55,15 @@ const HeaderSC = styled.header`
 
   a {
     transition: var(--ease-links);
-    color: var(--black);
+    opacity: 1;
+    color: ${({ theme }) => theme.contrast};
 
     &:hover {
-      color: var(--rich-black);
+      opacity: 0.8;
     }
   }
 
   .logo {
-    color: var(--black);
+    color: ${({ theme }) => theme.contrast};
   }
 `;

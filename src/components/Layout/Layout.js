@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 import 'normalize.css';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Typography from '../../styles/Typography';
-import Header from '../Header/Header';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 //
 
-const Layout = ({ children }) => (
-  <>
-    <GlobalStyles />
-    <Typography />
+const Layout = ({ children }) => {
+  const { theme } = useContext(ThemeContext);
 
-    <Header />
-    <main>{children}</main>
-  </>
-);
+  return (
+    <>
+      <GlobalStyles />
+      <Typography />
+
+      <Helmet>
+        <style type="text/css">{`
+          body {
+            background-color: ${theme.primary};
+            color: ${theme.contrast};
+          }
+        `}</style>
+      </Helmet>
+
+      <main>{children}</main>
+    </>
+  );
+};
 
 export default Layout;
 
