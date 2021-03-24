@@ -4,12 +4,13 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
+    --rich-black: #191617;
+    --black: #414042;
+    --grey: #e1e2da;
+    --off-white: #f0f0e6;
     --white: #fff;
-    --black: #000;
-    --yellow: #ffcc66;
-    --grey: #efefef;
 
-    --highlight: var(--yellow);
+    --highlight: var(--off-white);
   }
 
   html {
