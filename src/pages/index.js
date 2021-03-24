@@ -12,28 +12,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-
-      <p>Hello!</p>
-      <button
-        type="button"
-        onClick={() =>
-          setTheme({ primary: 'var(--black)', contrast: 'var(--off-white)' })
-        }
-      >
-        Click me
-      </button>
-      <button
-        type="button"
-        onClick={() =>
-          setTheme({
-            primary: 'var(--off-white)',
-            contrast: 'var(--off-black)',
-          })
-        }
-      >
-        Click me next
-      </button>
-
+      Homepage.
       <SEO />
     </>
   );
