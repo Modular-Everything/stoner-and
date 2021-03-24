@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Pivot as Hamburger } from 'hamburger-react';
 import { Link } from 'gatsby';
@@ -12,7 +11,7 @@ import Container from '../Container';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <HeaderSC theme={theme}>
