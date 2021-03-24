@@ -10,7 +10,7 @@ export default {
   siteMetadata: {
     title: 'Jewellery',
     siteUrl: 'https://stonerand.co/',
-    titleTemplate: '%s | Stoner&',
+    titleTemplate: 'Stoner&%s',
     description: 'Design that comes to life.',
   },
 
