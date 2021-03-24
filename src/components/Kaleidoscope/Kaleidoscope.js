@@ -1,11 +1,16 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 //
 
 export const Kaleidoscope = (props) => {
   const canvasRef = useRef(null);
 
+  const { image } = props;
+
   useEffect(() => {
+    if (!image) return null;
+
     // ** Configure canvas
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
@@ -29,7 +34,7 @@ export const Kaleidoscope = (props) => {
     // ** Create the image
     const img = new Image();
     let fill;
-    img.src = 'https://source.unsplash.com/collection/6792352/1600x900';
+    img.src = image;
     img.onload = () => {
       fill = context.createPattern(img, 'repeat');
     };
@@ -102,7 +107,7 @@ export const Kaleidoscope = (props) => {
     }
 
     update();
-  }, []);
+  }, [image]);
 
   return (
     <canvas
@@ -111,4 +116,8 @@ export const Kaleidoscope = (props) => {
       style={{ zIndex: 0, position: 'relative' }}
     />
   );
+};
+
+Kaleidoscope.propTypes = {
+  image: PropTypes.string.isRequired,
 };

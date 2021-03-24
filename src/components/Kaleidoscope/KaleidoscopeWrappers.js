@@ -6,7 +6,7 @@ import { Kaleidoscope } from './Kaleidoscope';
 
 //
 
-export const KaleidoscopeBg = ({ children }) => {
+export const KaleidoscopeBg = ({ image, children }) => {
   const [landscape, setLandscape] = useState(null);
 
   useEffect(() => {
@@ -18,10 +18,12 @@ export const KaleidoscopeBg = ({ children }) => {
     window.addEventListener('resize', checkOrientation, false);
   }, [landscape]);
 
+  if (!image) return null;
+
   return (
     <KaleidoscopeBgST isLandscape={landscape}>
       {children && children}
-      <Kaleidoscope />
+      <Kaleidoscope image={image} />
     </KaleidoscopeBgST>
   );
 };
@@ -43,6 +45,7 @@ const KaleidoscopeBgST = styled.section`
 `;
 
 KaleidoscopeBg.propTypes = {
+  image: PropTypes.string.isRequired,
   children: PropTypes.node,
 };
 
