@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { ThemeContext } from '../contexts/ThemeContext';
-import Header from '../components/Header';
 import SEO from '../components/SEO';
 import Container from '../components/Container';
 import IntroText from '../components/IntroText/IntroText';
@@ -15,17 +14,11 @@ const HomePage = () => {
 
   return (
     <>
-      <Header gradient={false} />
-
       <Content>
         <ContentContainer>
           <IntroText />
           <Signpost />
         </ContentContainer>
-
-        <footer style={{ paddingBottom: 'calc(var(--gutter) * 2)' }}>
-          <center>Footer</center>
-        </footer>
       </Content>
 
       <SEO />
@@ -36,8 +29,7 @@ const HomePage = () => {
 export default HomePage;
 
 const Content = styled.div`
-  position: relative;
-  top: calc(var(--headerHeight) + var(--gutter));
+  margin-top: calc(var(--headerHeight) + var(--gutter));
 `;
 
 const ContentContainer = styled(Container)`

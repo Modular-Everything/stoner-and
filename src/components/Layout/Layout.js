@@ -6,6 +6,8 @@ import 'normalize.css';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Typography from '../../styles/Typography';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import Header from '../Header';
+import Footer from '../Footer/Footer';
 
 //
 
@@ -26,7 +28,9 @@ const Layout = ({ children }) => {
         `}</style>
       </Helmet>
 
+      <Header gradient={false} />
       <main>{children}</main>
+      <Footer />
     </>
   );
 };
