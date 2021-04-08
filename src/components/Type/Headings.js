@@ -75,3 +75,26 @@ HeaderTwoSerif.propTypes = {
 HeaderTwoSerif.defaultProps = {
   as: null,
 };
+
+//
+
+export const HeaderSmall = ({ children, as }) => (
+  <HeaderSmallSt as={as}>{children}</HeaderSmallSt>
+);
+
+const HeaderSmallSt = styled.h3`
+  font-family: var(--halyard-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06rem;
+  line-height: 2.2rem;
+`;
+
+HeaderSmall.propTypes = {
+  children: PropTypes.node.isRequired,
+  as: PropTypes.string,
+};
+
+HeaderSmall.defaultProps = {
+  as: null,
+};
