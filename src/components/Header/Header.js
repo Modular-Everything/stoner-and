@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Pivot as Hamburger } from 'hamburger-react';
 import { Link } from 'gatsby';
@@ -9,12 +10,12 @@ import Container from '../Container';
 
 //
 
-const Header = () => {
+const Header = ({ gradient }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   return (
-    <HeaderSC theme={theme}>
+    <HeaderSC theme={theme} gradient={gradient}>
       <HeaderContainer>
         <div className="logo">
           <Link to="/">
@@ -45,14 +46,12 @@ const HeaderContainer = styled(Container)`
 `;
 
 const HeaderSC = styled.header`
-  position: relative;
+  position: fixed;
   z-index: 500;
-  height: 7.7rem;
-  background: var(--fade-dark);
-
-  @media (min-width: 768px) {
-    height: 10rem;
-  }
+  width: 100%;
+  height: var(--headerHeight);
+  background: ${({ gradient }) =>
+    gradient ? 'var(--fade-dark)' : 'transparent'};
 
   a {
     transition: var(--ease-links);
@@ -68,3 +67,11 @@ const HeaderSC = styled.header`
     color: ${({ theme }) => theme.contrast};
   }
 `;
+
+Header.propTypes = {
+  gradient: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  gradient: true,
+};
