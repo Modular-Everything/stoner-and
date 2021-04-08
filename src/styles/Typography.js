@@ -3,9 +3,15 @@ import { createGlobalStyle } from 'styled-components';
 //
 
 const Typography = createGlobalStyle`
+  :root {
+    --halyard-display: 'Halyard Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --halyard-text: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --optima: 'Optima', Georgia, 'Times New Roman', Times, serif;
+  }
+
   html {
     color: var(--black);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--halyard-display);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -18,7 +24,7 @@ const Typography = createGlobalStyle`
   }
 
   ::selection {
-    background: var(--off-white);
+    background: var(--white);
     color: var(--black);
   }
 
