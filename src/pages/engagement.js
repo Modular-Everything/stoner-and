@@ -39,14 +39,14 @@ const EngagementPage = ({ data }) => {
   const { kaleidoscopeImages } = page;
   const random = Math.floor(Math.random() * kaleidoscopeImages.length);
 
-  const [image, setImage] = useState(kaleidoscopeImages[random]);
+  const [image] = useState(kaleidoscopeImages[random]);
 
   useEffect(() => {
     setTheme({
       ...theme,
       contrast: image.asset.metadata.palette.darkMuted.background,
     });
-  }, []);
+  });
 
   return (
     <>
