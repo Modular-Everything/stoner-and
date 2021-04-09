@@ -40,7 +40,7 @@ const HeaderSerifSt = styled.h1`
   font-family: var(--optima);
   font-size: clamp(4rem, 4vw, 6.2rem);
   font-weight: normal;
-  letter-spacing: -0.02rem;
+  letter-spacing: -0.2rem;
   line-height: clamp(4rem, 3.2vw, 6.2rem);
 `;
 
