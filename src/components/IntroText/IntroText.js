@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { AllCapsDetail, HeaderSerif } from '../Type/Headings';
-import { ParagraphSmall } from '../Type/Copy';
+import TwoColText from '../TwoColText/TwoColText';
 
 const IntroText = ({ title, subtitle, copy }) => (
   <IntroTextSt>
@@ -12,9 +12,7 @@ const IntroText = ({ title, subtitle, copy }) => (
 
     {copy && (
       <div className="copy">
-        {copy.map((text) => (
-          <ParagraphSmall>{text}</ParagraphSmall>
-        ))}
+        <TwoColText copy={copy} />
       </div>
     )}
   </IntroTextSt>
@@ -31,36 +29,16 @@ const IntroTextSt = styled.section`
   color: var(--black);
 
   h1 {
-    margin-top: 1.6rem;
     text-align: center;
   }
 
   h2 {
+    margin-bottom: var(--gutter);
     text-align: center;
   }
 
   .copy {
-    margin-top: 2.4rem;
-    p {
-      margin-bottom: 1.6rem;
-
-      &:first-of-type {
-        text-indent: 1.6rem;
-      }
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
-
-    @media (min-width: 640px) {
-      columns: 2;
-      column-gap: 2.4rem;
-
-      p {
-        margin-bottom: 0;
-      }
-    }
+    margin-top: calc(var(--gutter) * 1.5);
   }
 `;
 
