@@ -31,6 +31,7 @@ export const KaleidoscopeBg = ({ image, children }) => {
 const KaleidoscopeBgST = styled.section`
   display: flex;
   position: absolute;
+  z-index: -50;
   top: 0;
   left: 0;
   align-items: center;
