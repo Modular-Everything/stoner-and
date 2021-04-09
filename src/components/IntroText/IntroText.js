@@ -1,33 +1,22 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { AllCapsDetail, HeaderSerif } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
 
-//
-
-const IntroText = () => (
+const IntroText = ({ title, subtitle, copy }) => (
   <IntroTextSt>
-    <AllCapsDetail as="h2">Lorem Ipsum</AllCapsDetail>
-    <HeaderSerif as="h1">Design that comes to life</HeaderSerif>
+    {subtitle && <AllCapsDetail as="h2">{subtitle}</AllCapsDetail>}
+    <HeaderSerif as="h1">{title}</HeaderSerif>
 
-    <div className="copy">
-      <ParagraphSmall>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Nulla posuere
-        sollicitudin aliquam ultrices sagittis. Lacus luctus accumsan tortor
-        posuere ac. Sit amet venenatis urna cursus eget nunc. Sit amet
-        consectetur adipiscing elit pellentesque habitant morbi tristique
-        senectus.
-      </ParagraphSmall>
-      <ParagraphSmall>
-        Orci nulla pellentesque dignissim enim sit amet venenatis urna. Risus
-        quis varius quam quisque id diam vel quam. Commodo sed egestas egestas
-        fringilla phasellus faucibus. Viverra aliquet eget sit amet tellus cras
-        adipiscing enim eu. Eleifend quam.
-      </ParagraphSmall>
-    </div>
+    {copy && (
+      <div className="copy">
+        {copy.map((text) => (
+          <ParagraphSmall>{text}</ParagraphSmall>
+        ))}
+      </div>
+    )}
   </IntroTextSt>
 );
 
@@ -42,7 +31,7 @@ const IntroTextSt = styled.section`
   color: var(--black);
 
   h1 {
-    margin: 1.6rem 0 2.4rem;
+    margin-top: 1.6rem;
     text-align: center;
   }
 
@@ -51,6 +40,7 @@ const IntroTextSt = styled.section`
   }
 
   .copy {
+    margin-top: 2.4rem;
     p {
       margin-bottom: 1.6rem;
 
@@ -73,3 +63,14 @@ const IntroTextSt = styled.section`
     }
   }
 `;
+
+IntroText.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  copy: PropTypes.array,
+};
+
+IntroText.defaultProps = {
+  subtitle: null,
+  copy: null,
+};
