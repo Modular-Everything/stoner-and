@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import limitNumberWithinRange from '../../helpers/limitNumberWithinRange';
+
 //
 
 export const Kaleidoscope = (props) => {
@@ -83,13 +85,14 @@ export const Kaleidoscope = (props) => {
         dy = e.pageY / vh;
         hx = dx - 0.1;
         hy = dy - 0.1;
-        tx = hx * settings.radius * -0.8;
-        ty = hy * settings.radius * 0.8;
+        tx = limitNumberWithinRange(hx * settings.radius * -0.8, -150, 150);
+        ty = limitNumberWithinRange(hy * settings.radius * 0.8, -150, 150);
       },
       false
     );
 
     canvas.style.position = 'fixed';
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
     // ** Animate the canvas
     function update() {
@@ -97,6 +100,9 @@ export const Kaleidoscope = (props) => {
       context.restore();
 
       tr -= 0.002;
+
+      // console.log('tx', tx);
+      // console.log(ty);
 
       settings.offsetX += (tx - settings.offsetX) * ease;
       settings.offsetY += (ty - settings.offsetY) * ease;
