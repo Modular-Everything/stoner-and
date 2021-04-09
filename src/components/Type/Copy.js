@@ -5,10 +5,10 @@ import styled from 'styled-components';
 //
 
 export const ParagraphSmall = ({ children, as }) => (
-  <ParagraphSmallSt as={as}>{children}</ParagraphSmallSt>
+  <ParagraphSmallSC as={as}>{children}</ParagraphSmallSC>
 );
 
-const ParagraphSmallSt = styled.p`
+const ParagraphSmallSC = styled.p`
   font-family: var(--halyard-text);
   font-size: 1.4rem;
   font-weight: 300;
@@ -28,10 +28,10 @@ ParagraphSmall.defaultProps = {
 //
 
 export const ParagraphLarge = ({ children, as }) => (
-  <ParagraphLargeSt as={as}>{children}</ParagraphLargeSt>
+  <ParagraphLargeSC as={as}>{children}</ParagraphLargeSC>
 );
 
-const ParagraphLargeSt = styled.p`
+const ParagraphLargeSC = styled.p`
   font-family: var(--halyard-text);
   font-size: 1.6rem;
   font-weight: 300;
@@ -45,5 +45,32 @@ ParagraphLarge.propTypes = {
 };
 
 ParagraphLarge.defaultProps = {
+  as: null,
+};
+
+//
+
+export const ParagraphHuge = ({ children, as }) => (
+  <ParagraphHugeSC as={as}>{children}</ParagraphHugeSC>
+);
+
+const ParagraphHugeSC = styled.p`
+  font-family: var(--halyard-text);
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 2.8rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.4rem;
+    line-height: 3.4rem;
+  }
+`;
+
+ParagraphHuge.propTypes = {
+  children: PropTypes.node.isRequired,
+  as: PropTypes.string,
+};
+
+ParagraphHuge.defaultProps = {
   as: null,
 };
