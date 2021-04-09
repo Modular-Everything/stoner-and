@@ -121,3 +121,27 @@ HeaderSmall.propTypes = {
 HeaderSmall.defaultProps = {
   as: null,
 };
+
+//
+
+export const AllCapsHeader = ({ children, as }) => (
+  <AllCapsHeaderSt as={as}>{children}</AllCapsHeaderSt>
+);
+
+const AllCapsHeaderSt = styled.h3`
+  font-family: var(--halyard-display);
+  font-size: 1.4rem;
+  font-weight: normal;
+  letter-spacing: 0.2rem;
+  line-height: 2rem;
+  text-transform: uppercase;
+`;
+
+AllCapsHeader.propTypes = {
+  children: PropTypes.node.isRequired,
+  as: PropTypes.string,
+};
+
+AllCapsHeader.defaultProps = {
+  as: null,
+};
