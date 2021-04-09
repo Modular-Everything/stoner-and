@@ -55,6 +55,29 @@ HeaderSerif.defaultProps = {
 
 //
 
+export const HeaderSans = ({ children, as }) => (
+  <HeaderSansSt as={as}>{children}</HeaderSansSt>
+);
+
+const HeaderSansSt = styled.h1`
+  font-family: var(--halyard-display);
+  font-size: clamp(4rem, 4vw, 5.6rem);
+  font-weight: normal;
+  letter-spacing: -0.02rem;
+  line-height: clamp(4rem, 3.2vw, 5.6rem);
+`;
+
+HeaderSans.propTypes = {
+  children: PropTypes.node.isRequired,
+  as: PropTypes.string,
+};
+
+HeaderSans.defaultProps = {
+  as: null,
+};
+
+//
+
 export const HeaderTwoSerif = ({ children, as }) => (
   <HeaderTwoSerifSt as={as}>{children}</HeaderTwoSerifSt>
 );
