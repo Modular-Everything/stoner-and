@@ -91,7 +91,7 @@ export const Kaleidoscope = (props) => {
       false
     );
 
-    canvas.style.position = 'fixed';
+    canvas.style.position = 'absolute';
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // ** Animate the canvas
@@ -100,9 +100,6 @@ export const Kaleidoscope = (props) => {
       context.restore();
 
       tr -= 0.002;
-
-      // console.log('tx', tx);
-      // console.log(ty);
 
       settings.offsetX += (tx - settings.offsetX) * ease;
       settings.offsetY += (ty - settings.offsetY) * ease;
