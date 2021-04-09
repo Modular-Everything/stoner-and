@@ -13,15 +13,21 @@ export const ButtonLink = ({ label, to, theme }) => (
 
 const ButtonLinkSC = styled(Link)`
   display: inline-block;
-  max-width: 38rem;
-  padding: 1.6rem 2.4rem;
+  max-width: 40rem;
+  padding: 1.6rem 3.2rem;
+  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1) background-color;
   border: 1px solid ${({ theme }) => theme || 'var(--black)'};
+  background-color: rgba(255, 255, 255, 0);
   color: ${({ theme }) => theme || 'var(--black)'};
   font-size: 1.4rem;
   letter-spacing: 0.4rem;
   line-height: 2rem;
   text-decoration: none;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
 `;
 
 ButtonLink.propTypes = {
