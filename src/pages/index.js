@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { ThemeContext } from '../contexts/ThemeContext';
@@ -11,6 +11,14 @@ import Signpost from '../components/Signpost/Signpost';
 
 const HomePage = () => {
   const { theme, setTheme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    setTheme({
+      ...theme,
+      contrast: 'var(--black)',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
