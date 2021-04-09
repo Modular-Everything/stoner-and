@@ -46,7 +46,8 @@ const EngagementPage = ({ data }) => {
       ...theme,
       contrast: image.asset.metadata.palette.darkMuted.background,
     });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
