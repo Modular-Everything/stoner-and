@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
-import Logo from '../../images/logo.fluid.inline.svg';
 import { HeaderSans, HeaderSerif } from '../Type/Headings';
 import { ParagraphHuge } from '../Type/Copy';
 import { ButtonLink } from '../Button/Button';
