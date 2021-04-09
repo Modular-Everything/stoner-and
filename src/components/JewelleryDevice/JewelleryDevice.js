@@ -121,6 +121,11 @@ const JewelleryDeviceSC = styled.section`
 
   h2 {
     margin-bottom: var(--gutter);
+    text-align: center;
+  }
+
+  h1 {
+    text-align: center;
   }
 
   .copy {

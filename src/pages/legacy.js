@@ -22,7 +22,7 @@ const LegacyPage = () => {
   return (
     <>
       <Content>
-        <Container>
+        <ContentContainer>
           <JewelleryDevice
             title="Bring new life to your unwanted collections"
             subtitle="Legacy"
@@ -31,7 +31,7 @@ const LegacyPage = () => {
               'Orci nulla pellentesque dignissim enim sit amet venenatis urna. Risus quis varius quam quisque id diam vel quam. Commodo sed egestas egestas fringilla phasellus faucibus. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Eleifend quam.',
             ]}
           />
-        </Container>
+        </ContentContainer>
       </Content>
 
       <SEO title="Legacy" />
@@ -43,4 +43,10 @@ export default LegacyPage;
 
 const Content = styled.div`
   margin-top: calc(var(--headerHeight) + var(--gutter));
+`;
+
+const ContentContainer = styled(Container)`
+  & > section {
+    margin-bottom: calc(var(--gutter) * 2);
+  }
 `;
