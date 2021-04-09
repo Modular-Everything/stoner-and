@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Logo from '../../images/logo.fluid.inline.svg';
-import { HeaderSans } from '../Type/Headings';
+import { HeaderSans, HeaderSerif } from '../Type/Headings';
 import { ParagraphHuge } from '../Type/Copy';
 import { ButtonLink } from '../Button/Button';
 
@@ -16,8 +16,12 @@ const BrandedHeading = ({ label, copy }) => {
   return (
     <BrandedHeadingSC theme={theme}>
       <div className="heading">
-        <Logo />
-        <HeaderSans>{label}</HeaderSans>
+        <h1>
+          <HeaderSerif as="span">
+            Stoner<em>&amp;</em>
+          </HeaderSerif>
+          <HeaderSans as="span">{label}</HeaderSans>
+        </h1>
       </div>
 
       <div className="copy">
@@ -35,11 +39,29 @@ const BrandedHeading = ({ label, copy }) => {
 export default BrandedHeading;
 
 const BrandedHeadingSC = styled.section`
+  padding: 0 var(--gutter);
   color: ${({ theme }) => theme.contrast};
 
   .heading {
     display: flex;
     justify-content: center;
+
+    h1 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      @media (min-width: 768px) {
+        flex-wrap: nowrap;
+      }
+
+      em {
+        position: relative;
+        left: -0.2rem;
+        margin-right: -0.2rem;
+        font-style: normal;
+      }
+    }
 
     svg {
       height: 4.6rem;
