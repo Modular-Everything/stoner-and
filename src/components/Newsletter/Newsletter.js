@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { HeaderThree } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
+import Placeholder from '../../images/placeholders/legacy-bg.jpeg';
+import { KaleidoscopeBg } from '../Kaleidoscope/KaleidoscopeWrappers';
 
 //
 
@@ -38,7 +40,10 @@ const Newsletter = () => {
 
   return (
     <NewsletterSC theme={theme}>
-      <div className="kaleidoscope" />
+      <div className="kaleidoscope">
+        <KaleidoscopeBg image={Placeholder} />
+      </div>
+
       <div className="content">
         <HeaderThree as="h3">
           18-Karat* News and Offers
@@ -101,12 +106,36 @@ const NewsletterSC = styled.section`
   }
 
   .kaleidoscope {
+    position: relative;
+    padding-bottom: 50%;
+
+    section {
+      z-index: unset;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      canvas {
+        top: -50%;
+        width: 100%;
+        height: unset;
+
+        @media (min-width: 1024px) {
+          top: 0;
+          height: 100%;
+        }
+      }
+    }
+
     @media (min-width: 1024px) {
       width: 50%;
     }
   }
 
   .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: calc(100% - (var(--gutter) * 3));
     padding: calc(var(--gutter) * 1.5);
     background-color: ${({ theme }) => theme.contrast};
