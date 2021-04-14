@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
@@ -11,8 +11,15 @@ import Footer from '../Footer/Footer';
 
 //
 
-const Layout = ({ children }) => {
+const Layout = ({ gradient, children }) => {
   const { theme } = useContext(ThemeContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  if (loading) return <h1>Loading...</h1>;
 
   return (
     <>
@@ -28,7 +35,7 @@ const Layout = ({ children }) => {
         `}</style>
       </Helmet>
 
-      <Header gradient={false} />
+      <Header gradient={gradient} />
       <main>{children}</main>
       <Footer />
     </>
@@ -41,4 +48,9 @@ export default Layout;
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  gradient: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+  gradient: false,
 };
