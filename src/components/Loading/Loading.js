@@ -26,8 +26,6 @@ const LoadingScreen = ({ setLoading }) => {
 
   return (
     <>
-      <SEO title="Loading..." />
-
       <LoadingSC>
         <Ellipsis color="var(--black)" size={40} />
 
@@ -39,6 +37,8 @@ const LoadingScreen = ({ setLoading }) => {
           ?
         </p>
       </LoadingSC>
+
+      <SEO title="Loading..." />
     </>
   );
 };
