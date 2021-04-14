@@ -78,6 +78,29 @@ HeaderSans.defaultProps = {
 
 //
 
+export const HeaderThree = ({ children, as }) => (
+  <HeaderThreeSt as={as}>{children}</HeaderThreeSt>
+);
+
+const HeaderThreeSt = styled.h1`
+  font-family: var(--halyard-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: normal;
+  letter-spacing: 0.01rem;
+  line-height: clamp(2.4rem, 2vw, 3.6rem);
+`;
+
+HeaderThree.propTypes = {
+  children: PropTypes.node.isRequired,
+  as: PropTypes.string,
+};
+
+HeaderThree.defaultProps = {
+  as: null,
+};
+
+//
+
 export const HeaderTwoSerif = ({ children, as }) => (
   <HeaderTwoSerifSt as={as}>{children}</HeaderTwoSerifSt>
 );

@@ -30,6 +30,7 @@
     "dotenv": "^8.2.0",
     "gatsby": "^3.1.0",
     "gatsby-plugin-image": "^1.1.0",
+    "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^3.1.0",
     "gatsby-plugin-nprogress": "^3.1.0",
     "gatsby-plugin-offline": "^4.1.0",
@@ -50,6 +51,7 @@
     "react-css-spinners": "^4.0.2",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.1.0",
     "react-icons": "^4.2.0",
     "styled-components": "^5.2.1"
   },

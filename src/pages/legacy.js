@@ -7,6 +7,7 @@ import Container from '../components/Container';
 import JewelleryDevice from '../components/JewelleryDevice/JewelleryDevice';
 import ImageHeading from '../components/ImageHeading/ImageHeading';
 import Layout from '../components/Layout';
+import Newsletter from '../components/Newsletter/Newsletter';
 
 //
 
@@ -16,7 +17,7 @@ const LegacyPage = () => {
   useEffect(() => {
     setTheme({
       primary: 'var(--rich-black)',
-      contrast: 'var(--white)',
+      contrast: 'var(--off-white)',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -35,6 +36,8 @@ const LegacyPage = () => {
               'Orci nulla pellentesque dignissim enim sit amet venenatis urna. Risus quis varius quam quisque id diam vel quam. Commodo sed egestas egestas fringilla phasellus faucibus. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Eleifend quam.',
             ]}
           />
+
+          <Newsletter />
         </ContentContainer>
       </Content>
 

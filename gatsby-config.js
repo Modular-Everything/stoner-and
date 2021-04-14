@@ -20,8 +20,8 @@ export default {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Accentuate Agency`,
-        short_name: `Accentuate`,
+        name: `Stoner&`,
+        short_name: `Stoner&`,
         start_url: `/`,
         background_color: `#f0f0e6`,
         theme_color: `#414042`,
@@ -53,6 +53,13 @@ export default {
             test: /\.inline.svg$/,
           },
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint:
+          'https://anonaddy.us1.list-manage.com/subscribe/post?u=86e604503fc42249d937a8c23&amp;id=5bc89eac0c',
       },
     },
     `gatsby-plugin-sitemap`,
