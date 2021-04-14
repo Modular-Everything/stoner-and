@@ -57,6 +57,10 @@ const BrandedHeadingSC = styled.section`
   padding: 0 var(--gutter);
   color: ${({ theme }) => theme.contrast};
 
+  @media (min-width: 640px) {
+    padding: 0;
+  }
+
   .heading {
     display: flex;
     justify-content: center;

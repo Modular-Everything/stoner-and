@@ -28,14 +28,10 @@ export default ImageHeading;
 const ImageHeadingSC = styled.section`
   position: relative;
   z-index: 0;
-  height: calc(80vh - var(--headerHeight));
+  height: calc(110vh - var(--headerHeight));
   padding-top: var(--headerHeight);
   background: no-repeat center;
   background-size: cover;
-
-  @media (min-width: 768px) {
-    height: calc(90vh - var(--headerHeight));
-  }
 `;
 
 const Skrim = styled.div`
@@ -66,6 +62,7 @@ const ContentContainer = styled(Container)`
   z-index: 100;
   align-items: center;
   justify-content: flex-end;
+  height: 70%;
 `;
 
 ImageHeading.propTypes = {};

@@ -46,7 +46,7 @@ const LegacyPage = () => {
 export default LegacyPage;
 
 const Content = styled.div`
-  margin-top: calc(var(--headerHeight) + var(--gutter));
+  margin-top: calc(-1 * (var(--gutter) * 7));
 `;
 
 const ContentContainer = styled(Container)`
