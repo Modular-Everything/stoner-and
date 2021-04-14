@@ -8,6 +8,7 @@ import Typography from '../../styles/Typography';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Header from '../Header';
 import Footer from '../Footer/Footer';
+import LoadingScreen from '../Loading';
 
 //
 
@@ -19,7 +20,14 @@ const Layout = ({ gradient, children }) => {
     setLoading(false);
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading)
+    return (
+      <>
+        <GlobalStyles />
+        <Typography />
+        <LoadingScreen setLoading={setLoading} />
+      </>
+    );
 
   return (
     <>

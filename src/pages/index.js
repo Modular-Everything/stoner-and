@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import Container from '../components/Container';
-import IntroText from '../components/IntroText/IntroText';
-import Signpost from '../components/Signpost/Signpost';
+import IntroText from '../components/IntroText';
+import Signpost from '../components/Signpost';
 import Layout from '../components/Layout';
 
 //
