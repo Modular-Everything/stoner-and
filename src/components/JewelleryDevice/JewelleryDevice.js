@@ -145,7 +145,7 @@ const JewelleryDeviceSC = styled.section`
 
     width: 100%;
     height: var(--deviceHeight);
-    margin: calc(var(--gutter) * 1.5) 0;
+    margin: calc(var(--gutter) * 2) 0;
 
     ul {
       position: relative;
