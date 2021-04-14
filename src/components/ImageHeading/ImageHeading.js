@@ -51,7 +51,7 @@ const Skrim = styled.div`
     background-image: linear-gradient(
       360deg,
       var(--rich-black) 0%,
-      rgba(0, 0, 0, 0) 25%
+      rgba(0, 0, 0, 0) 35%
     );
   }
 `;
