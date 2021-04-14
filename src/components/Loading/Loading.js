@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Circle } from 'react-preloaders2';
+import { Ellipsis } from 'react-css-spinners';
 
 import SEO from '../SEO';
 
@@ -12,12 +12,12 @@ const LoadingScreen = ({ setLoading }) => {
   const timeoutId = useRef(null);
 
   useEffect(() => {
-    if (skip.current) {
-      const timeout = setTimeout(() => {
+    const timeout = setTimeout(() => {
+      if (skip.current) {
         skip.current.style.display = 'block';
-      }, 5000);
-      timeoutId.current = timeout;
-    }
+      }
+    }, 5000);
+    timeoutId.current = timeout;
 
     return () => {
       clearTimeout(timeoutId);
@@ -29,7 +29,7 @@ const LoadingScreen = ({ setLoading }) => {
       <SEO title="Loading..." />
 
       <LoadingSC>
-        <Circle color="var(--black)" />
+        <Ellipsis color="var(--black)" size={40} />
 
         <p ref={skip}>
           This is taking awhile...{' '}
@@ -66,18 +66,9 @@ const LoadingSC = styled.section`
       border: 0;
       background: transparent;
       color: var(--black);
+      text-decoration: underline;
       cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
-  }
-
-  #preloader {
-    position: relative;
-    height: 12rem;
-    background: transparent;
   }
 `;
 
