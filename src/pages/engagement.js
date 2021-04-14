@@ -56,6 +56,7 @@ const EngagementPage = ({ data }) => {
         <BrandedHeading
           label="Engagement"
           copy="Hands on design process to create a truly unique ring for your important gift for your love"
+          cta="Find a match made in heaven"
         />
         <KaleidoscopeBg image={`${image.asset.url}?w=1080&h=1080`} />
       </Content>
