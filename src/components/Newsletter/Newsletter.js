@@ -80,6 +80,7 @@ const Newsletter = () => {
 
           {submitted && mailchimp && (
             <span className={`message ${mailchimp.result || undefined}`}>
+              {/* eslint-disable-next-line react/no-danger */}
               <span dangerouslySetInnerHTML={{ __html: mailchimp.msg }} />
             </span>
           )}
@@ -93,17 +94,33 @@ export default Newsletter;
 
 const NewsletterSC = styled.section`
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
 
   .kaleidoscope {
-    width: 50%;
+    @media (min-width: 1024px) {
+      width: 50%;
+    }
   }
 
   .content {
-    width: calc(50% - (var(--gutter) * 7));
-    padding: calc(var(--gutter) * 3.5);
+    width: calc(100% - (var(--gutter) * 3));
+    padding: calc(var(--gutter) * 1.5);
     background-color: ${({ theme }) => theme.contrast};
     color: ${({ theme }) =>
       theme.primary === 'var(--rich-black)' ? 'var(--black)' : theme.primary};
+
+    @media (min-width: 640px) {
+      width: calc(100% - (var(--gutter) * 7));
+      padding: calc(var(--gutter) * 3.5);
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(50% - (var(--gutter) * 7));
+    }
 
     h3,
     p {
@@ -120,8 +137,8 @@ const NewsletterSC = styled.section`
 
     input[type='text'],
     input[type='email'] {
-      width: calc(100% - (var(--gutter)));
-      padding: calc(var(--gutter) / 1.5);
+      width: calc(100% - (var(--gutter) * 2));
+      padding: calc(var(--gutter));
       border: 0;
       outline: 0;
       background-color: var(--white);
@@ -137,11 +154,13 @@ const NewsletterSC = styled.section`
     }
 
     .submit {
-      display: flex;
-      align-items: center;
+      @media (min-width: 500px) {
+        display: flex;
+        align-items: center;
+      }
 
       input[type='submit'] {
-        width: 35%;
+        width: 100%;
         padding: calc(var(--gutter) / 1.5);
         transition: var(--ease-links);
         border: 0;
@@ -150,8 +169,13 @@ const NewsletterSC = styled.section`
         background-color: ${({ theme }) => theme.primary};
         color: ${({ theme }) => theme.contrast};
         letter-spacing: 0.2rem;
+        text-align: center;
         text-transform: uppercase;
         cursor: pointer;
+
+        @media (min-width: 500px) {
+          width: 35%;
+        }
 
         &:hover {
           opacity: 0.8;
@@ -164,11 +188,17 @@ const NewsletterSC = styled.section`
       }
 
       small {
-        width: calc(65% - var(--gutter));
-        max-width: 22rem;
-        margin-left: var(--gutter);
+        display: block;
+        width: calc(100% - var(--gutter));
+        margin: calc(var(--gutter) / 2) 0 0 0;
         font-size: 1rem;
         line-height: 1.6rem;
+
+        @media (min-width: 500px) {
+          width: calc(65% - var(--gutter));
+          max-width: 22rem;
+          margin: 0 0 0 var(--gutter);
+        }
       }
     }
 
