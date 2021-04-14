@@ -8,8 +8,8 @@ import { ParagraphSmall } from '../Type/Copy';
 
 const TwoColText = ({ copy }) => (
   <TwoColTextSC>
-    {copy.map((text) => (
-      <ParagraphSmall>{text}</ParagraphSmall>
+    {copy.map((text, index) => (
+      <ParagraphSmall key={index}>{text}</ParagraphSmall>
     ))}
   </TwoColTextSC>
 );
