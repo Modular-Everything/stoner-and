@@ -5,7 +5,7 @@ import { Pivot as Hamburger } from 'hamburger-react';
 import { Link } from 'gatsby';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
-import Logo from '../../images/logo.inline.svg';
+import Logo from '../../images/logo.fluid.inline.svg';
 import Container from '../Container';
 
 //
@@ -65,7 +65,16 @@ const HeaderSC = styled.header`
   }
 
   .logo {
+    max-width: 12rem;
     color: ${({ theme }) => theme.contrast};
+
+    @media (min-width: 768px) {
+      max-width: 16rem;
+    }
+
+    svg {
+      width: 100%;
+    }
   }
 `;
 
