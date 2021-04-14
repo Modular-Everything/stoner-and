@@ -9,11 +9,31 @@ import { ButtonLink } from '../Button/Button';
 
 //
 
-const BrandedHeading = ({ label, copy }) => {
+const BrandedHeading = ({ label, copy, cta, direction }) => {
   const { theme } = useContext(ThemeContext);
 
+  let textDirection;
+  let flexDirection;
+  switch (direction) {
+    case 'left':
+      textDirection = 'left';
+      flexDirection = 'flex-start';
+      break;
+    case 'right':
+      textDirection = 'right';
+      flexDirection = 'flex-end';
+      break;
+    default:
+      textDirection = 'center';
+      flexDirection = 'center';
+  }
+
   return (
-    <BrandedHeadingSC theme={theme}>
+    <BrandedHeadingSC
+      theme={theme}
+      textDirection={textDirection}
+      flexDirection={flexDirection}
+    >
       <div className="heading">
         <h1>
           <HeaderSerif as="span">
@@ -25,11 +45,7 @@ const BrandedHeading = ({ label, copy }) => {
 
       <div className="copy">
         <ParagraphHuge as="p">{copy}</ParagraphHuge>
-        <ButtonLink
-          label="Find a match made in heaven"
-          theme={theme.contrast}
-          to="/"
-        />
+        {cta && <ButtonLink label={cta} theme={theme.contrast} to="/" />}
       </div>
     </BrandedHeadingSC>
   );
@@ -45,10 +61,18 @@ const BrandedHeadingSC = styled.section`
     display: flex;
     justify-content: center;
 
+    @media (min-width: 640px) {
+      justify-content: ${({ flexDirection }) => flexDirection};
+    }
+
     h1 {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+
+      @media (min-width: 640px) {
+        justify-content: ${({ flexDirection }) => flexDirection};
+      }
 
       @media (min-width: 768px) {
         flex-wrap: nowrap;
@@ -72,6 +96,10 @@ const BrandedHeadingSC = styled.section`
     margin-top: var(--gutter);
     text-align: center;
 
+    @media (min-width: 640px) {
+      text-align: ${({ textDirection }) => textDirection};
+    }
+
     p {
       margin-bottom: calc(var(--gutter) * 1.5);
     }
@@ -81,4 +109,11 @@ const BrandedHeadingSC = styled.section`
 BrandedHeading.propTypes = {
   label: PropTypes.string.isRequired,
   copy: PropTypes.string.isRequired,
+  cta: PropTypes.string,
+  direction: PropTypes.string,
+};
+
+BrandedHeading.defaultProps = {
+  direction: 'center',
+  cta: null,
 };

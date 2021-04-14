@@ -5,6 +5,8 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import Container from '../components/Container';
 import JewelleryDevice from '../components/JewelleryDevice/JewelleryDevice';
+import ImageHeading from '../components/ImageHeading/ImageHeading';
+import Layout from '../components/Layout';
 
 //
 
@@ -20,7 +22,9 @@ const LegacyPage = () => {
   }, []);
 
   return (
-    <>
+    <Layout>
+      <ImageHeading />
+
       <Content>
         <ContentContainer>
           <JewelleryDevice
@@ -35,7 +39,7 @@ const LegacyPage = () => {
       </Content>
 
       <SEO title="Legacy" />
-    </>
+    </Layout>
   );
 };
 
