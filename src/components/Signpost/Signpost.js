@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 
 import Gem from '../../images/shapes/gem-with-fade.inline.svg';
-import Placeholder from '../../images/placeholders/square.jpg';
+import Placeholder from '../../images/placeholders/square.jpeg';
 import { HeaderTwoSerif } from '../Type/Headings';
 import { ParagraphLarge } from '../Type/Copy';
 
