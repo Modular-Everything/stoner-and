@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import Container from '../components/Container';
 import IntroText from '../components/IntroText/IntroText';
 import Signpost from '../components/Signpost/Signpost';
+import Layout from '../components/Layout';
 
 //
 
@@ -21,7 +22,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <Layout>
       <Content>
         <ContentContainer>
           <IntroText
@@ -38,7 +39,7 @@ const HomePage = () => {
       </Content>
 
       <SEO />
-    </>
+    </Layout>
   );
 };
 

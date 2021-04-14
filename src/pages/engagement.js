@@ -7,6 +7,7 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import { KaleidoscopeBg } from '../components/Kaleidoscope/KaleidoscopeWrappers';
 import BrandedHeading from '../components/BrandedHeading/BrandedHeading';
+import Layout from '../components/Layout';
 
 //
 
@@ -50,7 +51,7 @@ const EngagementPage = ({ data }) => {
   }, []);
 
   return (
-    <>
+    <Layout>
       <Content>
         <BrandedHeading
           label="Engagement"
@@ -60,7 +61,7 @@ const EngagementPage = ({ data }) => {
       </Content>
 
       <SEO title="Engagement" />
-    </>
+    </Layout>
   );
 };
 
