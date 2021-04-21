@@ -45,7 +45,13 @@ const BrandedHeading = ({ label, copy, cta, direction }) => {
 
       <div className="copy">
         <ParagraphHuge as="p">{copy}</ParagraphHuge>
-        {cta && <ButtonLink label={cta} theme={theme.contrast} to="/" />}
+        {cta && cta.link && cta.title && (
+          <ButtonLink
+            label={cta.title}
+            theme={theme.contrast}
+            to={`/${cta.link._type}`}
+          />
+        )}
       </div>
     </BrandedHeadingSC>
   );
@@ -103,17 +109,20 @@ const BrandedHeadingSC = styled.section`
     @media (min-width: 640px) {
       text-align: ${({ textDirection }) => textDirection};
     }
+  }
 
-    p {
-      margin-bottom: calc(var(--gutter) * 1.5);
-    }
+  a {
+    margin-top: calc(var(--gutter) * 1.5);
   }
 `;
 
 BrandedHeading.propTypes = {
   label: PropTypes.string.isRequired,
   copy: PropTypes.string.isRequired,
-  cta: PropTypes.string,
+  cta: PropTypes.shape({
+    link: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
   direction: PropTypes.string,
 };
 
