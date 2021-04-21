@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Container from '../Container';
@@ -8,16 +8,18 @@ import Placeholder from '../../images/placeholders/legacy-bg.jpeg';
 
 //
 
-const ImageHeading = () => (
+const ImageHeading = ({ heading }) => (
   <ImageHeadingSC style={{ backgroundImage: `url(${Placeholder})` }}>
-    <ContentContainer>
-      <BrandedHeading
-        label="Legacy"
-        copy="Hands on design process to create a truly unique ring for your important gift for your love"
-        cta="Find out more"
-        direction="right"
-      />
-    </ContentContainer>
+    {heading && (
+      <ContentContainer>
+        <BrandedHeading
+          label={heading.title}
+          copy={heading.copy}
+          cta={heading._rawLink}
+          direction="right"
+        />
+      </ContentContainer>
+    )}
 
     <Skrim />
   </ImageHeadingSC>
@@ -65,5 +67,10 @@ const ContentContainer = styled(Container)`
   height: 70%;
 `;
 
-ImageHeading.propTypes = {};
-ImageHeading.defaultProps = {};
+ImageHeading.propTypes = {
+  heading: PropTypes.object,
+};
+
+ImageHeading.defaultProps = {
+  heading: null,
+};

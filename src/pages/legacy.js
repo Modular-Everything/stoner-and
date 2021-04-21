@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { graphql } from 'gatsby';
 
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
@@ -11,7 +13,33 @@ import Newsletter from '../components/Newsletter/Newsletter';
 
 //
 
-const LegacyPage = () => {
+export const query = graphql`
+  query LegacyQuery {
+    page: sanityLegacy(_id: { regex: "/legacy/" }) {
+      background {
+        asset {
+          gatsbyImageData(width: 1440, formats: AUTO)
+        }
+        alt
+      }
+      heading {
+        title
+        copy
+        _rawLink(resolveReferences: { maxDepth: 1 })
+      }
+      jewelleryDevice {
+        title
+        subtitle
+        copy
+      }
+      newsletter
+    }
+  }
+`;
+
+//
+
+const LegacyPage = ({ data }) => {
   const { setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -22,22 +50,23 @@ const LegacyPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (!data) return null;
+  const { page } = data;
+  console.log(page);
+
   return (
     <Layout>
-      <ImageHeading />
+      <ImageHeading heading={page.heading} />
 
       <Content>
         <ContentContainer>
           <JewelleryDevice
-            title="Bring new life to your unwanted collections"
-            subtitle="Legacy"
-            copy={[
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla posuere sollicitudin aliquam ultrices sagittis. Lacus luctus accumsan tortor posuere ac. Sit amet venenatis urna cursus eget nunc. Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus.',
-              'Orci nulla pellentesque dignissim enim sit amet venenatis urna. Risus quis varius quam quisque id diam vel quam. Commodo sed egestas egestas fringilla phasellus faucibus. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Eleifend quam.',
-            ]}
+            title={page.jewelleryDevice.title}
+            subtitle={page.jewelleryDevice.subtitle}
+            copy={page.jewelleryDevice.copy}
           />
 
-          <Newsletter />
+          {page.newsletter && <Newsletter />}
         </ContentContainer>
       </Content>
 
@@ -57,3 +86,7 @@ const ContentContainer = styled(Container)`
     margin-bottom: calc(var(--gutter) * 2);
   }
 `;
+
+LegacyPage.propTypes = {
+  data: PropTypes.object.isRequired,
+};
