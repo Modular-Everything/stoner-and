@@ -1,25 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import Gem from '../../images/shapes/gem-with-fade.inline.svg';
-import Placeholder from '../../images/placeholders/square.jpeg';
 import { HeaderTwoSerif } from '../Type/Headings';
 import { ParagraphLarge } from '../Type/Copy';
 
-const Signpost = () => {
-  console.log('Loaded: Signpost');
+const Signpost = ({ signs }) => (
+  <SignPostSt>
+    {signs.map((sign) => {
+      const image = getImage(sign.background.asset.gatsbyImageData);
+      const { alt } = sign.background;
 
-  const TEST_ITEMS = [0, 1, 2];
+      console.log(image);
 
-  return (
-    <SignPostSt>
-      {TEST_ITEMS.map(() => (
+      return (
         <Link to="/">
           <article>
             <div className="content">
-              <HeaderTwoSerif as="h3">Engagement</HeaderTwoSerif>
-              <ParagraphLarge>Find the perfect ring</ParagraphLarge>
+              <HeaderTwoSerif as="h3">{sign.title}</HeaderTwoSerif>
+              <ParagraphLarge>{sign.caption}</ParagraphLarge>
             </div>
 
             <div className="gem">
@@ -27,14 +29,14 @@ const Signpost = () => {
             </div>
 
             <div className="background">
-              <img src={Placeholder} alt="" />
+              <GatsbyImage image={image} alt={alt} />
             </div>
           </article>
         </Link>
-      ))}
-    </SignPostSt>
-  );
-};
+      );
+    })}
+  </SignPostSt>
+);
 
 export default Signpost;
 
@@ -136,3 +138,7 @@ const SignPostSt = styled.section`
     }
   }
 `;
+
+Signpost.propTypes = {
+  signs: PropTypes.object.isRequired,
+};
