@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { graphql } from 'gatsby';
 
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
@@ -10,7 +12,7 @@ import Layout from '../components/Layout';
 
 //
 
-const HomePage = () => {
+const HomePage = ({ data }) => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -21,20 +23,21 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (!data) return null;
+
+  const { page } = data;
+
   return (
     <Layout>
       <Content>
         <ContentContainer>
           <IntroText
-            title="Design that comes to life"
-            subtitle="Lorem ipsum"
-            copy={[
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla posuere sollicitudin aliquam ultrices sagittis. Lacus luctus accumsan tortor posuere ac. Sit amet venenatis urna cursus eget nunc. Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus.',
-              'Orci nulla pellentesque dignissim enim sit amet venenatis urna. Risus quis varius quam quisque id diam vel quam. Commodo sed egestas egestas fringilla phasellus faucibus. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Eleifend quam.',
-            ]}
+            title={page.introText.title}
+            subtitle={page.introText.subtitle}
+            copy={page.introText.copy}
           />
 
-          <Signpost />
+          <Signpost signs={page.signposts} />
         </ContentContainer>
       </Content>
 
@@ -54,3 +57,35 @@ const ContentContainer = styled(Container)`
     margin-bottom: calc(var(--gutter) * 2);
   }
 `;
+
+export const query = graphql`
+  query HomepageQuery {
+    page: sanityHomepage(_id: { eq: "homepage" }) {
+      title
+      introText {
+        title
+        subtitle
+        copy
+      }
+      signposts {
+        title
+        caption
+        _type
+        _rawLink(resolveReferences: { maxDepth: 1 })
+        background {
+          asset {
+            gatsbyImageData(width: 864, height: 864, formats: AUTO)
+          }
+          alt
+        }
+      }
+    }
+  }
+`;
+HomePage.propTypes = {
+  data: PropTypes.object,
+};
+
+HomePage.defaultProps = {
+  data: null,
+};
