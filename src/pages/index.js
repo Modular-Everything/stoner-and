@@ -12,6 +12,33 @@ import Layout from '../components/Layout';
 
 //
 
+export const query = graphql`
+  query HomepageQuery {
+    page: sanityHomepage(_id: { regex: "/homepage/" }) {
+      title
+      introText {
+        title
+        subtitle
+        copy
+      }
+      signposts {
+        title
+        caption
+        _type
+        _rawLink(resolveReferences: { maxDepth: 1 })
+        background {
+          asset {
+            gatsbyImageData(width: 864, height: 864, formats: AUTO)
+          }
+          alt
+        }
+      }
+    }
+  }
+`;
+
+//
+
 const HomePage = ({ data }) => {
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -57,30 +84,6 @@ const ContentContainer = styled(Container)`
   }
 `;
 
-export const query = graphql`
-  query HomepageQuery {
-    page: sanityHomepage(_id: { regex: "/homepage/" }) {
-      title
-      introText {
-        title
-        subtitle
-        copy
-      }
-      signposts {
-        title
-        caption
-        _type
-        _rawLink(resolveReferences: { maxDepth: 1 })
-        background {
-          asset {
-            gatsbyImageData(width: 864, height: 864, formats: AUTO)
-          }
-          alt
-        }
-      }
-    }
-  }
-`;
 HomePage.propTypes = {
   data: PropTypes.object,
 };
