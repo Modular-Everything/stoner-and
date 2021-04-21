@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
 const isProd = process.env.NODE_ENV === 'production';
-console.info(isProd);
 
 //
 
@@ -22,7 +21,6 @@ export default {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -49,7 +47,7 @@ export default {
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
-        color: `#f0f0e6`,
+        color: `#414042`,
         showSpinner: false,
       },
     },
