@@ -13,7 +13,7 @@ import Layout from '../components/Layout';
 
 export const query = graphql`
   query EngagementQuery {
-    page: sanityEngagement(_id: { eq: "engagement" }) {
+    page: sanityEngagement(_id: { regex: "/engagement/" }) {
       title
       kaleidoscopeImages {
         asset {
@@ -26,6 +26,11 @@ export const query = graphql`
             }
           }
         }
+      }
+      heading {
+        title
+        copy
+        _rawLink(resolveReferences: { maxDepth: 1 })
       }
     }
   }
@@ -50,18 +55,20 @@ const EngagementPage = ({ data }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(page);
+
   return (
-    <Layout>
+    <Layout gradient>
       <Content>
         <BrandedHeading
-          label="Engagement"
-          copy="Hands on design process to create a truly unique ring for your important gift for your love"
-          cta="Find a match made in heaven"
+          label={page.heading.title}
+          copy={page.heading.copy}
+          cta={page.heading._rawLink}
         />
         <KaleidoscopeBg image={`${image.asset.url}?w=1080&h=1080`} />
       </Content>
 
-      <SEO title="Engagement" />
+      <SEO title={page.title} />
     </Layout>
   );
 };
