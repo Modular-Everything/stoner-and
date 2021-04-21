@@ -24,10 +24,7 @@ const HomePage = ({ data }) => {
   }, []);
 
   if (!data) return null;
-
   const { page } = data;
-
-  console.log(data);
 
   return (
     <Layout>

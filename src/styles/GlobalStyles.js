@@ -16,8 +16,12 @@ const GlobalStyles = createGlobalStyle`
 
     --ease-links: 250ms ease-in-out opacity;
 
-    --gutter: 2.4rem;
+    --gutter: 1.6rem;
     --headerHeight: 7.7rem;
+
+    @media (min-width: 640px) {
+      --gutter: 2.4rem;
+    }
 
     @media (min-width: 768px) {
       --headerHeight: 10rem;
