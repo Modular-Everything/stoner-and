@@ -45,7 +45,7 @@ const IntroTextSt = styled.section`
 IntroText.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  copy: PropTypes.array,
+  copy: PropTypes.string,
 };
 
 IntroText.defaultProps = {
