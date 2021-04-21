@@ -27,6 +27,8 @@ const HomePage = ({ data }) => {
 
   const { page } = data;
 
+  console.log(data);
+
   return (
     <Layout>
       <Content>
@@ -60,7 +62,7 @@ const ContentContainer = styled(Container)`
 
 export const query = graphql`
   query HomepageQuery {
-    page: sanityHomepage(_id: { eq: "homepage" }) {
+    page: sanityHomepage(_id: { regex: "/homepage/" }) {
       title
       introText {
         title
