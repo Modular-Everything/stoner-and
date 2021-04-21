@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env' });
 
+const isProd = process.env.NODE_ENV === 'production';
+console.info(isProd);
+
 //
 
 export default {
@@ -39,6 +42,8 @@ export default {
         projectId: process.env.SANITY_PROJECT_ID,
         dataset: process.env.SANITY_DATASET,
         token: process.env.SANITY_TOKEN,
+        overlayDrafts: !isProd,
+        watchMode: !isProd,
       },
     },
     {
