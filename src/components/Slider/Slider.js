@@ -20,8 +20,6 @@ SwiperCore.use([Scrollbar, A11y]);
 const Slider = ({ slides }) => {
   const { theme } = useContext(ThemeContext);
 
-  console.log(slides);
-
   if (!slides) return null;
 
   return (
