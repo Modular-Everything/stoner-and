@@ -21,6 +21,7 @@ export default {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-axe`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
