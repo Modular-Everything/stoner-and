@@ -33,14 +33,36 @@ const Menu = ({ open, page }) => {
   let activePage;
   switch (page.menuPage) {
     case 'findUs':
-      activePage = <h1>Find Us</h1>;
+      activePage = (
+        <motion.h1
+          initial={{ opacity: 0, y: 200 }}
+          exit={{ opacity: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          Find Us
+        </motion.h1>
+      );
       break;
     case 'contact':
-      activePage = <h1>Contact</h1>;
+      activePage = (
+        <motion.h1
+          initial={{ opacity: 0, y: 200 }}
+          exit={{ opacity: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          Contact
+        </motion.h1>
+      );
       break;
     default:
       activePage = (
-        <Navigation variants={container} setMenuPage={page.setMenuPage} />
+        <Navigation
+          variants={container}
+          setMenuPage={page.setMenuPage}
+          initial="enter"
+          animate={open ? 'open' : 'closed'}
+          exit="exit"
+        />
       );
   }
 
@@ -54,7 +76,7 @@ const Menu = ({ open, page }) => {
         `}</style>
       </Helmet>
 
-      <AnimatePresence initial={false}>
+      <AnimatePresence>
         <MenuSC
           role="navigation"
           variants={container}
