@@ -12,8 +12,6 @@ const ImageHeading = ({ heading, background }) => {
   const image = getImage(background.asset.gatsbyImageData);
   const { alt } = background;
 
-  console.log(image);
-
   return (
     <ImageHeadingSC>
       {heading && (
@@ -90,6 +88,7 @@ const ContentContainer = styled(Container)`
 
 ImageHeading.propTypes = {
   heading: PropTypes.object,
+  background: PropTypes.object.isRequired,
 };
 
 ImageHeading.defaultProps = {
