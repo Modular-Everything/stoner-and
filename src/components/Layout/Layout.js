@@ -35,6 +35,7 @@ const Layout = ({ gradient, children }) => {
       <Typography />
 
       <Helmet>
+        <link rel="stylesheet" href="https://use.typekit.net/wgr2qyf.css" />
         <style type="text/css">{`
           body {
             background-color: ${theme.primary};
