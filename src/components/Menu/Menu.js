@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
-import { HeaderSerif } from '../Type/Headings';
+import Navigation from './Navigation';
 
 //
 
-const Menu = ({ open }) => {
+const Menu = ({ open, page }) => {
   const container = {
+    enter: () => ({
+      rotate: 90,
+    }),
     open: {
       opacity: 1,
       transition: { staggerChildren: 0.07, delayChildren: 0.2 },
@@ -23,16 +25,24 @@ const Menu = ({ open }) => {
         when: 'afterChildren',
       },
     },
+    exit: () => ({
+      rotate: 45,
+    }),
   };
 
-  const item = {
-    open: {
-      opacity: 1,
-    },
-    closed: {
-      opacity: 0,
-    },
-  };
+  let activePage;
+  switch (page.menuPage) {
+    case 'findUs':
+      activePage = <h1>Find Us</h1>;
+      break;
+    case 'contact':
+      activePage = <h1>Contact</h1>;
+      break;
+    default:
+      activePage = (
+        <Navigation variants={container} setMenuPage={page.setMenuPage} />
+      );
+  }
 
   return (
     <>
@@ -44,50 +54,16 @@ const Menu = ({ open }) => {
         `}</style>
       </Helmet>
 
-      <MenuSC
-        role="navigation"
-        variants={container}
-        animate={open ? 'open' : 'closed'}
-        interactive={!!open}
-      >
-        <motion.ul variants={container}>
-          <motion.li variants={item}>
-            <HeaderSerif as="h6">
-              <Link to="/engagement">Engagement</Link>
-            </HeaderSerif>
-          </motion.li>
-
-          <motion.li variants={item}>
-            <HeaderSerif as="h6">
-              <Link to="/legacy">Legacy</Link>
-            </HeaderSerif>
-          </motion.li>
-
-          <motion.li variants={item}>
-            <HeaderSerif as="h6">
-              <Link to="/bespoke">Bespoke</Link>
-            </HeaderSerif>
-          </motion.li>
-
-          <motion.li variants={item}>
-            <HeaderSerif as="h6">
-              <button type="button">Find Us</button>
-            </HeaderSerif>
-          </motion.li>
-
-          <motion.li variants={item}>
-            <HeaderSerif as="h6">
-              <Link to="/craftspeople">Craftspeople</Link>
-            </HeaderSerif>
-          </motion.li>
-
-          <motion.li variants={item}>
-            <HeaderSerif as="h6">
-              <button type="button">Contact</button>
-            </HeaderSerif>
-          </motion.li>
-        </motion.ul>
-      </MenuSC>
+      <AnimatePresence initial={false}>
+        <MenuSC
+          role="navigation"
+          variants={container}
+          animate={open ? 'open' : 'closed'}
+          interactive={!!open}
+        >
+          {activePage}
+        </MenuSC>
+      </AnimatePresence>
     </>
   );
 };
@@ -135,9 +111,11 @@ const MenuSC = styled(motion.nav)`
       padding: 0;
       transition: var(--ease-links);
       border: 0;
+      outline: none;
       background: transparent;
       color: var(--black);
       letter-spacing: inherit;
+      cursor: pointer;
     }
 
     a:hover,
@@ -149,4 +127,8 @@ const MenuSC = styled(motion.nav)`
 
 Menu.propTypes = {
   open: PropTypes.bool.isRequired,
+  page: PropTypes.shape({
+    menuPage: PropTypes.string.isRequired,
+    setMenuPage: PropTypes.func.isRequired,
+  }).isRequired,
 };

@@ -13,6 +13,7 @@ import Menu from '../Menu/Menu';
 
 const Header = ({ gradient }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuPage, setMenuPage] = useState('navigation');
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -26,18 +27,24 @@ const Header = ({ gradient }) => {
           </div>
 
           <nav role="main">
-            <Hamburger
-              toggled={menuOpen}
-              toggle={setMenuOpen}
-              direction="right"
-              label="Show menu"
-              size={24}
-            />
+            {menuPage === 'navigation' ? (
+              <Hamburger
+                toggled={menuOpen}
+                toggle={setMenuOpen}
+                direction="right"
+                label="Show menu"
+                size={24}
+              />
+            ) : (
+              <button type="button" onClick={() => setMenuPage('navigation')}>
+                back
+              </button>
+            )}
           </nav>
         </HeaderContainer>
       </HeaderSC>
 
-      <Menu open={menuOpen} />
+      <Menu open={menuOpen} page={{ menuPage, setMenuPage }} />
     </>
   );
 };
