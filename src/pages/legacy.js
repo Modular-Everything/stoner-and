@@ -19,7 +19,7 @@ export const query = graphql`
     page: sanityLegacy(_id: { regex: "/legacy/" }) {
       background {
         asset {
-          gatsbyImageData(width: 1440, formats: AUTO)
+          gatsbyImageData(width: 1920, formats: AUTO)
         }
         alt
       }
@@ -73,9 +73,11 @@ const LegacyPage = ({ data }) => {
   if (!data) return null;
   const { page } = data;
 
+  console.log(page);
+
   return (
     <Layout>
-      <ImageHeading heading={page.heading} />
+      <ImageHeading heading={page.heading} background={page.background} />
 
       <Content>
         <ContentContainer>

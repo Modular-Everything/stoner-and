@@ -1,29 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import Container from '../Container';
 import BrandedHeading from '../BrandedHeading';
-import Placeholder from '../../images/placeholders/legacy-bg.jpeg';
 
 //
 
-const ImageHeading = ({ heading }) => (
-  <ImageHeadingSC style={{ backgroundImage: `url(${Placeholder})` }}>
-    {heading && (
-      <ContentContainer>
-        <BrandedHeading
-          label={heading.title}
-          copy={heading.copy}
-          cta={heading._rawLink}
-          direction="right"
-        />
-      </ContentContainer>
-    )}
+const ImageHeading = ({ heading, background }) => {
+  const image = getImage(background.asset.gatsbyImageData);
+  const { alt } = background;
 
-    <Skrim />
-  </ImageHeadingSC>
-);
+  console.log(image);
+
+  return (
+    <ImageHeadingSC>
+      {heading && (
+        <ContentContainer>
+          <BrandedHeading
+            label={heading.title}
+            copy={heading.copy}
+            cta={heading._rawLink}
+            direction="right"
+          />
+        </ContentContainer>
+      )}
+
+      <div className="background">
+        <Skrim />
+        <GatsbyImage image={image} alt={alt} />
+      </div>
+    </ImageHeadingSC>
+  );
+};
 
 export default ImageHeading;
 
@@ -34,6 +44,17 @@ const ImageHeadingSC = styled.section`
   padding-top: var(--headerHeight);
   background: no-repeat center;
   background-size: cover;
+
+  .background {
+    .gatsby-image-wrapper {
+      position: absolute;
+      z-index: 25;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
 
 const Skrim = styled.div`
