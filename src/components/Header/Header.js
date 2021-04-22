@@ -19,7 +19,7 @@ const Header = ({ gradient }) => {
 
   return (
     <>
-      <HeaderSC theme={theme} gradient={gradient}>
+      <HeaderSC theme={theme}>
         <HeaderContainer>
           <div className="logo">
             <Link to="/">
@@ -49,6 +49,8 @@ const Header = ({ gradient }) => {
       </HeaderSC>
 
       <Menu open={menuOpen} page={{ menuPage, setMenuPage }} />
+
+      {gradient && <Skrim />}
     </>
   );
 };
@@ -67,8 +69,6 @@ const HeaderSC = styled.header`
   top: 0;
   width: 100%;
   height: var(--headerHeight);
-  background: ${({ gradient }) =>
-    gradient ? 'var(--fade-dark)' : 'transparent'};
 
   a {
     transition: var(--ease-links);
@@ -92,6 +92,15 @@ const HeaderSC = styled.header`
       width: 100%;
     }
   }
+`;
+
+const Skrim = styled.div`
+  position: fixed;
+  z-index: 400;
+  top: 0;
+  width: 100%;
+  height: var(--headerHeight);
+  background: var(--fade-dark);
 `;
 
 const BackButton = styled.button`

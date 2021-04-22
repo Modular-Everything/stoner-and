@@ -10,9 +10,6 @@ import Navigation from './Navigation';
 
 const Menu = ({ open, page }) => {
   const container = {
-    enter: () => ({
-      rotate: 90,
-    }),
     open: {
       opacity: 1,
       transition: { staggerChildren: 0.07, delayChildren: 0.2 },
@@ -25,9 +22,6 @@ const Menu = ({ open, page }) => {
         when: 'afterChildren',
       },
     },
-    exit: () => ({
-      rotate: 45,
-    }),
   };
 
   let activePage;
@@ -94,18 +88,21 @@ export default Menu;
 
 const MenuSC = styled(motion.nav)`
   display: flex;
-  position: absolute;
-  z-index: 500;
-  top: var(--headerHeight);
+  position: fixed;
+  z-index: 450;
+  top: 0;
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: calc(100vh - var(--headerHeight));
+  height: 100vh;
+  opacity: 0;
   background-color: rgba(240, 240, 230, 0.97);
   pointer-events: ${({ interactive }) => (interactive ? 'unset' : 'none')};
 
   ul {
     display: flex;
+    position: relative;
+    top: calc(var(--headerHeight) / 2);
     flex-direction: column;
     align-items: center;
     justify-content: center;
