@@ -7,6 +7,7 @@ import { Link } from 'gatsby';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Logo from '../../images/logo.fluid.inline.svg';
 import Container from '../Container';
+import Menu from '../Menu/Menu';
 
 //
 
@@ -15,25 +16,29 @@ const Header = ({ gradient }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <HeaderSC theme={theme} gradient={gradient}>
-      <HeaderContainer>
-        <div className="logo">
-          <Link to="/">
-            <Logo />
-          </Link>
-        </div>
+    <>
+      <HeaderSC theme={theme} gradient={gradient}>
+        <HeaderContainer>
+          <div className="logo">
+            <Link to="/">
+              <Logo />
+            </Link>
+          </div>
 
-        <nav role="main">
-          <Hamburger
-            toggled={menuOpen}
-            toggle={setMenuOpen}
-            direction="right"
-            label="Show menu"
-            size={24}
-          />
-        </nav>
-      </HeaderContainer>
-    </HeaderSC>
+          <nav role="main">
+            <Hamburger
+              toggled={menuOpen}
+              toggle={setMenuOpen}
+              direction="right"
+              label="Show menu"
+              size={24}
+            />
+          </nav>
+        </HeaderContainer>
+      </HeaderSC>
+
+      <Menu open={menuOpen} />
+    </>
   );
 };
 
