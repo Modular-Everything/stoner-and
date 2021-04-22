@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import LogRocket from 'logrocket';
 
 import 'normalize.css';
 import GlobalStyles from '../../styles/GlobalStyles';
@@ -10,11 +9,12 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import Header from '../Header';
 import Footer from '../Footer/Footer';
 import LoadingScreen from '../Loading';
+import logrocket from '../../helpers/logrocket';
 
 //
 
 const Layout = ({ gradient, children }) => {
-  LogRocket.init('rpltij/stoner');
+  logrocket();
   const { theme } = useContext(ThemeContext);
   const [loading, setLoading] = useState(true);
 
