@@ -56,7 +56,8 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.1.0",
     "react-icons": "^4.2.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "swiper": "^6.5.7"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

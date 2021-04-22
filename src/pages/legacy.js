@@ -10,6 +10,7 @@ import JewelleryDevice from '../components/JewelleryDevice/JewelleryDevice';
 import ImageHeading from '../components/ImageHeading/ImageHeading';
 import Layout from '../components/Layout';
 import Newsletter from '../components/Newsletter/Newsletter';
+import Slider from '../components/Slider/Slider';
 
 //
 
@@ -33,6 +34,25 @@ export const query = graphql`
         copy
       }
       newsletter
+      slides: slider {
+        title
+        subtitle
+        background {
+          alt
+          asset {
+            gatsbyImageData(width: 432, formats: AUTO)
+            metadata {
+              palette {
+                dominant {
+                  foreground
+                  background
+                }
+              }
+            }
+          }
+        }
+        _rawLink(resolveReferences: { maxDepth: 1 })
+      }
     }
   }
 `;
@@ -52,7 +72,6 @@ const LegacyPage = ({ data }) => {
 
   if (!data) return null;
   const { page } = data;
-  console.log(page);
 
   return (
     <Layout>
@@ -66,6 +85,8 @@ const LegacyPage = ({ data }) => {
             copy={page.jewelleryDevice.copy}
           />
 
+          <Slider slides={page.slides} />
+
           {page.newsletter && <Newsletter />}
         </ContentContainer>
       </Content>
@@ -78,12 +99,12 @@ const LegacyPage = ({ data }) => {
 export default LegacyPage;
 
 const Content = styled.div`
-  margin-top: calc(-1 * (var(--gutter) * 7));
+  margin-top: calc(-1 * (var(--gutter) * 6));
 `;
 
 const ContentContainer = styled(Container)`
   & > section {
-    margin-bottom: calc(var(--gutter) * 2);
+    margin-bottom: calc(var(--gutter) * 6);
   }
 `;
 
