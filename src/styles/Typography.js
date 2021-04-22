@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import Optima from '../fonts/Optima.woff';
 
 //
 
@@ -7,6 +8,14 @@ const Typography = createGlobalStyle`
     --halyard-display: 'halyard-display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --halyard-text: 'halyard-text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --optima: 'Optima', Georgia, 'Times New Roman', Times, serif;
+  }
+
+  @font-face {
+    font-family: 'Optima';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: local('Optima'), url(${Optima}) format('woff');
   }
 
   html {
