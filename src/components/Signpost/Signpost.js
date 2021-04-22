@@ -14,8 +14,6 @@ const Signpost = ({ signs }) => (
       const image = getImage(sign.background.asset.gatsbyImageData);
       const { alt } = sign.background;
 
-      console.log(image);
-
       return (
         <Link to="/">
           <article>
