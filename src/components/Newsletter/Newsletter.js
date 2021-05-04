@@ -16,6 +16,23 @@ const Newsletter = () => {
   const [mailchimp, setMailchimp] = useState(null);
   const { theme } = useContext(ThemeContext);
 
+  let newsletterTheme = {};
+  switch (theme.primary) {
+    case 'var(--rich-black)':
+      newsletterTheme = {
+        primary: 'var(--white)',
+        secondary: 'var(--white)',
+        contrast: 'var(--black)',
+      };
+      break;
+    default:
+      newsletterTheme = {
+        primary: 'var(--black)',
+        secondary: 'var(--off-white)',
+        contrast: 'var(--white)',
+      };
+  }
+
   const {
     register,
     handleSubmit,
@@ -39,7 +56,7 @@ const Newsletter = () => {
   };
 
   return (
-    <NewsletterSC theme={theme}>
+    <NewsletterSC theme={newsletterTheme}>
       <div className="kaleidoscope">
         <KaleidoscopeBg image={Placeholder} />
       </div>
@@ -139,8 +156,7 @@ const NewsletterSC = styled.section`
     width: calc(100% - (var(--gutter) * 3));
     padding: calc(var(--gutter) * 1.5);
     background-color: ${({ theme }) => theme.contrast};
-    color: ${({ theme }) =>
-      theme.primary === 'var(--rich-black)' ? 'var(--black)' : theme.primary};
+    color: ${({ theme }) => theme.primary};
 
     @media (min-width: 640px) {
       width: calc(100% - (var(--gutter) * 7));
@@ -170,7 +186,7 @@ const NewsletterSC = styled.section`
       padding: calc(var(--gutter));
       border: 0;
       outline: 0;
-      background-color: var(--white);
+      background-color: ${({ theme }) => theme.secondary};
       letter-spacing: 0.1rem;
     }
 
