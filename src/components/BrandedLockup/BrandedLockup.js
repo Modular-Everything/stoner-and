@@ -10,7 +10,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 //
 
-const BrandedLockup = ({ title, copy, direction }) => {
+const BrandedLockup = ({ title, heading, copy, direction }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -18,10 +18,10 @@ const BrandedLockup = ({ title, copy, direction }) => {
       <div className="overlay">
         <Lockup>
           <h3>Stoner&amp;</h3>
-          <h4>Bespoke</h4>
+          <h4>{title}</h4>
         </Lockup>
 
-        <SingleColCopy title={title} copy={copy} direction={direction} />
+        <SingleColCopy title={heading} copy={copy} direction={direction} />
       </div>
 
       <div className="kaleidoscope">
@@ -63,7 +63,7 @@ const Lockup = styled.div`
 
 const BrandedLockupSC = styled.section`
   position: relative;
-  min-height: 50vw;
+  min-height: 40vw;
   color: ${({ theme }) => theme.contrast};
 
   .overlay {
@@ -75,7 +75,7 @@ const BrandedLockupSC = styled.section`
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    min-height: 50vw;
+    min-height: 40vw;
     text-align: center;
 
     @media (min-width: 640px) {
@@ -123,12 +123,13 @@ const BrandedLockupSC = styled.section`
 `;
 
 BrandedLockup.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  heading: PropTypes.string,
   copy: PropTypes.string.isRequired,
   direction: PropTypes.string,
 };
 
 BrandedLockup.defaultProps = {
-  title: null,
+  heading: null,
   direction: 'left',
 };
