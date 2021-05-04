@@ -62,7 +62,8 @@ const LegacyPage = ({ data }) => {
       <Content>
         <ContentContainer>
           <BrandedLockup
-            title="State of the art techniques bring your dreams to life"
+            title="Bespoke"
+            heading="State of the art techniques bring your dreams to life"
             copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla posuere sollicitudin aliquam ultrices sagittis. Lacus luctus accumsan tortor posuere ac."
           />
           <Slider slides={page.slides} />
