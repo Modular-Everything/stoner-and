@@ -6,33 +6,19 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { HeaderSans, HeaderSerif } from '../Type/Headings';
 import { ParagraphHuge } from '../Type/Copy';
 import { ButtonLink } from '../Button/Button';
+import alignItems from '../../helpers/alignItems';
 
 //
 
 const BrandedHeading = ({ label, copy, cta, direction }) => {
   const { theme } = useContext(ThemeContext);
-
-  let textDirection;
-  let flexDirection;
-  switch (direction) {
-    case 'left':
-      textDirection = 'left';
-      flexDirection = 'flex-start';
-      break;
-    case 'right':
-      textDirection = 'right';
-      flexDirection = 'flex-end';
-      break;
-    default:
-      textDirection = 'center';
-      flexDirection = 'center';
-  }
+  const align = alignItems(direction);
 
   return (
     <BrandedHeadingSC
       theme={theme}
-      textDirection={textDirection}
-      flexDirection={flexDirection}
+      textDirection={align.textDirection}
+      flexDirection={align.flexDirection}
     >
       <div className="heading">
         <h1>
