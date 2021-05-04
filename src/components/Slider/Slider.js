@@ -94,8 +94,13 @@ const SliderSC = styled.section`
       padding: calc(var(--gutter) * 1.5);
       text-align: center;
 
+      h3 {
+        color: var(--white);
+      }
+
       h4 {
-        margin-bottom: var(--gutter);
+        margin-bottom: calc(var(--gutter) / 2);
+        color: var(--white);
       }
     }
 
@@ -124,7 +129,7 @@ const SliderSC = styled.section`
     left: 0;
     width: 100%;
     border-radius: 0;
-    background: rgba(240, 240, 230, 0.15);
+    background: rgba(150, 150, 150, 0.15);
 
     .swiper-scrollbar-drag {
       border-radius: 0;
@@ -142,11 +147,10 @@ const Skrim = styled.div`
   height: 100%;
   background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.25) 0%,
-      rgba(0, 0, 0, 0.234375) 0%,
-      rgba(0, 0, 0, 0) 30.16%
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0) 25%
     ),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 26.39%);
+    linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 25%);
 `;
 
 Slider.propTypes = {
