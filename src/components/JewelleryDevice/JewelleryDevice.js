@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import anime from 'animejs/lib/anime.es.js';
+import { useInView } from 'react-intersection-observer';
 
 import { HeaderTwoSerif, AllCapsHeader } from '../Type/Headings';
 import TwoColText from '../TwoColText/TwoColText';
@@ -11,8 +12,14 @@ import Gem from '../../images/shapes/gem.inline.svg';
 
 const JewelleryDevice = ({ title, subtitle, copy }) => {
   const gemRef = useRef(null);
+  const [ref, inView] = useInView({
+    threshold: 0.15,
+    triggerOnce: false,
+  });
 
   useEffect(() => {
+    console.log(inView);
+
     const gems = gemRef.current.children;
     const gemLeft = gems[0].firstChild;
     const gemMiddle = gems[1].firstChild;
@@ -48,40 +55,42 @@ const JewelleryDevice = ({ title, subtitle, copy }) => {
       }, [1000]);
     };
 
-    timeline.add({
-      targets: gemLeft,
-      translateX: [0, '-115%'],
-      delay: 1000,
-    });
-
-    timeline.add(
-      {
-        targets: gemRight,
-        translateX: [0, '115%'],
-      },
-      '-=1000'
-    );
-
-    timeline.add({
-      targets: gemMiddle,
-      rotate: 90,
-    });
-
-    timeline.add(
-      {
+    if (inView) {
+      timeline.add({
         targets: gemLeft,
-        translateX: 0,
-      },
-      '-=500'
-    );
+        translateX: [0, '-115%'],
+        delay: 1000,
+      });
 
-    timeline.add({
-      targets: gemRight,
-      translateX: 0,
-      scaleX: 0.5,
-      complete: () => loopShapes(),
-    });
-  }, []);
+      timeline.add(
+        {
+          targets: gemRight,
+          translateX: [0, '115%'],
+        },
+        '-=1000'
+      );
+
+      timeline.add({
+        targets: gemMiddle,
+        rotate: 90,
+      });
+
+      timeline.add(
+        {
+          targets: gemLeft,
+          translateX: 0,
+        },
+        '-=500'
+      );
+
+      timeline.add({
+        targets: gemRight,
+        translateX: 0,
+        scaleX: 0.5,
+        complete: () => loopShapes(),
+      });
+    }
+  }, [inView]);
 
   return (
     <JewelleryDeviceSC>
@@ -89,7 +98,7 @@ const JewelleryDevice = ({ title, subtitle, copy }) => {
 
       {title && <HeaderTwoSerif as="h1">{title}</HeaderTwoSerif>}
 
-      <article className="device">
+      <article className="device" ref={ref}>
         <ul ref={gemRef}>
           <li>
             <Gem />
@@ -113,7 +122,6 @@ const JewelleryDevice = ({ title, subtitle, copy }) => {
 };
 
 export default JewelleryDevice;
-
 const JewelleryDeviceSC = styled.section`
   display: flex;
   flex-direction: column;
