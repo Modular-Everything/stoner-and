@@ -40,7 +40,7 @@ export const query = graphql`
         background {
           alt
           asset {
-            gatsbyImageData(width: 432, formats: AUTO)
+            gatsbyImageData(width: 720, formats: AUTO)
             metadata {
               palette {
                 dominant {

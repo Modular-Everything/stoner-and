@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { KaleidoscopeSq } from '../Kaleidoscope/KaleidoscopeWrappers';
-import Placeholder from '../../images/placeholders/square.jpeg';
 import Gem from '../../images/shapes/gem-clip.svg';
 import SingleColCopy from '../SingleColCopy';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
 //
 
-const BrandedLockup = ({ title, heading, copy, direction }) => {
+const BrandedLockup = ({ title, heading, copy, direction, image }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -25,7 +24,7 @@ const BrandedLockup = ({ title, heading, copy, direction }) => {
       </div>
 
       <div className="kaleidoscope">
-        <KaleidoscopeSq image={Placeholder} />
+        <KaleidoscopeSq image={image} />
       </div>
     </BrandedLockupSC>
   );
@@ -38,7 +37,7 @@ const Lockup = styled.div`
   flex-direction: column;
 
   h3 {
-    font-family: Optima;
+    font-family: var(--optima);
     font-size: clamp(3.2rem, 10vw, 10rem);
     line-height: 0.75;
 
@@ -49,13 +48,13 @@ const Lockup = styled.div`
   }
 
   h4 {
-    font-family: Halyard Display;
+    font-family: var(--halyard-display);
     font-size: clamp(3.2rem, 10vw, 10rem);
     line-height: 0.75;
 
     @media (min-width: 640px) {
       height: clamp(6.8rem, 11vw, 10rem);
-      transform: translateY(-3.4rem) translateX(-6.4rem);
+      transform: translateY(-3.4rem) translateX(-5.4rem);
       line-height: unset;
     }
   }
@@ -80,7 +79,7 @@ const BrandedLockupSC = styled.section`
 
     @media (min-width: 640px) {
       align-items: unset;
-      text-align: unset;
+      text-align: right;
     }
 
     ${Lockup} {
@@ -126,6 +125,7 @@ BrandedLockup.propTypes = {
   title: PropTypes.string.isRequired,
   heading: PropTypes.string,
   copy: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   direction: PropTypes.string,
 };
 

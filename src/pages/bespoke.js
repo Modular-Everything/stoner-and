@@ -15,14 +15,15 @@ import BrandedLockup from '../components/BrandedLockup/BrandedLockup';
 
 export const query = graphql`
   query BespokeQuery {
-    page: sanityLegacy(_id: { regex: "/legacy/" }) {
+    page: sanityBespoke(_id: { regex: "/bespoke/" }) {
+      title
       slides: slider {
         title
         subtitle
         background {
           alt
           asset {
-            gatsbyImageData(width: 432, formats: AUTO)
+            gatsbyImageData(width: 720, formats: AUTO)
             metadata {
               palette {
                 dominant {
@@ -35,6 +36,23 @@ export const query = graphql`
         }
         _rawLink(resolveReferences: { maxDepth: 1 })
       }
+      newsletter
+      opening {
+        title
+        copy
+        kaleidoscopeImage {
+          asset {
+            url
+            metadata {
+              palette {
+                darkMuted {
+                  background
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -42,36 +60,40 @@ export const query = graphql`
 //
 
 const LegacyPage = ({ data }) => {
+  const { page } = data;
+
   const { setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     setTheme({
       primary: 'var(--off-white)',
-      contrast: 'var(--black)',
+      contrast:
+        page.opening.kaleidoscopeImage.asset.metadata.palette.darkMuted
+          .background,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!data) return null;
-  const { page } = data;
-
-  console.log(page);
 
   return (
     <Layout>
       <Content>
         <ContentContainer>
           <BrandedLockup
-            title="Bespoke"
-            heading="State of the art techniques bring your dreams to life"
-            copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla posuere sollicitudin aliquam ultrices sagittis. Lacus luctus accumsan tortor posuere ac."
+            title={page.title}
+            heading={page.opening.title}
+            copy={page.opening.copy}
+            image={page.opening.kaleidoscopeImage.asset.url}
           />
+
           <Slider slides={page.slides} />
-          <Newsletter />
+
+          {page.newsletter && <Newsletter />}
         </ContentContainer>
       </Content>
 
-      <SEO title="Bespoke" />
+      <SEO title={page.title} />
     </Layout>
   );
 };
