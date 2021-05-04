@@ -1,5 +1,9 @@
 import LogRocket from 'logrocket';
 
 export default function logrocket() {
-  LogRocket.init('rpltij/stoner');
+  const isProd = process.env.NODE_ENV === 'production';
+
+  if (isProd) {
+    LogRocket.init('rpltij/stoner');
+  }
 }
