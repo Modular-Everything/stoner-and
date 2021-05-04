@@ -61,6 +61,10 @@ const SignPostSt = styled.section`
     color: var(--black);
     text-decoration: none;
 
+    &:hover .background {
+      transform: scale(1.1);
+    }
+
     &:nth-of-type(1) .gem {
       width: 28rem;
       height: 32rem;
@@ -128,6 +132,8 @@ const SignPostSt = styled.section`
     top: 0;
     width: 100%;
     height: 100%;
+    transform: scale(1);
+    transition: var(--ease-bg);
     opacity: 0.5;
 
     .gatsby-image-wrapper {

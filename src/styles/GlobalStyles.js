@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     --fade-dark: linear-gradient(180deg, rgba(17, 17, 17, 0.15) 0%, rgba(17, 17, 17, 0) 100%);
 
     --ease-links: 250ms ease-in-out opacity;
+    --ease-bg: 250ms ease transform;
 
     --gutter: 1.6rem;
     --headerHeight: 7.7rem;
