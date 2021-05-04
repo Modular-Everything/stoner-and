@@ -10,7 +10,7 @@ import IntroText from '../components/IntroText/IntroText';
 //
 
 const MissingPage = () => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     setTheme({
