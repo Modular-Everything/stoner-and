@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { HeaderTwoSerif } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
 import alignItems from '../../helpers/alignItems';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const SingleColCopy = ({ title, copy, direction }) => {
   const align = alignItems(direction);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <SingleColCopySt textDirection={align.textDirection}>
+    <SingleColCopySt theme={theme} textDirection={align.textDirection}>
       {title && <HeaderTwoSerif as="h1">{title}</HeaderTwoSerif>}
 
       <div className="copy">
@@ -23,7 +25,14 @@ const SingleColCopy = ({ title, copy, direction }) => {
 export default SingleColCopy;
 
 const SingleColCopySt = styled.section`
+  display: inherit;
+  flex-direction: column;
+  align-items: center;
   color: ${({ theme }) => theme.contrast};
+
+  @media (min-width: 640px) {
+    display: unset;
+  }
 
   h1 {
     max-width: 54rem;
