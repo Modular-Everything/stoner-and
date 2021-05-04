@@ -75,7 +75,11 @@ const LegacyPage = ({ data }) => {
 export default LegacyPage;
 
 const Content = styled.div`
-  margin-top: calc(var(--headerHeight) + var(--gutter));
+  margin-top: calc(var(--headerHeight) + (var(--gutter) * 2));
+
+  @media (min-width: 768px) {
+    margin-top: calc(var(--headerHeight) + var(--gutter));
+  }
 `;
 
 const ContentContainer = styled(Container)`
