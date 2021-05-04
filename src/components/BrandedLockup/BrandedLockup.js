@@ -10,7 +10,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 //
 
-const BrandedLockup = () => {
+const BrandedLockup = ({ title, copy, direction }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -21,10 +21,7 @@ const BrandedLockup = () => {
           <h4>Bespoke</h4>
         </Lockup>
 
-        <SingleColCopy
-          title="State of the art techniques bring your dreams to life"
-          copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla posuere sollicitudin aliquam ultrices sagittis. Lacus luctus accumsan tortor posuere ac."
-        />
+        <SingleColCopy title={title} copy={copy} direction={direction} />
       </div>
 
       <div className="kaleidoscope">
@@ -124,3 +121,14 @@ const BrandedLockupSC = styled.section`
     }
   }
 `;
+
+BrandedLockup.propTypes = {
+  title: PropTypes.string,
+  copy: PropTypes.string.isRequired,
+  direction: PropTypes.string,
+};
+
+BrandedLockup.defaultProps = {
+  title: null,
+  direction: 'left',
+};
