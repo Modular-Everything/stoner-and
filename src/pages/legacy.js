@@ -19,6 +19,7 @@ export const query = graphql`
     page: sanityLegacy(_id: { regex: "/legacy/" }) {
       background {
         asset {
+          url
           gatsbyImageData(width: 1920, formats: AUTO)
         }
         alt
@@ -33,7 +34,14 @@ export const query = graphql`
         subtitle
         copy
       }
-      newsletter
+      newsletter {
+        enable
+        kaleidoscopeImage {
+          asset {
+            url
+          }
+        }
+      }
       slides: slider {
         title
         subtitle
@@ -89,7 +97,15 @@ const LegacyPage = ({ data }) => {
 
           <Slider slides={page.slides} />
 
-          {page.newsletter && <Newsletter />}
+          {page.newsletter.enable && (
+            <Newsletter
+              image={
+                (page.newsletter.kaleidoscopeImage &&
+                  page.newsletter.kaleidoscopeImage.asset.url) ||
+                page.background.asset.url
+              }
+            />
+          )}
         </ContentContainer>
       </Content>
 

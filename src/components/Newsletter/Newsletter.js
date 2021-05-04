@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import { useForm } from 'react-hook-form';
@@ -6,12 +7,11 @@ import { useForm } from 'react-hook-form';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { HeaderThree } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
-import Placeholder from '../../images/placeholders/legacy-bg.jpeg';
 import { KaleidoscopeBg } from '../Kaleidoscope/KaleidoscopeWrappers';
 
 //
 
-const Newsletter = () => {
+const Newsletter = ({ image }) => {
   const [submitted, setSubmitted] = useState('Subscribe');
   const [mailchimp, setMailchimp] = useState(null);
   const { theme } = useContext(ThemeContext);
@@ -58,7 +58,9 @@ const Newsletter = () => {
   return (
     <NewsletterSC theme={newsletterTheme}>
       <div className="kaleidoscope">
-        <KaleidoscopeBg image={Placeholder} />
+        {image && (
+          <KaleidoscopeBg image={`${image}?max-h=1080&max-w=1080bg=fffq=75`} />
+        )}
       </div>
 
       <div className="content">
@@ -262,3 +264,7 @@ const NewsletterSC = styled.section`
     }
   }
 `;
+
+Newsletter.propTypes = {
+  image: PropTypes.string.isRequired,
+};

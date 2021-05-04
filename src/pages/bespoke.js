@@ -36,7 +36,14 @@ export const query = graphql`
         }
         _rawLink(resolveReferences: { maxDepth: 1 })
       }
-      newsletter
+      newsletter {
+        enable
+        kaleidoscopeImage {
+          asset {
+            url
+          }
+        }
+      }
       opening {
         title
         copy
@@ -89,7 +96,15 @@ const LegacyPage = ({ data }) => {
 
           <Slider slides={page.slides} />
 
-          {page.newsletter && <Newsletter />}
+          {page.newsletter.enable && (
+            <Newsletter
+              image={
+                (page.newsletter.kaleidoscopeImage &&
+                  page.newsletter.kaleidoscopeImage.asset.url) ||
+                page.opening.kaleidoscopeImage.asset.url
+              }
+            />
+          )}
         </ContentContainer>
       </Content>
 
