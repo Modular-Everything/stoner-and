@@ -1,1 +1,1 @@
-export { KaleidoscopeBg } from './KaleidoscopeWrappers';
+export { KaleidoscopeBg, KaleidoscopeSq } from './KaleidoscopeWrappers';

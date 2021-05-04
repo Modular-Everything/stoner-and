@@ -54,3 +54,37 @@ KaleidoscopeBg.propTypes = {
 KaleidoscopeBg.defaultProps = {
   children: null,
 };
+
+//
+
+export const KaleidoscopeSq = ({ image, children }) => {
+  if (!image) return null;
+
+  return (
+    <KaleidoscopeSqST>
+      {children && children}
+      <Kaleidoscope image={image} />
+    </KaleidoscopeSqST>
+  );
+};
+
+const KaleidoscopeSqST = styled.section`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  canvas {
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
+  }
+`;
+
+KaleidoscopeSq.propTypes = {
+  image: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
+
+KaleidoscopeSq.defaultProps = {
+  children: null,
+};
