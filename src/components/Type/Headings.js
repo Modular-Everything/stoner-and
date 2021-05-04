@@ -110,7 +110,7 @@ const HeaderTwoSerifSt = styled.h2`
   font-size: clamp(2.8rem, 3vw, 4.8rem);
   font-weight: normal;
   letter-spacing: 0.01rem;
-  line-height: clamp(3.4rem, 5vw, 4.2rem);
+  line-height: clamp(3.4rem, 3.8vw, 4.8rem);
 `;
 
 HeaderTwoSerif.propTypes = {
