@@ -5,8 +5,10 @@ import limitNumberWithinRange from '../../helpers/limitNumberWithinRange';
 
 //
 
-export const Kaleidoscope = ({ image }) => {
+export const Kaleidoscope = (props) => {
   const canvasRef = useRef(null);
+
+  const { image } = props;
 
   useEffect(() => {
     if (!image) return null;
