@@ -40,11 +40,11 @@ export const query = graphql`
 //
 
 const HomePage = ({ data }) => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     setTheme({
-      ...theme,
+      primary: 'var(--off-white)',
       contrast: 'var(--black)',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

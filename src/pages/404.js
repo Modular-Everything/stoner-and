@@ -14,7 +14,7 @@ const MissingPage = () => {
 
   useEffect(() => {
     setTheme({
-      ...theme,
+      primary: 'var(--white)',
       contrast: 'var(--black)',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
