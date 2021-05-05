@@ -14,7 +14,7 @@ const JewelleryDevice = ({ title, subtitle, copy }) => {
   const gemRef = useRef(null);
   const [ref, inView] = useInView({
     threshold: 0.15,
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   useEffect(() => {
