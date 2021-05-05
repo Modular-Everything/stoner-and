@@ -10,6 +10,7 @@ import 'swiper/swiper-bundle.css';
 import { AllCapsDetail, HeaderSerif } from '../Type/Headings';
 import { ParagraphLarge } from '../Type/Copy';
 import { ButtonLink } from '../Button/Button';
+import { AnimateIn } from '../AnimateIn';
 
 //
 
@@ -24,41 +25,43 @@ const Slider = ({ slides }) => {
 
   return (
     <SliderSC theme={theme}>
-      <Swiper
-        spaceBetween={24}
-        slidesPerView="auto"
-        scrollbar={{ draggable: true }}
-      >
-        {slides.map((slide) => {
-          const image = getImage(slide.background.asset.gatsbyImageData);
-          const { alt } = slide.background;
+      <AnimateIn>
+        <Swiper
+          spaceBetween={24}
+          slidesPerView="auto"
+          scrollbar={{ draggable: true }}
+        >
+          {slides.map((slide) => {
+            const image = getImage(slide.background.asset.gatsbyImageData);
+            const { alt } = slide.background;
 
-          return (
-            <SwiperSlide>
-              <div className="content">
-                <div className="content__top">
-                  <AllCapsDetail as="h4">{slide.subtitle}</AllCapsDetail>
-                  <HeaderSerif as="h3">{slide.title}</HeaderSerif>
-                  <ParagraphLarge>{slide.caption}</ParagraphLarge>
+            return (
+              <SwiperSlide>
+                <div className="content">
+                  <div className="content__top">
+                    <AllCapsDetail as="h4">{slide.subtitle}</AllCapsDetail>
+                    <HeaderSerif as="h3">{slide.title}</HeaderSerif>
+                    <ParagraphLarge>{slide.caption}</ParagraphLarge>
+                  </div>
+
+                  <div className="content__bottom">
+                    <ButtonLink
+                      label={slide._rawLink.title}
+                      to={`/${slide._rawLink.link._type}`}
+                      theme="var(--white)"
+                    />
+                  </div>
                 </div>
 
-                <div className="content__bottom">
-                  <ButtonLink
-                    label={slide._rawLink.title}
-                    to={`/${slide._rawLink.link._type}`}
-                    theme="var(--white)"
-                  />
+                <div className="background">
+                  <Skrim />
+                  <GatsbyImage image={image} alt={alt} />
                 </div>
-              </div>
-
-              <div className="background">
-                <Skrim />
-                <GatsbyImage image={image} alt={alt} />
-              </div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </AnimateIn>
     </SliderSC>
   );
 };

@@ -11,7 +11,7 @@ export const AnimateIn = ({ threshold, triggerOnce, ...props }) => {
     <div
       ref={ref}
       style={{
-        transition: 'opacity 300ms',
+        transition: 'opacity 350ms',
         opacity: inView ? 1 : 0,
       }}
       {...props}
@@ -25,6 +25,6 @@ AnimateIn.propTypes = {
 };
 
 AnimateIn.defaultProps = {
-  threshold: 0.15,
+  threshold: 0.2,
   triggerOnce: true,
 };

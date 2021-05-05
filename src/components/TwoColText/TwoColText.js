@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { ParagraphSmall } from '../Type/Copy';
+import { AnimateIn } from '../AnimateIn';
 
 //
 
 const TwoColText = ({ copy }) => (
-  <TwoColTextSC>
-    <ParagraphSmall as="p">{copy}</ParagraphSmall>
-  </TwoColTextSC>
+  <AnimateIn>
+    <TwoColTextSC>
+      <ParagraphSmall as="p">{copy}</ParagraphSmall>
+    </TwoColTextSC>
+  </AnimateIn>
 );
 
 export default TwoColText;

@@ -6,6 +6,7 @@ import { KaleidoscopeSq } from '../Kaleidoscope/KaleidoscopeWrappers';
 import Gem from '../../images/shapes/gem-clip.svg';
 import SingleColCopy from '../SingleColCopy';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { AnimateIn } from '../AnimateIn';
 
 //
 
@@ -14,18 +15,20 @@ const BrandedLockup = ({ title, heading, copy, direction, image }) => {
 
   return (
     <BrandedLockupSC theme={theme}>
-      <div className="overlay">
-        <Lockup>
-          <h3>Stoner&amp;</h3>
-          <h4>{title}</h4>
-        </Lockup>
+      <AnimateIn>
+        <div className="overlay">
+          <Lockup>
+            <h3>Stoner&amp;</h3>
+            <h4>{title}</h4>
+          </Lockup>
 
-        <SingleColCopy title={heading} copy={copy} direction={direction} />
-      </div>
+          <SingleColCopy title={heading} copy={copy} direction={direction} />
+        </div>
 
-      <div className="kaleidoscope">
-        <KaleidoscopeSq image={image} />
-      </div>
+        <div className="kaleidoscope">
+          <KaleidoscopeSq image={image} />
+        </div>
+      </AnimateIn>
     </BrandedLockupSC>
   );
 };

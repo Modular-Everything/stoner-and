@@ -7,6 +7,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Gem from '../../images/shapes/gem-with-fade.inline.svg';
 import { HeaderTwoSerif } from '../Type/Headings';
 import { ParagraphLarge } from '../Type/Copy';
+import { AnimateIn } from '../AnimateIn';
 
 const Signpost = ({ signs }) => (
   <SignPostSt>
@@ -24,20 +25,22 @@ const Signpost = ({ signs }) => (
             delay: 0.6,
           }}
         >
-          <article>
-            <div className="content">
-              <HeaderTwoSerif as="h3">{sign.title}</HeaderTwoSerif>
-              <ParagraphLarge>{sign.caption}</ParagraphLarge>
-            </div>
+          <AnimateIn>
+            <article>
+              <div className="content">
+                <HeaderTwoSerif as="h3">{sign.title}</HeaderTwoSerif>
+                <ParagraphLarge>{sign.caption}</ParagraphLarge>
+              </div>
 
-            <div className="gem">
-              <Gem />
-            </div>
+              <div className="gem">
+                <Gem />
+              </div>
 
-            <div className="background">
-              <GatsbyImage image={image} alt={alt} />
-            </div>
-          </article>
+              <div className="background">
+                <GatsbyImage image={image} alt={alt} />
+              </div>
+            </article>
+          </AnimateIn>
         </TransitionLink>
       );
     })}

@@ -7,142 +7,145 @@ import { FiInstagram, FiTwitter, FiFacebook, FiSmile } from 'react-icons/fi';
 import Container from '../Container';
 import { ParagraphSmall } from '../Type/Copy';
 import { HeaderSmall } from '../Type/Headings';
+import { AnimateIn } from '../AnimateIn';
 
 //
 
 const Footer = () => (
-  <FooterSt>
-    <GridContainer>
-      <article>
-        <ul>
-          <ParagraphSmall as="li">
-            <HeaderSmall as="h6">Customer Service</HeaderSmall>
-          </ParagraphSmall>
+  <AnimateIn>
+    <FooterSt>
+      <GridContainer>
+        <article>
+          <ul>
+            <ParagraphSmall as="li">
+              <HeaderSmall as="h6">Customer Service</HeaderSmall>
+            </ParagraphSmall>
 
-          <ParagraphSmall as="li">
-            <Link to="/">Bespoke Designs</Link>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <Link to="/">Engagement Rings</Link>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <Link to="/">Legacy Services</Link>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <Link to="/">Delivery &amp; Returns</Link>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <Link to="/">Care &amp; Repair</Link>
-          </ParagraphSmall>
-        </ul>
-      </article>
+            <ParagraphSmall as="li">
+              <Link to="/">Bespoke Designs</Link>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <Link to="/">Engagement Rings</Link>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <Link to="/">Legacy Services</Link>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <Link to="/">Delivery &amp; Returns</Link>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <Link to="/">Care &amp; Repair</Link>
+            </ParagraphSmall>
+          </ul>
+        </article>
 
-      <article>
-        <ul>
-          <ParagraphSmall as="li">
-            <HeaderSmall as="h6">Stoner&amp;</HeaderSmall>
-          </ParagraphSmall>
+        <article>
+          <ul>
+            <ParagraphSmall as="li">
+              <HeaderSmall as="h6">Stoner&amp;</HeaderSmall>
+            </ParagraphSmall>
 
-          <ParagraphSmall as="li">
-            <Link to="/">Sustainability</Link>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <Link to="/">UK Modern Slavery Act</Link>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <Link to="/">Website Policies</Link>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <Link to="/">Site Index</Link>
-          </ParagraphSmall>
-        </ul>
-      </article>
+            <ParagraphSmall as="li">
+              <Link to="/">Sustainability</Link>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <Link to="/">UK Modern Slavery Act</Link>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <Link to="/">Website Policies</Link>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <Link to="/">Site Index</Link>
+            </ParagraphSmall>
+          </ul>
+        </article>
 
-      <article>
-        <ul>
-          <ParagraphSmall as="li">
-            <HeaderSmall as="h6">Get in Touch</HeaderSmall>
-          </ParagraphSmall>
+        <article>
+          <ul>
+            <ParagraphSmall as="li">
+              <HeaderSmall as="h6">Get in Touch</HeaderSmall>
+            </ParagraphSmall>
 
-          <ParagraphSmall as="li">
-            <address>
-              Unit 12, Thornton’s Arcade
-              <br />
-              Land’s Lane
-              <br />
-              Leeds
-              <br />
-              West Yorkshire
-              <br />
-              LS1 4ED
-            </address>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <a href="mailto:info@stonerand.co" className="underline">
-              info@stonerand.co
-            </a>
-          </ParagraphSmall>
-        </ul>
-      </article>
+            <ParagraphSmall as="li">
+              <address>
+                Unit 12, Thornton’s Arcade
+                <br />
+                Land’s Lane
+                <br />
+                Leeds
+                <br />
+                West Yorkshire
+                <br />
+                LS1 4ED
+              </address>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <a href="mailto:info@stonerand.co" className="underline">
+                info@stonerand.co
+              </a>
+            </ParagraphSmall>
+          </ul>
+        </article>
 
-      <article>
-        <ul className="social">
-          <ParagraphSmall as="li">
-            <HeaderSmall as="h6">On the Web</HeaderSmall>
-          </ParagraphSmall>
+        <article>
+          <ul className="social">
+            <ParagraphSmall as="li">
+              <HeaderSmall as="h6">On the Web</HeaderSmall>
+            </ParagraphSmall>
 
-          <ParagraphSmall as="li">
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">
-                <FiInstagram />
-              </span>
-              <span className="label">Instagram</span>
-            </a>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">
-                <FiTwitter />
-              </span>
-              <span className="label">Twitter</span>
-            </a>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">
-                <FiFacebook />
-              </span>
-              <span className="label">Facebook</span>
-            </a>
-          </ParagraphSmall>
-          <ParagraphSmall as="li">
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">
-                <FiSmile />
-              </span>
-              <span className="label">Customer Reviews</span>
-            </a>
-          </ParagraphSmall>
-        </ul>
-      </article>
-    </GridContainer>
-  </FooterSt>
+            <ParagraphSmall as="li">
+              <a
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="icon">
+                  <FiInstagram />
+                </span>
+                <span className="label">Instagram</span>
+              </a>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <a
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="icon">
+                  <FiTwitter />
+                </span>
+                <span className="label">Twitter</span>
+              </a>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <a
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="icon">
+                  <FiFacebook />
+                </span>
+                <span className="label">Facebook</span>
+              </a>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <a
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="icon">
+                  <FiSmile />
+                </span>
+                <span className="label">Customer Reviews</span>
+              </a>
+            </ParagraphSmall>
+          </ul>
+        </article>
+      </GridContainer>
+    </FooterSt>
+  </AnimateIn>
 );
 
 export default Footer;

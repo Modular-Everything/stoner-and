@@ -8,6 +8,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { HeaderThree } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
 import { KaleidoscopeBg } from '../Kaleidoscope/KaleidoscopeWrappers';
+import { AnimateIn } from '../AnimateIn';
 
 //
 
@@ -57,59 +58,63 @@ const Newsletter = ({ image }) => {
 
   return (
     <NewsletterSC theme={newsletterTheme}>
-      <div className="kaleidoscope">
-        {image && (
-          <KaleidoscopeBg image={`${image}?max-h=1080&max-w=1080bg=fffq=75`} />
-        )}
-      </div>
-
-      <div className="content">
-        <HeaderThree as="h3">
-          18-Karat* News and Offers
-          {name && name.includes(' ') && (
-            <> &mdash; just for you, {name.split(' ')[0]}!</>
-          )}
-        </HeaderThree>
-        <ParagraphSmall>
-          * 75% solid gold newsletter content (the other 25% usually consists of
-          zinc, copper and nickel)
-        </ParagraphSmall>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            placeholder="Name"
-            {...register('name', { required: true })}
-            className={errors.name && 'formError'}
-          />
-
-          <input
-            type="email"
-            placeholder="Email Address"
-            {...register('email', { required: true })}
-            className={errors.email && 'formError'}
-          />
-
-          <div className="submit">
-            <input
-              type="submit"
-              value={submitted}
-              disabled={submitted === 'Submitting...'}
+      <AnimateIn>
+        <div className="kaleidoscope">
+          {image && (
+            <KaleidoscopeBg
+              image={`${image}?max-h=1080&max-w=1080bg=fffq=75`}
             />
-            <small>
-              We’ll never share your details with any third parties and you can
-              unsubscribe at any time
-            </small>
-          </div>
-
-          {submitted && mailchimp && (
-            <span className={`message ${mailchimp.result || undefined}`}>
-              {/* eslint-disable-next-line react/no-danger */}
-              <span dangerouslySetInnerHTML={{ __html: mailchimp.msg }} />
-            </span>
           )}
-        </form>
-      </div>
+        </div>
+
+        <div className="content">
+          <HeaderThree as="h3">
+            18-Karat* News and Offers
+            {name && name.includes(' ') && (
+              <> &mdash; just for you, {name.split(' ')[0]}!</>
+            )}
+          </HeaderThree>
+          <ParagraphSmall>
+            * 75% solid gold newsletter content (the other 25% usually consists
+            of zinc, copper and nickel)
+          </ParagraphSmall>
+
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              placeholder="Name"
+              {...register('name', { required: true })}
+              className={errors.name && 'formError'}
+            />
+
+            <input
+              type="email"
+              placeholder="Email Address"
+              {...register('email', { required: true })}
+              className={errors.email && 'formError'}
+            />
+
+            <div className="submit">
+              <input
+                type="submit"
+                value={submitted}
+                disabled={submitted === 'Submitting...'}
+              />
+              <small>
+                We’ll never share your details with any third parties and you
+                can unsubscribe at any time
+              </small>
+            </div>
+
+            {submitted && mailchimp && (
+              <span className={`message ${mailchimp.result || undefined}`}>
+                {/* eslint-disable-next-line react/no-danger */}
+                <span dangerouslySetInnerHTML={{ __html: mailchimp.msg }} />
+              </span>
+            )}
+          </form>
+        </div>
+      </AnimateIn>
     </NewsletterSC>
   );
 };
@@ -117,11 +122,13 @@ const Newsletter = ({ image }) => {
 export default Newsletter;
 
 const NewsletterSC = styled.section`
-  display: flex;
-  flex-direction: column;
+  div {
+    display: flex;
+    flex-direction: column;
 
-  @media (min-width: 1024px) {
-    flex-direction: row;
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
   }
 
   .kaleidoscope {

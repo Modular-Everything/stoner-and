@@ -6,19 +6,22 @@ import { HeaderTwoSerif } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
 import alignItems from '../../helpers/alignItems';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { AnimateIn } from '../AnimateIn';
 
 const SingleColCopy = ({ title, copy, direction }) => {
   const align = alignItems(direction);
   const { theme } = useContext(ThemeContext);
 
   return (
-    <SingleColCopySt theme={theme} textDirection={align.textDirection}>
-      {title && <HeaderTwoSerif as="h1">{title}</HeaderTwoSerif>}
+    <AnimateIn>
+      <SingleColCopySt theme={theme} textDirection={align.textDirection}>
+        {title && <HeaderTwoSerif as="h1">{title}</HeaderTwoSerif>}
 
-      <div className="copy">
-        <ParagraphSmall as="p">{copy}</ParagraphSmall>
-      </div>
-    </SingleColCopySt>
+        <div className="copy">
+          <ParagraphSmall as="p">{copy}</ParagraphSmall>
+        </div>
+      </SingleColCopySt>
+    </AnimateIn>
   );
 };
 

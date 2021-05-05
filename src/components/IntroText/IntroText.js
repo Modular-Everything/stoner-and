@@ -4,17 +4,20 @@ import styled from 'styled-components';
 
 import { AllCapsDetail, HeaderSerif } from '../Type/Headings';
 import TwoColText from '../TwoColText/TwoColText';
+import { AnimateIn } from '../AnimateIn';
 
 const IntroText = ({ title, subtitle, copy }) => (
   <IntroTextSt>
-    {subtitle && <AllCapsDetail as="h2">{subtitle}</AllCapsDetail>}
-    <HeaderSerif as="h1">{title}</HeaderSerif>
+    <AnimateIn>
+      {subtitle && <AllCapsDetail as="h2">{subtitle}</AllCapsDetail>}
+      <HeaderSerif as="h1">{title}</HeaderSerif>
 
-    {copy && (
-      <div className="copy">
-        <TwoColText copy={copy} />
-      </div>
-    )}
+      {copy && (
+        <div className="copy">
+          <TwoColText copy={copy} />
+        </div>
+      )}
+    </AnimateIn>
   </IntroTextSt>
 );
 

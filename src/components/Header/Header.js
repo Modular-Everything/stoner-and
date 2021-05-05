@@ -9,6 +9,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import Logo from '../../images/logo.fluid.inline.svg';
 import Container from '../Container';
 import Menu from '../Menu/Menu';
+import { AnimateIn } from '../AnimateIn';
 
 //
 
@@ -18,7 +19,7 @@ const Header = ({ gradient }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <>
+    <AnimateIn>
       <HeaderSC theme={theme}>
         <HeaderContainer>
           <div className="logo">
@@ -59,7 +60,7 @@ const Header = ({ gradient }) => {
       <Menu open={menuOpen} page={{ menuPage, setMenuPage }} />
 
       {gradient && <Skrim />}
-    </>
+    </AnimateIn>
   );
 };
 

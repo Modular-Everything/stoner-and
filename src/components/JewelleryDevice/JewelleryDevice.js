@@ -55,6 +55,11 @@ const JewelleryDevice = ({ title, subtitle, copy }) => {
 
     if (inView) {
       timeline.add({
+        targets: gemRef,
+        opacity: [0, 1],
+      });
+
+      timeline.add({
         targets: gemLeft,
         translateX: [0, '-115%'],
         delay: 1000,

@@ -7,6 +7,7 @@ import { HeaderSans, HeaderSerif } from '../Type/Headings';
 import { ParagraphHuge } from '../Type/Copy';
 import { ButtonLink } from '../Button/Button';
 import alignItems from '../../helpers/alignItems';
+import { AnimateIn } from '../AnimateIn';
 
 //
 
@@ -20,25 +21,27 @@ const BrandedHeading = ({ label, copy, cta, direction }) => {
       textDirection={align.textDirection}
       flexDirection={align.flexDirection}
     >
-      <div className="heading">
-        <h1>
-          <HeaderSerif as="span">
-            Stoner<em>&amp;</em>
-          </HeaderSerif>
-          <HeaderSans as="span">{label}</HeaderSans>
-        </h1>
-      </div>
+      <AnimateIn>
+        <div className="heading">
+          <h1>
+            <HeaderSerif as="span">
+              Stoner<em>&amp;</em>
+            </HeaderSerif>
+            <HeaderSans as="span">{label}</HeaderSans>
+          </h1>
+        </div>
 
-      <div className="copy">
-        <ParagraphHuge as="p">{copy}</ParagraphHuge>
-        {cta && cta.link && cta.title && (
-          <ButtonLink
-            label={cta.title}
-            theme={theme.contrast}
-            to={`/${cta.link._type}`}
-          />
-        )}
-      </div>
+        <div className="copy">
+          <ParagraphHuge as="p">{copy}</ParagraphHuge>
+          {cta && cta.link && cta.title && (
+            <ButtonLink
+              label={cta.title}
+              theme={theme.contrast}
+              to={`/${cta.link._type}`}
+            />
+          )}
+        </div>
+      </AnimateIn>
     </BrandedHeadingSC>
   );
 };
