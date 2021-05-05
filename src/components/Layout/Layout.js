@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { motion } from 'framer-motion';
+import { TransitionState } from 'gatsby-plugin-transition-link';
 
 import 'normalize.css';
 import GlobalStyles from '../../styles/GlobalStyles';
@@ -27,6 +29,7 @@ const Layout = ({ gradient, children }) => {
       <>
         <GlobalStyles />
         <Typography />
+
         <LoadingScreen setLoading={setLoading} />
       </>
     );
@@ -46,9 +49,24 @@ const Layout = ({ gradient, children }) => {
         `}</style>
       </Helmet>
 
-      <Header gradient={gradient} />
-      <main>{children}</main>
-      <Footer />
+      <TransitionState>
+        {({ mount, transitionStatus }) => {
+          console.log(transitionStatus);
+          if (loading) return null;
+          return (
+            <motion.div
+              style={{ opacity: 0 }}
+              animate={{
+                opacity: mount && transitionStatus === 'entered' ? 1 : 0,
+              }}
+            >
+              <Header gradient={gradient} />
+              <main>{children}</main>
+              <Footer />
+            </motion.div>
+          );
+        }}
+      </TransitionState>
     </>
   );
 };

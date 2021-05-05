@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import { motion } from 'framer-motion';
+import TransitionLink from 'gatsby-plugin-transition-link';
 
 import { HeaderSerif } from '../Type/Headings';
 
@@ -21,19 +21,52 @@ const Navigation = ({ variants, setMenuPage }) => {
     <motion.ul variants={variants}>
       <motion.li variants={item}>
         <HeaderSerif as="h6">
-          <Link to="/engagement">Engagement</Link>
+          <TransitionLink
+            to="/engagement"
+            exit={{
+              trigger: () => console.log('exit engagement'),
+              length: 1,
+            }}
+            entry={{
+              delay: 0.6,
+            }}
+          >
+            Engagement
+          </TransitionLink>
         </HeaderSerif>
       </motion.li>
 
       <motion.li variants={item}>
         <HeaderSerif as="h6">
-          <Link to="/legacy">Legacy</Link>
+          <TransitionLink
+            to="/legacy"
+            exit={{
+              trigger: () => console.log('exit legacy'),
+              length: 1,
+            }}
+            entry={{
+              delay: 0.6,
+            }}
+          >
+            Legacy
+          </TransitionLink>
         </HeaderSerif>
       </motion.li>
 
       <motion.li variants={item}>
         <HeaderSerif as="h6">
-          <Link to="/bespoke">Bespoke</Link>
+          <TransitionLink
+            to="/bespoke"
+            exit={{
+              trigger: () => console.log('exit bespoke'),
+              length: 1,
+            }}
+            entry={{
+              delay: 0.6,
+            }}
+          >
+            Bespoke
+          </TransitionLink>
         </HeaderSerif>
       </motion.li>
 
@@ -47,7 +80,18 @@ const Navigation = ({ variants, setMenuPage }) => {
 
       <motion.li variants={item}>
         <HeaderSerif as="h6">
-          <Link to="/craftspeople">Craftspeople</Link>
+          <TransitionLink
+            to="/craftspeople"
+            exit={{
+              trigger: () => console.log('exit craftspeople'),
+              length: 1,
+            }}
+            entry={{
+              delay: 0.6,
+            }}
+          >
+            Craftspeople
+          </TransitionLink>
         </HeaderSerif>
       </motion.li>
 
