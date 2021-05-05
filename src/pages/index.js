@@ -19,7 +19,7 @@ export const query = graphql`
       introText {
         title
         subtitle
-        copy
+        copy: _rawCopy
       }
       signposts {
         title
