@@ -17,6 +17,7 @@ import Slider from '../components/Slider/Slider';
 export const query = graphql`
   query LegacyQuery {
     page: sanityLegacy(_id: { regex: "/legacy/" }) {
+      title
       background {
         asset {
           url
@@ -107,7 +108,7 @@ const LegacyPage = ({ data }) => {
         </ContentContainer>
       </Content>
 
-      <SEO title="Legacy" />
+      <SEO title={page.title} />
     </Layout>
   );
 };
