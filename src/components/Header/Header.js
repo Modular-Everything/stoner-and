@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Pivot as Hamburger } from 'hamburger-react';
-import { Link } from 'gatsby';
+import TransitionLink from 'gatsby-plugin-transition-link';
 import { MdKeyboardBackspace as BackIcon } from 'react-icons/md';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
@@ -22,9 +22,17 @@ const Header = ({ gradient }) => {
       <HeaderSC theme={theme}>
         <HeaderContainer>
           <div className="logo">
-            <Link to="/">
+            <TransitionLink
+              to="/"
+              exit={{
+                length: 1,
+              }}
+              entry={{
+                delay: 0.6,
+              }}
+            >
               <Logo />
-            </Link>
+            </TransitionLink>
           </div>
 
           <nav role="main">

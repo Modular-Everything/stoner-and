@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import TransitionLink from 'gatsby-plugin-transition-link';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import Gem from '../../images/shapes/gem-with-fade.inline.svg';
@@ -15,7 +15,15 @@ const Signpost = ({ signs }) => (
       const { alt } = sign.background;
 
       return (
-        <Link to="/">
+        <TransitionLink
+          to={`/${sign._rawLink?.slug?.current || sign._rawLink?._type}`}
+          exit={{
+            length: 1,
+          }}
+          entry={{
+            delay: 0.6,
+          }}
+        >
           <article>
             <div className="content">
               <HeaderTwoSerif as="h3">{sign.title}</HeaderTwoSerif>
@@ -30,7 +38,7 @@ const Signpost = ({ signs }) => (
               <GatsbyImage image={image} alt={alt} />
             </div>
           </article>
-        </Link>
+        </TransitionLink>
       );
     })}
   </SignPostSt>
