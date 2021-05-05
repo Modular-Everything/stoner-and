@@ -24,7 +24,6 @@ const Navigation = ({ variants, setMenuPage }) => {
           <TransitionLink
             to="/engagement"
             exit={{
-              trigger: () => console.log('exit engagement'),
               length: 1,
             }}
             entry={{
@@ -41,7 +40,6 @@ const Navigation = ({ variants, setMenuPage }) => {
           <TransitionLink
             to="/legacy"
             exit={{
-              trigger: () => console.log('exit legacy'),
               length: 1,
             }}
             entry={{
@@ -58,7 +56,6 @@ const Navigation = ({ variants, setMenuPage }) => {
           <TransitionLink
             to="/bespoke"
             exit={{
-              trigger: () => console.log('exit bespoke'),
               length: 1,
             }}
             entry={{
@@ -83,7 +80,6 @@ const Navigation = ({ variants, setMenuPage }) => {
           <TransitionLink
             to="/craftspeople"
             exit={{
-              trigger: () => console.log('exit craftspeople'),
               length: 1,
             }}
             entry={{

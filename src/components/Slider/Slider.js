@@ -27,8 +27,6 @@ const Slider = ({ slides }) => {
       <Swiper
         spaceBetween={24}
         slidesPerView="auto"
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         scrollbar={{ draggable: true }}
       >
         {slides.map((slide) => {

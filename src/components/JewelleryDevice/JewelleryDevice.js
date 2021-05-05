@@ -18,8 +18,6 @@ const JewelleryDevice = ({ title, subtitle, copy }) => {
   });
 
   useEffect(() => {
-    console.log(inView);
-
     const gems = gemRef.current.children;
     const gemLeft = gems[0].firstChild;
     const gemMiddle = gems[1].firstChild;

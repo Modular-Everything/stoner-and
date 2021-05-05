@@ -81,8 +81,6 @@ const LegacyPage = ({ data }) => {
   if (!data) return null;
   const { page } = data;
 
-  console.log(page);
-
   return (
     <Layout>
       <ImageHeading heading={page.heading} background={page.background} />
