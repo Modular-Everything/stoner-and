@@ -39,21 +39,33 @@ const Layout = ({ gradient, children }) => {
       <GlobalStyles />
       <Typography />
 
-      <Helmet>
-        <link rel="stylesheet" href="https://use.typekit.net/wgr2qyf.css" />
-        <style type="text/css">{`
-          body {
-            background-color: ${theme.primary};
-            color: ${theme.contrast};
-          }
-        `}</style>
-      </Helmet>
-
       <TransitionState>
-        {({ mount, transitionStatus }) => {
-          console.log(transitionStatus);
-          if (loading) return null;
-          return (
+        {({ mount, transitionStatus }) => (
+          <>
+            <Helmet>
+              <link
+                rel="stylesheet"
+                href="https://use.typekit.net/wgr2qyf.css"
+              />
+              <style type="text/css">{`
+                body {
+                  transition: 250ms ease background, 250ms ease color;
+
+                  background-color: ${
+                    mount && transitionStatus === 'entered'
+                      ? theme.primary
+                      : 'var(--off-white)'
+                  };
+
+                  color: ${
+                    mount && transitionStatus === 'entered'
+                      ? theme.contrast
+                      : 'var(--black)'
+                  };
+                }
+              `}</style>
+            </Helmet>
+
             <motion.div
               style={{ opacity: 0 }}
               animate={{
@@ -64,8 +76,8 @@ const Layout = ({ gradient, children }) => {
               <main>{children}</main>
               <Footer />
             </motion.div>
-          );
-        }}
+          </>
+        )}
       </TransitionState>
     </>
   );
