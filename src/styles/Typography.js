@@ -4,11 +4,14 @@ import Optima from '../fonts/Optima.woff';
 //
 
 const Typography = createGlobalStyle`
+
   :root {
     --halyard-display: 'halyard-display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --halyard-text: 'halyard-text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --optima: 'Optima', Georgia, 'Times New Roman', Times, serif;
   }
+
+  /* Note 🧠  Halyard fonts are imported in Layout.js */
 
   @font-face {
     font-family: 'Optima';
