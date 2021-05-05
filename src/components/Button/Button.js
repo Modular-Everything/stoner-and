@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import TransitionLink from 'gatsby-plugin-transition-link';
 
 //
 
 export const ButtonLink = ({ label, to, theme }) => (
-  <ButtonLinkSC to={to} theme={theme}>
+  <ButtonLinkSC
+    to={to}
+    theme={theme}
+    exit={{
+      length: 1,
+    }}
+    entry={{
+      delay: 0.6,
+    }}
+  >
     {label}
   </ButtonLinkSC>
 );
 
-const ButtonLinkSC = styled(Link)`
+const ButtonLinkSC = styled(TransitionLink)`
   display: inline-block;
   max-width: 40rem;
   padding: 1.6rem 3.2rem;
