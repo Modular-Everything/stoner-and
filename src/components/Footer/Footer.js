@@ -22,19 +22,19 @@ const Footer = () => (
             </ParagraphSmall>
 
             <ParagraphSmall as="li">
-              <Link to="/">Bespoke Designs</Link>
+              <Link to="/bespoke">Bespoke Designs</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/">Engagement Rings</Link>
+              <Link to="/engagement">Engagement Rings</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/">Legacy Services</Link>
+              <Link to="/legacy">Legacy Services</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/">Delivery &amp; Returns</Link>
+              <Link to="/delivery-and-returns">Delivery &amp; Returns</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/">Care &amp; Repair</Link>
+              <Link to="/care-and-repair">Care &amp; Repair</Link>
             </ParagraphSmall>
           </ul>
         </article>
@@ -46,16 +46,16 @@ const Footer = () => (
             </ParagraphSmall>
 
             <ParagraphSmall as="li">
-              <Link to="/">Sustainability</Link>
+              <Link to="/sustainability">Sustainability</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/">UK Modern Slavery Act</Link>
+              <Link to="/uk-modern-slavery-act">UK Modern Slavery Act</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/">Website Policies</Link>
+              <Link to="/website-policies">Website Policies</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/">Site Index</Link>
+              <Link to="/site-index">Site Index</Link>
             </ParagraphSmall>
           </ul>
         </article>
