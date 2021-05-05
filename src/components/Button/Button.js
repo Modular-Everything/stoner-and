@@ -24,7 +24,8 @@ const ButtonLinkSC = styled(TransitionLink)`
   display: inline-block;
   max-width: 40rem;
   padding: 1.6rem 3.2rem;
-  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1) background-color;
+  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1) background-color,
+    1s cubic-bezier(0.075, 0.82, 0.165, 1) color;
   border: 1px solid ${({ theme }) => theme || 'var(--black)'};
   background-color: rgba(255, 255, 255, 0);
   color: ${({ theme }) => theme || 'var(--black)'};
@@ -35,7 +36,9 @@ const ButtonLinkSC = styled(TransitionLink)`
   text-transform: uppercase;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: ${({ theme }) => theme || 'var(--black)'};
+    color: ${({ theme }) =>
+      theme === 'var(--white)' ? 'var(--black)' : 'var(--white)'};
   }
 `;
 
