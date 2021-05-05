@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { AllCapsDetail, HeaderSerif } from '../Type/Headings';
-import TwoColText from '../TwoColText/TwoColText';
+import TwoColText from '../TwoColText';
 import { AnimateIn } from '../AnimateIn';
 
 const IntroText = ({ title, subtitle, copy }) => (
