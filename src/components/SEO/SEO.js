@@ -17,11 +17,16 @@ const SEO = ({ title, description, article }) => {
           titleTemplate
         }
       }
+      settings: sanitySettings(_id: { regex: "/settings/" }) {
+        title
+        description
+        shortDesc
+      }
     }
   `;
 
   const { pathname } = useLocation();
-  const { site } = useStaticQuery(query);
+  const { site, settings } = useStaticQuery(query);
 
   const {
     defaultTitle,
@@ -31,8 +36,9 @@ const SEO = ({ title, description, article }) => {
   } = site.siteMetadata;
 
   const seo = {
-    title: title || defaultTitle,
-    description: description || defaultDescription,
+    title: title || settings.shortDesc || defaultTitle,
+    titleTemplate: `${settings.title}%s` || titleTemplate,
+    description: description || settings.description || defaultDescription,
     url: `${siteUrl}${pathname}`,
   };
 
@@ -40,7 +46,7 @@ const SEO = ({ title, description, article }) => {
     <Helmet
       title={seo.title}
       defer={false}
-      titleTemplate={titleTemplate}
+      titleTemplate={seo.titleTemplate}
       htmlAttributes={{
         lang: 'en',
       }}
