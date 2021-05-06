@@ -20,7 +20,7 @@ const Header = ({ gradient }) => {
 
   return (
     <AnimateIn>
-      <HeaderSC theme={theme}>
+      <HeaderSC theme={theme} menuOpen={menuOpen}>
         <HeaderContainer>
           <div className="logo">
             <TransitionLink
@@ -38,13 +38,18 @@ const Header = ({ gradient }) => {
 
           <nav role="main">
             {menuPage === 'navigation' ? (
-              <Hamburger
-                toggled={menuOpen}
-                toggle={setMenuOpen}
-                direction="right"
-                label="Show menu"
-                size={24}
-              />
+              <div
+                className={`hamburgerHandler ${menuOpen ? 'open' : 'closed'}`}
+              >
+                <Hamburger
+                  toggled={menuOpen}
+                  toggle={setMenuOpen}
+                  direction="right"
+                  label="Show menu"
+                  size={24}
+                  // color={menuOpen ? 'var(--black)' : theme.contrast}
+                />
+              </div>
             ) : (
               <BackButton
                 type="button"
@@ -79,10 +84,31 @@ const HeaderSC = styled.header`
   width: 100%;
   height: var(--headerHeight);
 
+  .hamburgerHandler {
+    transition: var(--ease-color);
+    transition-delay: 0s;
+
+    &.open {
+      /* transition-delay: 1s; */
+      color: var(--black);
+    }
+
+    &.closed {
+      /* transition-delay: 0s; */
+      color: ${({ theme }) => theme.contrast};
+    }
+
+    .react-hamburger div div {
+      background: inherit;
+    }
+  }
+
   a {
-    transition: var(--ease-links);
+    transition: var(--ease-links), var(--ease-color);
+    transition-delay: ${({ menuOpen }) => (menuOpen ? '0s' : '1s !important')};
     opacity: 1;
-    color: ${({ theme }) => theme.contrast};
+    color: ${({ menuOpen, theme }) =>
+      menuOpen ? 'var(--black)' : theme.contrast};
 
     &:hover {
       opacity: 0.8;
@@ -91,7 +117,8 @@ const HeaderSC = styled.header`
 
   .logo {
     max-width: 12rem;
-    color: ${({ theme }) => theme.contrast};
+    color: ${({ menuOpen, theme }) =>
+      menuOpen ? 'var(--black)' : theme.contrast};
 
     @media (min-width: 768px) {
       max-width: 16rem;

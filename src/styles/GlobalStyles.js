@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
 
     --ease-links: 250ms ease-in-out opacity;
     --ease-transform: 250ms ease transform;
+    --ease-color: 250ms ease color;
 
     --gutter: 1.6rem;
     --headerHeight: 7.7rem;
