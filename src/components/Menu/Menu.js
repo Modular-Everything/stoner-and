@@ -104,7 +104,6 @@ const MenuSC = styled(motion.nav)`
   ul {
     display: flex;
     position: relative;
-    top: calc(var(--headerHeight) / 2);
     flex-direction: column;
     align-items: center;
     justify-content: center;
