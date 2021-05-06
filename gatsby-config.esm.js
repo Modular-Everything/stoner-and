@@ -35,7 +35,7 @@ export default {
         icon: `./src/images/favicon.svg`,
       },
     },
-    `gatsby-plugin-offline`, // important - keep this below the manifest
+    `gatsby-plugin-remove-serviceworker`, // important - keep this below the manifest
     {
       resolve: `gatsby-source-sanity`,
       options: {
