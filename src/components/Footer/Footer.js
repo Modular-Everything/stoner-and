@@ -67,20 +67,23 @@ const Footer = () => (
 
             <ParagraphSmall as="li">
               <address>
-                Unit 12, Thornton’s Arcade
+                Christopher Stoner
                 <br />
-                Land’s Lane
+                Windsor House
                 <br />
-                Leeds
+                Harrogate
                 <br />
-                West Yorkshire
-                <br />
-                LS1 4ED
+                HG1 2PW
               </address>
             </ParagraphSmall>
             <ParagraphSmall as="li">
               <a href="mailto:info@stonerand.co" className="underline">
                 info@stonerand.co
+              </a>
+            </ParagraphSmall>
+            <ParagraphSmall as="li">
+              <a href="tel:+441423523596" className="underline">
+                01423 523596
               </a>
             </ParagraphSmall>
           </ul>
