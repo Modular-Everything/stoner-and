@@ -25,6 +25,7 @@ export const query = graphql`
         title
         caption
         _type
+        _key
         _rawLink(resolveReferences: { maxDepth: 1 })
         background {
           asset {
