@@ -20,9 +20,10 @@ const Navigation = ({ variants, setMenuPage }) => {
   return (
     <motion.ul variants={variants}>
       <motion.li variants={item}>
-        <HeaderSerif as="h6">
+        <HeaderSerif as="span">
           <TransitionLink
             to="/engagement"
+            activeClassName="active"
             exit={{
               length: 1,
             }}
@@ -36,9 +37,10 @@ const Navigation = ({ variants, setMenuPage }) => {
       </motion.li>
 
       <motion.li variants={item}>
-        <HeaderSerif as="h6">
+        <HeaderSerif as="span">
           <TransitionLink
             to="/legacy"
+            activeClassName="active"
             exit={{
               length: 1,
             }}
@@ -52,9 +54,10 @@ const Navigation = ({ variants, setMenuPage }) => {
       </motion.li>
 
       <motion.li variants={item}>
-        <HeaderSerif as="h6">
+        <HeaderSerif as="span">
           <TransitionLink
             to="/bespoke"
+            activeClassName="active"
             exit={{
               length: 1,
             }}
@@ -68,7 +71,7 @@ const Navigation = ({ variants, setMenuPage }) => {
       </motion.li>
 
       <motion.li variants={item}>
-        <HeaderSerif as="h6">
+        <HeaderSerif as="span">
           <button type="button" onClick={() => setMenuPage('findUs')}>
             Find Us
           </button>
@@ -76,9 +79,10 @@ const Navigation = ({ variants, setMenuPage }) => {
       </motion.li>
 
       <motion.li variants={item}>
-        <HeaderSerif as="h6">
+        <HeaderSerif as="span">
           <TransitionLink
             to="/craftspeople"
+            activeClassName="active"
             exit={{
               length: 1,
             }}
@@ -92,7 +96,7 @@ const Navigation = ({ variants, setMenuPage }) => {
       </motion.li>
 
       <motion.li variants={item}>
-        <HeaderSerif as="h6">
+        <HeaderSerif as="span">
           <button type="button" onClick={() => setMenuPage('contact')}>
             Contact
           </button>

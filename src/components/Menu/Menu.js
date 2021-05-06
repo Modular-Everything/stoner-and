@@ -125,6 +125,11 @@ const MenuSC = styled(motion.nav)`
       transition: var(--ease-links);
       color: var(--black);
       text-decoration: none;
+
+      &.active {
+        opacity: 0.5;
+        pointer-events: none;
+      }
     }
 
     button {
