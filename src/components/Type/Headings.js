@@ -124,6 +124,29 @@ HeaderTwoSerif.defaultProps = {
 
 //
 
+export const HeaderThreeSerif = ({ children, as }) => (
+  <HeaderThreeSerifSt as={as}>{children}</HeaderThreeSerifSt>
+);
+
+const HeaderThreeSerifSt = styled.h2`
+  font-family: var(--optima);
+  font-size: clamp(2.4rem, 2.6vw, 3.6rem);
+  font-weight: normal;
+  letter-spacing: 0.01rem;
+  line-height: clamp(3.4rem, 3.8vw, 4.8rem);
+`;
+
+HeaderThreeSerif.propTypes = {
+  children: PropTypes.node.isRequired,
+  as: PropTypes.string,
+};
+
+HeaderThreeSerif.defaultProps = {
+  as: null,
+};
+
+//
+
 export const HeaderSmall = ({ children, as }) => (
   <HeaderSmallSt as={as}>{children}</HeaderSmallSt>
 );
