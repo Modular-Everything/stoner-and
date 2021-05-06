@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
@@ -19,7 +20,9 @@ export const query = graphql`
       introText {
         title
         subtitle
-        copy: _rawCopy # this might break
+        copy {
+          copy
+        }
       }
       signposts {
         title
@@ -27,11 +30,11 @@ export const query = graphql`
         _type
         _key
         _rawLink(resolveReferences: { maxDepth: 1 })
-        background {
-          asset {
-            gatsbyImageData(width: 864, height: 864, formats: AUTO)
-          }
-          alt
+      }
+      background {
+        alt
+        asset {
+          gatsbyImageData(width: 1440, height: 900, formats: AUTO)
         }
       }
     }
@@ -45,7 +48,7 @@ const HomePage = ({ data }) => {
 
   useEffect(() => {
     setTheme({
-      primary: 'var(--off-white)',
+      primary: 'var(--white)',
       contrast: 'var(--black)',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,6 +57,9 @@ const HomePage = ({ data }) => {
   if (!data) return null;
   const { page } = data;
 
+  const image = getImage(page.background.asset.gatsbyImageData);
+  const { alt } = page.background;
+
   return (
     <Layout>
       <Content>
@@ -61,12 +67,16 @@ const HomePage = ({ data }) => {
           <IntroText
             title={page.introText.title}
             subtitle={page.introText.subtitle}
-            copy={page.introText.copy}
+            copy={page.introText.copy.copy}
           />
 
           <Signpost signs={page.signposts} />
         </ContentContainer>
       </Content>
+
+      <PageBackground>
+        <GatsbyImage image={image} alt={alt} />
+      </PageBackground>
 
       <SEO />
     </Layout>
@@ -76,12 +86,29 @@ const HomePage = ({ data }) => {
 export default HomePage;
 
 const Content = styled.div`
+  position: relative;
   margin-top: calc(var(--headerHeight) + var(--gutter));
 `;
 
 const ContentContainer = styled(Container)`
   & > section {
     margin-bottom: calc(var(--gutter) * 2);
+  }
+`;
+
+const PageBackground = styled.div`
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.08;
+
+  .gatsby-image-wrapper {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
