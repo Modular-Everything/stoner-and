@@ -48,7 +48,6 @@ const SignPostSt = styled.section`
 
   a {
     position: relative;
-    overflow: hidden;
     transition: var(--ease-links);
     border-radius: 0.4rem;
     color: var(--black);
@@ -78,8 +77,6 @@ const SignPostSt = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: calc(100% - (var(--gutter) * 2));
-    height: calc(100% - (var(--gutter) * 2));
     padding: var(--gutter);
     text-align: center;
 
