@@ -24,6 +24,7 @@ const Signpost = ({ signs }) => (
           entry={{
             delay: 0.6,
           }}
+          key={sign._key}
         >
           <AnimateIn>
             <article>
@@ -156,5 +157,5 @@ const SignPostSt = styled.section`
 `;
 
 Signpost.propTypes = {
-  signs: PropTypes.object.isRequired,
+  signs: PropTypes.array.isRequired,
 };
