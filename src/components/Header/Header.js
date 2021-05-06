@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Pivot as Hamburger } from 'hamburger-react';
 import TransitionLink from 'gatsby-plugin-transition-link';
-import { MdKeyboardBackspace as BackIcon } from 'react-icons/md';
+import { BsArrowLeft as BackIcon } from 'react-icons/bs';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Logo from '../../images/logo.fluid.inline.svg';
