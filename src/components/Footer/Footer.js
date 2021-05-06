@@ -97,7 +97,7 @@ const Footer = () => (
 
             <ParagraphSmall as="li">
               <a
-                href="https://instagram.com/"
+                href="https://instagram.com/christopherstonerbespoke"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -109,7 +109,7 @@ const Footer = () => (
             </ParagraphSmall>
             <ParagraphSmall as="li">
               <a
-                href="https://instagram.com/"
+                href="https://twitter.com/stonerdiamonds"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -121,7 +121,7 @@ const Footer = () => (
             </ParagraphSmall>
             <ParagraphSmall as="li">
               <a
-                href="https://instagram.com/"
+                href="https://facebook.com/christopherstonerjewellery"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -133,7 +133,7 @@ const Footer = () => (
             </ParagraphSmall>
             <ParagraphSmall as="li">
               <a
-                href="https://instagram.com/"
+                href="https://trustpilot.com/christopherstonerjewellery"
                 target="_blank"
                 rel="noopener noreferrer"
               >
