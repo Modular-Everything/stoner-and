@@ -95,7 +95,14 @@ export const Kaleidoscope = (props) => {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // ** Animate the canvas
-    function update() {
+
+    const FRAMES_PER_SECOND = 10; // Valid values are 60,30,20,15,10...
+    // set the mim time to render the next frame
+    const FRAME_MIN_TIME =
+      (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
+    let lastFrameTime = 0; // the last frame time
+
+    function update(time) {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.restore();
 
@@ -104,6 +111,15 @@ export const Kaleidoscope = (props) => {
       settings.offsetX += (tx - settings.offsetX) * ease;
       settings.offsetY += (ty - settings.offsetY) * ease;
       settings.offsetRotation += (tr - settings.offsetRotation) * ease;
+
+      if (time - lastFrameTime < FRAME_MIN_TIME) {
+        // skip the frame if the call is too early
+        draw();
+        requestAnimationFrame(update);
+        return; // return as there is nothing to do
+      }
+
+      lastFrameTime = time;
 
       draw();
       requestAnimationFrame(update);
