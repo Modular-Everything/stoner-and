@@ -41,5 +41,5 @@ const TwoColTextSC = styled.div`
 `;
 
 TwoColText.propTypes = {
-  copy: PropTypes.array.isRequired,
+  copy: PropTypes.string.isRequired,
 };
