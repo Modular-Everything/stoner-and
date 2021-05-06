@@ -5,6 +5,8 @@ import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navigation from './Navigation';
+import FindUs from '../../images/placeholders/findus.inline.svg';
+import Contact from '../../images/placeholders/contact.inline.svg';
 
 //
 
@@ -33,7 +35,7 @@ const Menu = ({ open, page }) => {
           exit={{ opacity: 0 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          Find Us
+          <FindUs style={{ width: '75vw', maxHeight: '63rem' }} />
         </motion.h1>
       );
       break;
@@ -44,7 +46,7 @@ const Menu = ({ open, page }) => {
           exit={{ opacity: 0 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          Contact
+          <Contact style={{ width: '75vw' }} />
         </motion.h1>
       );
       break;
