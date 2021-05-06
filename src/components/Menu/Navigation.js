@@ -30,7 +30,7 @@ const Navigation = ({ variants, setMenuPage }) => {
               delay: 0.6,
             }}
           >
-            Engagement
+            Engaged
           </TransitionLink>
         </HeaderSerif>
       </motion.li>
