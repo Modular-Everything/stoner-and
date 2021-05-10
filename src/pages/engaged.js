@@ -12,8 +12,8 @@ import Layout from '../components/Layout';
 //
 
 export const query = graphql`
-  query EngagementQuery {
-    page: sanityEngagement(_id: { regex: "/engagement/" }) {
+  query EngagedQuery {
+    page: sanityEngaged(_id: { regex: "/engaged/" }) {
       title
       kaleidoscopeImages {
         asset {
@@ -38,7 +38,7 @@ export const query = graphql`
 
 //
 
-const EngagementPage = ({ data }) => {
+const EngagedPage = ({ data }) => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const { page } = data;
@@ -71,7 +71,7 @@ const EngagementPage = ({ data }) => {
   );
 };
 
-export default EngagementPage;
+export default EngagedPage;
 
 const Content = styled.div`
   display: flex;
@@ -81,6 +81,6 @@ const Content = styled.div`
   height: 100vh;
 `;
 
-EngagementPage.propTypes = {
+EngagedPage.propTypes = {
   data: PropTypes.object.isRequired,
 };

@@ -22,7 +22,7 @@ const Navigation = ({ variants, setMenuPage }) => {
       <motion.li variants={item}>
         <HeaderSerif as="span">
           <TransitionLink
-            to="/engagement"
+            to="/engaged"
             activeClassName="active"
             exit={{
               length: 1,

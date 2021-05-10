@@ -24,7 +24,7 @@ const Footer = () => (
               <Link to="/bespoke">Bespoke Designs</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
-              <Link to="/engagement">Engagement Rings</Link>
+              <Link to="/engaged">Engagement Rings</Link>
             </ParagraphSmall>
             <ParagraphSmall as="li">
               <Link to="/legacy">Legacy Services</Link>
