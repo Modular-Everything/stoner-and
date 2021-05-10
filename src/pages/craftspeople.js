@@ -10,6 +10,7 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
+import Newsletter from '../components/Newsletter';
 import IntroText from '../components/IntroText/IntroText';
 import GenericImage from '../components/GenericImage/GenericImage';
 import TwoColText from '../components/TwoColText';
@@ -88,6 +89,14 @@ export const query = graphql`
         title
         subtitle
         copy: _rawCopy
+      }
+      newsletter {
+        kaleidoscopeImage {
+          asset {
+            url
+          }
+        }
+        enable
       }
       content {
         ... on SanityGenericImage {
@@ -175,6 +184,16 @@ const CraftspeoplePage = ({ data }) => {
                 return null;
             }
           })}
+
+          {page.newsletter.enable && (
+            <Newsletter
+              image={
+                (page.newsletter.kaleidoscopeImage &&
+                  page.newsletter.kaleidoscopeImage.asset.url) ||
+                page.opening.kaleidoscopeImage.asset.url
+              }
+            />
+          )}
         </ContentContainer>
       </Content>
 
