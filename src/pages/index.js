@@ -66,7 +66,7 @@ export const query = graphql`
 
 //
 
-const LegacyPage = ({ data }) => {
+const HomePage = ({ data }) => {
   const { page } = data;
 
   const { setTheme } = useContext(ThemeContext);
@@ -113,7 +113,7 @@ const LegacyPage = ({ data }) => {
   );
 };
 
-export default LegacyPage;
+export default HomePage;
 
 const Content = styled.div`
   margin-top: calc(var(--headerHeight) + (var(--gutter) * 2));
@@ -129,6 +129,6 @@ const ContentContainer = styled(Container)`
   }
 `;
 
-LegacyPage.propTypes = {
+HomePage.propTypes = {
   data: PropTypes.object.isRequired,
 };

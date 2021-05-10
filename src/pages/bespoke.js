@@ -68,7 +68,7 @@ export const query = graphql`
 
 //
 
-const LegacyPage = ({ data }) => {
+const BespokePage = ({ data }) => {
   const { setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -113,7 +113,7 @@ const LegacyPage = ({ data }) => {
   );
 };
 
-export default LegacyPage;
+export default BespokePage;
 
 const Content = styled.div`
   margin-top: calc(-1 * (var(--gutter) * 6));
@@ -125,6 +125,6 @@ const ContentContainer = styled(Container)`
   }
 `;
 
-LegacyPage.propTypes = {
+BespokePage.propTypes = {
   data: PropTypes.object.isRequired,
 };
