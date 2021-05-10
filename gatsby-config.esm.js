@@ -71,6 +71,19 @@ export default {
           'https://anonaddy.us1.list-manage.com/subscribe/post?u=86e604503fc42249d937a8c23&amp;id=5bc89eac0c',
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }],
+          },
+        },
+      },
+    },
     `gatsby-plugin-sitemap`,
   ],
 };
