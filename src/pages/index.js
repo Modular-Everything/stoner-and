@@ -7,7 +7,7 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import Container from '../components/Container';
 import Layout from '../components/Layout';
-import Newsletter from '../components/Newsletter/Newsletter';
+import Newsletter from '../components/Newsletter';
 import Slider from '../components/Slider/Slider';
 import BrandedLockup from '../components/BrandedLockup/BrandedLockup';
 
