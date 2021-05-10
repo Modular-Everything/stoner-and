@@ -6,10 +6,11 @@ import { graphql } from 'gatsby';
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import Container from '../components/Container';
+import JewelleryDevice from '../components/JewelleryDevice/JewelleryDevice';
+import ImageHeading from '../components/ImageHeading/ImageHeading';
 import Layout from '../components/Layout';
 import Newsletter from '../components/Newsletter/Newsletter';
 import Slider from '../components/Slider/Slider';
-import BrandedLockup from '../components/BrandedLockup/BrandedLockup';
 
 //
 
@@ -17,6 +18,31 @@ export const query = graphql`
   query BespokeQuery {
     page: sanityBespoke(_id: { regex: "/bespoke/" }) {
       title
+      background {
+        asset {
+          url
+          gatsbyImageData(width: 1920, formats: AUTO)
+        }
+        alt
+      }
+      heading {
+        title
+        copy
+        _rawLink(resolveReferences: { maxDepth: 1 })
+      }
+      jewelleryDevice {
+        title
+        subtitle
+        copy
+      }
+      newsletter {
+        enable
+        kaleidoscopeImage {
+          asset {
+            url
+          }
+        }
+      }
       slides: slider {
         title
         subtitle
@@ -36,30 +62,6 @@ export const query = graphql`
         }
         _rawLink(resolveReferences: { maxDepth: 1 })
       }
-      newsletter {
-        enable
-        kaleidoscopeImage {
-          asset {
-            url
-          }
-        }
-      }
-      opening {
-        title
-        copy
-        kaleidoscopeImage {
-          asset {
-            url
-            metadata {
-              palette {
-                darkMuted {
-                  background
-                }
-              }
-            }
-          }
-        }
-      }
     }
   }
 `;
@@ -67,31 +69,29 @@ export const query = graphql`
 //
 
 const LegacyPage = ({ data }) => {
-  const { page } = data;
-
   const { setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     setTheme({
-      primary: 'var(--off-white)',
-      contrast:
-        page.opening.kaleidoscopeImage.asset.metadata.palette.darkMuted
-          .background,
+      primary: 'var(--rich-black)',
+      contrast: 'var(--off-white)',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!data) return null;
+  const { page } = data;
 
   return (
     <Layout>
+      <ImageHeading heading={page.heading} background={page.background} />
+
       <Content>
         <ContentContainer>
-          <BrandedLockup
-            title={page.title}
-            heading={page.opening.title}
-            copy={page.opening.copy}
-            image={page.opening.kaleidoscopeImage.asset.url}
+          <JewelleryDevice
+            title={page.jewelleryDevice.title}
+            subtitle={page.jewelleryDevice.subtitle}
+            copy={page.jewelleryDevice.copy}
           />
 
           <Slider slides={page.slides} />
@@ -101,7 +101,7 @@ const LegacyPage = ({ data }) => {
               image={
                 (page.newsletter.kaleidoscopeImage &&
                   page.newsletter.kaleidoscopeImage.asset.url) ||
-                page.opening.kaleidoscopeImage.asset.url
+                page.background.asset.url
               }
             />
           )}
@@ -116,11 +116,7 @@ const LegacyPage = ({ data }) => {
 export default LegacyPage;
 
 const Content = styled.div`
-  margin-top: calc(var(--headerHeight) + (var(--gutter) * 2));
-
-  @media (min-width: 768px) {
-    margin-top: calc(var(--headerHeight) + var(--gutter));
-  }
+  margin-top: calc(-1 * (var(--gutter) * 6));
 `;
 
 const ContentContainer = styled(Container)`

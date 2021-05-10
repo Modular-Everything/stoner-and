@@ -2,14 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import Container from '../components/Container';
-import IntroText from '../components/IntroText';
-import Signpost from '../components/Signpost';
 import Layout from '../components/Layout';
+import Newsletter from '../components/Newsletter/Newsletter';
+import Slider from '../components/Slider/Slider';
+import BrandedLockup from '../components/BrandedLockup/BrandedLockup';
 
 //
 
@@ -17,24 +17,47 @@ export const query = graphql`
   query HomepageQuery {
     page: sanityHomepage(_id: { regex: "/homepage/" }) {
       title
-      introText {
+      slides: slider {
         title
         subtitle
-        copy {
-          copy
+        background {
+          alt
+          asset {
+            gatsbyImageData(width: 720, formats: AUTO)
+            metadata {
+              palette {
+                dominant {
+                  foreground
+                  background
+                }
+              }
+            }
+          }
         }
-      }
-      signposts {
-        title
-        caption
-        _type
-        _key
         _rawLink(resolveReferences: { maxDepth: 1 })
       }
-      background {
-        alt
-        asset {
-          gatsbyImageData(width: 1440, height: 900, formats: AUTO)
+      newsletter {
+        enable
+        kaleidoscopeImage {
+          asset {
+            url
+          }
+        }
+      }
+      opening {
+        title
+        copy
+        kaleidoscopeImage {
+          asset {
+            url
+            metadata {
+              palette {
+                darkMuted {
+                  background
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -43,79 +66,69 @@ export const query = graphql`
 
 //
 
-const HomePage = ({ data }) => {
+const LegacyPage = ({ data }) => {
+  const { page } = data;
+
   const { setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     setTheme({
-      primary: 'var(--white)',
-      contrast: 'var(--black)',
+      primary: 'var(--off-white)',
+      contrast:
+        page.opening.kaleidoscopeImage.asset.metadata.palette.darkMuted
+          .background,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!data) return null;
-  const { page } = data;
-
-  const image = getImage(page.background.asset.gatsbyImageData);
-  const { alt } = page.background;
 
   return (
     <Layout>
       <Content>
         <ContentContainer>
-          <IntroText
-            title={page.introText.title}
-            subtitle={page.introText.subtitle}
-            copy={page.introText.copy.copy}
+          <BrandedLockup
+            title={page.title}
+            heading={page.opening.title}
+            copy={page.opening.copy}
+            image={page.opening.kaleidoscopeImage.asset.url}
           />
 
-          <Signpost signs={page.signposts} />
+          <Slider slides={page.slides} />
+
+          {page.newsletter.enable && (
+            <Newsletter
+              image={
+                (page.newsletter.kaleidoscopeImage &&
+                  page.newsletter.kaleidoscopeImage.asset.url) ||
+                page.opening.kaleidoscopeImage.asset.url
+              }
+            />
+          )}
         </ContentContainer>
       </Content>
 
-      <PageBackground>
-        <GatsbyImage image={image} alt={alt} />
-      </PageBackground>
-
-      <SEO />
+      <SEO title={page.title} data-react-helmet="true" />
     </Layout>
   );
 };
 
-export default HomePage;
+export default LegacyPage;
 
 const Content = styled.div`
-  position: relative;
-  margin-top: calc(var(--headerHeight) + var(--gutter));
+  margin-top: calc(var(--headerHeight) + (var(--gutter) * 2));
+
+  @media (min-width: 768px) {
+    margin-top: calc(var(--headerHeight) + var(--gutter));
+  }
 `;
 
 const ContentContainer = styled(Container)`
   & > section {
-    margin-bottom: calc(var(--gutter) * 2);
+    margin-bottom: calc(var(--gutter) * 6);
   }
 `;
 
-const PageBackground = styled.div`
-  position: fixed;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  opacity: 0.08;
-
-  .gatsby-image-wrapper {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-HomePage.propTypes = {
-  data: PropTypes.object,
-};
-
-HomePage.defaultProps = {
-  data: null,
+LegacyPage.propTypes = {
+  data: PropTypes.object.isRequired,
 };
