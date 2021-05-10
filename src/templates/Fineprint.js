@@ -41,7 +41,7 @@ const Fineprint = ({ data }) => {
         </Container>
       </Content>
 
-      <SEO title={fineprint.title} />
+      <SEO title={fineprint.title} data-react-helmet="true" />
     </Layout>
   );
 };

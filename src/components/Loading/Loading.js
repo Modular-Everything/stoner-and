@@ -38,7 +38,7 @@ const LoadingScreen = ({ setLoading }) => {
         </p>
       </LoadingSC>
 
-      <SEO title="Loading..." />
+      <SEO title="Loading..." data-react-helmet="true" />
     </>
   );
 };

@@ -28,7 +28,7 @@ const MissingPage = () => {
         </Container>
       </Content>
 
-      <SEO title="...missing pages?" />
+      <SEO title="...missing pages?" data-react-helmet="true" />
     </Layout>
   );
 };

@@ -178,7 +178,7 @@ const CraftspeoplePage = ({ data }) => {
         </ContentContainer>
       </Content>
 
-      <SEO title={page.title} />
+      <SEO title={page.title} data-react-helmet="true" />
     </Layout>
   );
 };

@@ -66,7 +66,7 @@ const EngagementPage = ({ data }) => {
         <KaleidoscopeBg image={`${image.asset.url}?w=1080&h=1080`} />
       </Content>
 
-      <SEO title={page.title} />
+      <SEO title={page.title} data-react-helmet="true" />
     </Layout>
   );
 };
