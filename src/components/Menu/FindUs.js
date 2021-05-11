@@ -29,22 +29,26 @@ const FindUs = () => {
 
   const { findUs } = useStaticQuery(query);
 
+  const mapUrl = findUs.address.replace(/\n/g, ', ');
+
   return (
     <FindUsSC>
       <MapWrapper>
-        <StaticGoogleMap
-          size="750x750"
-          className="google-static-map"
-          apiKey="AIzaSyDhhlV2JsbO79NtLyfjAbVx-OFcBcBrCeI"
-          zoom="14"
-        >
-          <Marker location={{ lat: findUs.map.lat, lng: findUs.map.lng }} />
-        </StaticGoogleMap>
+        <a href={`https://www.google.com/maps/search/?api=1&query=${mapUrl}`}>
+          <StaticGoogleMap
+            size="750x750"
+            className="google-static-map"
+            apiKey="AIzaSyDhhlV2JsbO79NtLyfjAbVx-OFcBcBrCeI"
+            zoom="14"
+          >
+            <Marker location={{ lat: findUs.map.lat, lng: findUs.map.lng }} />
+          </StaticGoogleMap>
+        </a>
 
         <div className="open">
           <AllCapsDetail
             as="a"
-            href={`https://www.google.com/maps/search/?api=1&query=${findUs.address}`}
+            href={`https://www.google.com/maps/search/?api=1&query=${mapUrl}`}
           >
             <span>Open in Google Maps</span>
             <NewWindowIcon />
@@ -99,9 +103,9 @@ const FindUsSC = styled.div`
     margin-bottom: calc(var(--gutter) * 2);
 
     @media (min-width: 768px) {
-      width: calc(25% - var(--gutter));
+      width: calc(25% - calc(var(--gutter) * 2));
       margin-bottom: 0;
-      margin-left: var(--gutter);
+      margin-left: calc(var(--gutter) * 2);
     }
 
     .details--section {
@@ -144,8 +148,9 @@ const MapWrapper = styled.div`
 
   @media (min-width: 768px) {
     justify-content: center;
-    width: 75%;
+    width: calc(75% - (var(--gutter) * 2));
     height: 100%;
+    margin-right: calc(var(--gutter) * 2);
     padding-bottom: 0;
   }
 
@@ -163,7 +168,7 @@ const MapWrapper = styled.div`
     }
   }
 
-  a {
+  .open a {
     display: flex;
     align-items: center;
     margin-top: var(--gutter);
