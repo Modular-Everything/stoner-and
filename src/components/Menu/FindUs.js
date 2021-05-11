@@ -163,13 +163,18 @@ const MapWrapper = styled.div`
     padding-bottom: 0;
   }
 
+  a:hover .google-static-map {
+    opacity: 1;
+  }
+
   .google-static-map {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     max-height: 32rem;
-    filter: grayscale(100%);
+    transition: var(--ease-links);
     opacity: 0.9;
+    object-fit: cover;
+    filter: grayscale(100%);
     mix-blend-mode: multiply;
 
     @media (min-width: 768px) {
