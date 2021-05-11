@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
 import { MdOpenInNew as NewWindowIcon } from 'react-icons/md';
 
+import Container from '../Container';
 import { AllCapsDetail } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
 
@@ -33,66 +34,74 @@ const FindUs = () => {
 
   return (
     <FindUsSC>
-      <MapWrapper>
-        <a href={`https://www.google.com/maps/search/?api=1&query=${mapUrl}`}>
-          <StaticGoogleMap
-            size="750x750"
-            className="google-static-map"
-            apiKey="AIzaSyDhhlV2JsbO79NtLyfjAbVx-OFcBcBrCeI"
-            zoom="14"
-          >
-            <Marker location={{ lat: findUs.map.lat, lng: findUs.map.lng }} />
-          </StaticGoogleMap>
-        </a>
+      <FindUsContainer>
+        <MapWrapper>
+          <a href={`https://www.google.com/maps/search/?api=1&query=${mapUrl}`}>
+            <StaticGoogleMap
+              size="750x750"
+              className="google-static-map"
+              apiKey="AIzaSyDhhlV2JsbO79NtLyfjAbVx-OFcBcBrCeI"
+              zoom="14"
+            >
+              <Marker location={{ lat: findUs.map.lat, lng: findUs.map.lng }} />
+            </StaticGoogleMap>
+          </a>
 
-        <div className="open">
-          <AllCapsDetail
-            as="a"
-            href={`https://www.google.com/maps/search/?api=1&query=${mapUrl}`}
-          >
-            <span>Open in Google Maps</span>
-            <NewWindowIcon />
-          </AllCapsDetail>
-        </div>
-      </MapWrapper>
+          <div className="open">
+            <AllCapsDetail
+              as="a"
+              href={`https://www.google.com/maps/search/?api=1&query=${mapUrl}`}
+            >
+              <span>Open in Google Maps</span>
+              <NewWindowIcon />
+            </AllCapsDetail>
+          </div>
+        </MapWrapper>
 
-      <div className="details">
-        <div className="details--section">
-          <AllCapsDetail as="h4">Visit Our Store</AllCapsDetail>
-          <ParagraphSmall as="address">{findUs.address}</ParagraphSmall>
-        </div>
+        <div className="details">
+          <div className="details--section">
+            <AllCapsDetail as="h4">Visit Our Store</AllCapsDetail>
+            <ParagraphSmall as="address">{findUs.address}</ParagraphSmall>
+          </div>
 
-        <div className="details--section">
-          <AllCapsDetail as="h4">Opening Hours</AllCapsDetail>
-          <ul>
-            {findUs.openingTimes.map((time) => (
-              <ParagraphSmall as="li" key={time._key}>
-                {time.day}
-                <br />
-                {time.hours}
-              </ParagraphSmall>
-            ))}
-          </ul>
+          <div className="details--section">
+            <AllCapsDetail as="h4">Opening Hours</AllCapsDetail>
+            <ul>
+              {findUs.openingTimes.map((time) => (
+                <ParagraphSmall as="li" key={time._key}>
+                  {time.day}
+                  <br />
+                  {time.hours}
+                </ParagraphSmall>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </FindUsContainer>
     </FindUsSC>
   );
 };
 
 export default FindUs;
 
-const FindUsSC = styled.div`
+const FindUsContainer = styled(Container)`
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
-  width: calc(100vw - (var(--gutter) * 2));
-  height: calc(100vh - (var(--gutter) * 2) - var(--headerHeight));
-  padding: calc(var(--gutter) + var(--headerHeight)) var(--gutter) var(--gutter);
 
   @media (min-width: 768px) {
     flex-direction: row;
     align-items: center;
     justify-content: unset;
+  }
+`;
+
+const FindUsSC = styled.div`
+  width: calc(100vw - (var(--gutter) * 2));
+  height: calc(100vh - (var(--gutter) * 2) - var(--headerHeight));
+  padding: calc(var(--gutter) + var(--headerHeight)) var(--gutter) var(--gutter);
+
+  @media (min-width: 768px) {
     height: calc(100vh - (var(--gutter) * 2));
     margin-top: unset;
     padding: var(--gutter);
