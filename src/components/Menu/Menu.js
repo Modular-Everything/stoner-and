@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navigation from './Navigation';
-import FindUs from '../../images/placeholders/findus.inline.svg';
-import Contact from '../../images/placeholders/contact.inline.svg';
+import FindUs from './FindUs';
+import Contact from './Contact';
 
 //
 
@@ -30,24 +30,24 @@ const Menu = ({ open, page }) => {
   switch (page.menuPage) {
     case 'findUs':
       activePage = (
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 200 }}
           exit={{ opacity: 0 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <FindUs style={{ width: '75vw', maxHeight: '63rem' }} />
-        </motion.h1>
+          <FindUs />
+        </motion.div>
       );
       break;
     case 'contact':
       activePage = (
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 200 }}
           exit={{ opacity: 0 }}
           animate={{ opacity: 1, y: 0 }}
         >
           <Contact style={{ width: '75vw' }} />
-        </motion.h1>
+        </motion.div>
       );
       break;
     default:
@@ -97,11 +97,12 @@ const MenuSC = styled(motion.nav)`
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  overflow: auto;
   opacity: 0;
   background-color: rgba(240, 240, 230, 0.97);
   pointer-events: ${({ interactive }) => (interactive ? 'unset' : 'none')};
 
-  ul {
+  & > ul {
     display: flex;
     position: relative;
     flex-direction: column;
