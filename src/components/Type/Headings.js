@@ -4,9 +4,15 @@ import styled from 'styled-components';
 
 //
 
-export const AllCapsDetail = ({ children, as }) => (
-  <AllCapsDetailSt as={as}>{children}</AllCapsDetailSt>
-);
+export const AllCapsDetail = (props) => {
+  const { children, as } = props;
+
+  return (
+    <AllCapsDetailSt as={as} {...props}>
+      {children}
+    </AllCapsDetailSt>
+  );
+};
 
 const AllCapsDetailSt = styled.h3`
   font-family: var(--halyard-display);
@@ -32,9 +38,15 @@ AllCapsDetail.defaultProps = {
 
 //
 
-export const HeaderSerif = ({ children, as }) => (
-  <HeaderSerifSt as={as}>{children}</HeaderSerifSt>
-);
+export const HeaderSerif = (props) => {
+  const { children, as } = props;
+
+  return (
+    <HeaderSerifSt as={as} {...props}>
+      {children}
+    </HeaderSerifSt>
+  );
+};
 
 const HeaderSerifSt = styled.h1`
   font-family: var(--optima);
@@ -55,9 +67,15 @@ HeaderSerif.defaultProps = {
 
 //
 
-export const HeaderSans = ({ children, as }) => (
-  <HeaderSansSt as={as}>{children}</HeaderSansSt>
-);
+export const HeaderSans = (props) => {
+  const { children, as } = props;
+
+  return (
+    <HeaderSansSt as={as} {...props}>
+      {children}
+    </HeaderSansSt>
+  );
+};
 
 const HeaderSansSt = styled.h1`
   font-family: var(--halyard-display);
@@ -78,9 +96,15 @@ HeaderSans.defaultProps = {
 
 //
 
-export const HeaderThree = ({ children, as }) => (
-  <HeaderThreeSt as={as}>{children}</HeaderThreeSt>
-);
+export const HeaderThree = (props) => {
+  const { children, as } = props;
+
+  return (
+    <HeaderThreeSt as={as} {...props}>
+      {children}
+    </HeaderThreeSt>
+  );
+};
 
 const HeaderThreeSt = styled.h1`
   font-family: var(--halyard-display);
@@ -101,9 +125,15 @@ HeaderThree.defaultProps = {
 
 //
 
-export const HeaderTwoSerif = ({ children, as }) => (
-  <HeaderTwoSerifSt as={as}>{children}</HeaderTwoSerifSt>
-);
+export const HeaderTwoSerif = (props) => {
+  const { children, as } = props;
+
+  return (
+    <HeaderTwoSerifSt as={as} {...props}>
+      {children}
+    </HeaderTwoSerifSt>
+  );
+};
 
 const HeaderTwoSerifSt = styled.h2`
   font-family: var(--optima);
@@ -124,9 +154,15 @@ HeaderTwoSerif.defaultProps = {
 
 //
 
-export const HeaderThreeSerif = ({ children, as }) => (
-  <HeaderThreeSerifSt as={as}>{children}</HeaderThreeSerifSt>
-);
+export const HeaderThreeSerif = (props) => {
+  const { children, as } = props;
+
+  return (
+    <HeaderThreeSerifSt as={as} {...props}>
+      {children}
+    </HeaderThreeSerifSt>
+  );
+};
 
 const HeaderThreeSerifSt = styled.h2`
   font-family: var(--optima);
@@ -147,9 +183,15 @@ HeaderThreeSerif.defaultProps = {
 
 //
 
-export const HeaderSmall = ({ children, as }) => (
-  <HeaderSmallSt as={as}>{children}</HeaderSmallSt>
-);
+export const HeaderSmall = (props) => {
+  const { children, as } = props;
+
+  return (
+    <HeaderSmallSt as={as} {...props}>
+      {children}
+    </HeaderSmallSt>
+  );
+};
 
 const HeaderSmallSt = styled.h3`
   font-family: var(--halyard-display);
@@ -170,9 +212,15 @@ HeaderSmall.defaultProps = {
 
 //
 
-export const AllCapsHeader = ({ children, as }) => (
-  <AllCapsHeaderSt as={as}>{children}</AllCapsHeaderSt>
-);
+export const AllCapsHeader = (props) => {
+  const { children, as } = props;
+
+  return (
+    <AllCapsHeaderSt as={as} {...props}>
+      {children}
+    </AllCapsHeaderSt>
+  );
+};
 
 const AllCapsHeaderSt = styled.h3`
   font-family: var(--halyard-display);
