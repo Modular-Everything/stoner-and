@@ -63,6 +63,7 @@
     "react-hook-form": "^7.1.0",
     "react-icons": "^4.2.0",
     "react-intersection-observer": "^8.31.1",
+    "react-static-google-map": "^0.8.0",
     "styled-components": "^5.2.1",
     "swiper": "^6.5.7"
   },
