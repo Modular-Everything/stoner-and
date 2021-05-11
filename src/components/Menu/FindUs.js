@@ -137,10 +137,13 @@ const FindUsSC = styled.div`
 `;
 
 const MapWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding-bottom: var(--gutter);
 
   @media (min-width: 768px) {
+    justify-content: center;
     width: 75%;
     height: 100%;
     padding-bottom: 0;
