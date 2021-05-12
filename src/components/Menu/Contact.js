@@ -1,18 +1,36 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { useForm } from 'react-hook-form';
-import addToMailchimp from 'gatsby-plugin-mailchimp';
+// import addToMailchimp from 'gatsby-plugin-mailchimp';
 
 import Container from '../Container';
+import iconPicker from '../../helpers/iconPicker';
+import { ButtonCallback } from '../Button';
 import { AllCapsDetail } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
 
 //
 
-const Contact = () => {
+const Contact = ({ setMenuPage }) => {
+  const query = graphql`
+    query ContactSettingsQuery {
+      settings: sanitySettings {
+        socialLinks {
+          title
+          url: link
+          icon
+          _key
+        }
+      }
+    }
+  `;
+
+  const { settings } = useStaticQuery(query);
+
   const [submitted, setSubmitted] = useState('Send Message');
-  const [mailchimp, setMailchimp] = useState(null);
+  // const [mailchimp, setMailchimp] = useState(null);
 
   const {
     register,
@@ -27,15 +45,15 @@ const Contact = () => {
 
     setTimeout(() => setSubmitted('Send Message'), 2000);
 
-    addToMailchimp(
-      data.contactEmail,
-      {
-        NAME: data.contactName,
-        SUBJECT: data.contactSubject,
-        // MESSAGE: data.contactMessage,
-      },
-      'https://us1.list-manage.com/contact-form?u=86e604503fc42249d937a8c23&form_id=e85ee9bdbbf6a97e1c73dc89f981c67d'
-    );
+    // addToMailchimp(
+    //   data.contactEmail,
+    //   {
+    //     NAME: data.contactName,
+    //     SUBJECT: data.contactSubject,
+    //     // MESSAGE: data.contactMessage,
+    //   },
+    //   'https://us1.list-manage.com/contact-form?u=86e604503fc42249d937a8c23&form_id=e85ee9bdbbf6a97e1c73dc89f981c67d'
+    // );
   };
 
   return (
@@ -76,10 +94,6 @@ const Contact = () => {
                 value={submitted}
                 disabled={submitted === 'Submitting...'}
               />
-              <small>
-                We’ll never share your details with any third parties and you
-                can unsubscribe at any time
-              </small>
             </div>
           </form>
         </FormWrapper>
@@ -103,7 +117,27 @@ const Contact = () => {
           </div>
 
           <div className="details--section">
-            <ParagraphSmall as="p">Social!</ParagraphSmall>
+            <ParagraphSmall as="ul">
+              {settings.socialLinks.map((link) => {
+                console.log(iconPicker(link.icon));
+                return (
+                  <li key={link._key}>
+                    <a href={link.url}>
+                      {iconPicker(link.icon)}
+                      <span>{link.title}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ParagraphSmall>
+          </div>
+
+          <div className="details--section">
+            <ButtonCallback
+              label="Paying us a visit?"
+              theme="var(--black)"
+              onClick={() => setMenuPage('findUs')}
+            />
           </div>
         </div>
       </ContactContainer>
@@ -162,6 +196,38 @@ const ContactSC = styled.div`
     p {
       max-width: 32rem;
     }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        margin-bottom: calc(var(--gutter) / 4);
+
+        span {
+          margin-left: calc(var(--gutter) / 2);
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          transition: var(--ease-links);
+          opacity: 1;
+          color: var(--black);
+          text-decoration: none;
+
+          &:hover {
+            opacity: 0.6;
+          }
+        }
+
+        svg {
+          color: var(--black);
+          font-size: 1.8rem;
+        }
+      }
+    }
   }
 `;
 
@@ -183,6 +249,10 @@ const FormWrapper = styled.div`
   form {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 64rem;
+    font-size: 1.4rem;
+    line-height: 2rem;
 
     input {
       margin-bottom: var(--gutter);
@@ -206,7 +276,8 @@ const FormWrapper = styled.div`
 
     input[type='submit'] {
       width: 100%;
-      padding: calc(var(--gutter) / 1.5);
+      max-width: 40rem;
+      padding: 1.6rem 3.2rem;
       transition: var(--ease-links);
       border: 0;
       border-radius: 0;
@@ -214,7 +285,9 @@ const FormWrapper = styled.div`
       opacity: 1;
       background-color: var(--rich-black);
       color: var(--white);
-      letter-spacing: 0.2rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.4rem;
+      line-height: 2rem;
       text-align: center;
       text-transform: uppercase;
       cursor: pointer;
@@ -238,3 +311,7 @@ const FormWrapper = styled.div`
     }
   }
 `;
+
+Contact.propTypes = {
+  setMenuPage: PropTypes.func.isRequired,
+};
