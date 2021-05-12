@@ -6,7 +6,7 @@ import TransitionLink from 'gatsby-plugin-transition-link';
 //
 
 export const ButtonCallback = (props) => {
-  const { label, theme, as } = props;
+  const { label, theme } = props;
   return (
     <ButtonSC as="button" type="button" {...props} theme={theme}>
       {label}
@@ -17,12 +17,10 @@ export const ButtonCallback = (props) => {
 ButtonCallback.propTypes = {
   label: PropTypes.string.isRequired,
   theme: PropTypes.string,
-  as: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 ButtonCallback.defaultProps = {
   theme: null,
-  as: TransitionLink,
 };
 
 //
