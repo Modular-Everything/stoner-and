@@ -14,7 +14,6 @@ const FindUs = () => {
   const query = graphql`
     query FindUsQuery {
       findUs: sanityFindUs(_id: { regex: "/findUs/" }) {
-        address
         openingTimes {
           _key
           day
@@ -25,12 +24,16 @@ const FindUs = () => {
           lng
         }
       }
+
+      settings: sanitySettings(_id: { regex: "/settings/" }) {
+        address
+      }
     }
   `;
 
-  const { findUs } = useStaticQuery(query);
+  const { findUs, settings } = useStaticQuery(query);
 
-  const mapUrl = findUs.address.replace(/\n/g, ', ');
+  const mapUrl = settings.address.replace(/\n/g, ', ');
 
   return (
     <FindUsSC>
@@ -61,7 +64,7 @@ const FindUs = () => {
         <div className="details">
           <div className="details--section">
             <AllCapsDetail as="h4">Visit Our Store</AllCapsDetail>
-            <ParagraphSmall as="address">{findUs.address}</ParagraphSmall>
+            <ParagraphSmall as="address">{settings.address}</ParagraphSmall>
           </div>
 
           <div className="details--section">
