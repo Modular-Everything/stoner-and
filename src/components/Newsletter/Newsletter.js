@@ -215,15 +215,18 @@ const NewsletterSC = styled.section`
 
       input[type='submit'] {
         width: 100%;
-        padding: calc(var(--gutter) / 1.5);
+        max-width: 40rem;
+        padding: 1.6rem 3.2rem;
         transition: var(--ease-links);
         border: 0;
         border-radius: 0;
         outline: 0;
         opacity: 1;
-        background-color: ${({ theme }) => theme.primary};
-        color: ${({ theme }) => theme.contrast};
-        letter-spacing: 0.2rem;
+        background-color: var(--rich-black);
+        color: var(--white);
+        font-size: 1.4rem;
+        letter-spacing: 0.4rem;
+        line-height: 2rem;
         text-align: center;
         text-transform: uppercase;
         cursor: pointer;
