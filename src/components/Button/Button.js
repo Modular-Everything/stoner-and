@@ -43,6 +43,34 @@ export const ButtonLink = ({ label, to, theme }) => (
   </ButtonSC>
 );
 
+ButtonLink.propTypes = {
+  label: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  theme: PropTypes.string,
+};
+
+ButtonLink.defaultProps = {
+  theme: null,
+};
+
+//
+
+export const ExternalLink = ({ label, to, theme }) => (
+  <ButtonSC href={to} theme={theme}>
+    {label}
+  </ButtonSC>
+);
+
+ExternalLink.propTypes = {
+  label: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  theme: PropTypes.string,
+};
+
+ExternalLink.defaultProps = {
+  theme: null,
+};
+
 //
 
 const ButtonSC = styled.a`
@@ -67,13 +95,3 @@ const ButtonSC = styled.a`
       theme === 'var(--white)' ? 'var(--black)' : 'var(--white)'};
   }
 `;
-
-ButtonLink.propTypes = {
-  label: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-  theme: PropTypes.string,
-};
-
-ButtonLink.defaultProps = {
-  theme: null,
-};
