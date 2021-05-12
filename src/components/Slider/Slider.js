@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -10,7 +10,7 @@ import 'swiper/swiper-bundle.css';
 
 import { AllCapsDetail, HeaderSerif } from '../Type/Headings';
 import { ParagraphLarge } from '../Type/Copy';
-import { ButtonLink } from '../Button/Button';
+import { ButtonLink, ExternalLink } from '../Button/Button';
 import { AnimateIn } from '../AnimateIn';
 
 //
@@ -19,9 +19,7 @@ SwiperCore.use([Scrollbar, A11y]);
 
 //
 
-const Slider = ({ slides }) => {
-  const { theme } = useContext(ThemeContext);
-
+const Slider = ({ slides, hasInstagramLink }) => {
   const query = graphql`
     query SliderInstagramQuery {
       settings: sanitySettings {
@@ -38,8 +36,11 @@ const Slider = ({ slides }) => {
       }
     }
   `;
-
   const { settings } = useStaticQuery(query);
+
+  const { theme } = useContext(ThemeContext);
+
+  if (!slides) return null;
 
   const allSlides = slides;
 
@@ -47,20 +48,18 @@ const Slider = ({ slides }) => {
     (item) => item.title === 'Instagram'
   );
 
-  useEffect(() => {
-    if (instaSlide) {
-      allSlides.splice(2, 0, {
-        background: settings.instagramImage,
-        subtitle: null,
-        title: null,
-        _key: 'inserted-instagram-link',
-        _rawLink: {
-          link: instaSlide.link,
-          title: 'Follow us on Instagram',
-        },
-      });
-    }
-  }, [allSlides, instaSlide, settings.instagramImage]);
+  if (hasInstagramLink && instaSlide) {
+    allSlides.splice(2, 0, {
+      background: settings.instagramImage,
+      subtitle: null,
+      title: null,
+      _key: 'inserted-instagram-link',
+      _rawLink: {
+        link: instaSlide.link,
+        title: 'Follow us on Instagram',
+      },
+    });
+  }
 
   return (
     <SliderSC theme={theme}>
@@ -78,8 +77,12 @@ const Slider = ({ slides }) => {
               <SwiperSlide key={slide._key}>
                 <div className="content">
                   <div className="content__top">
-                    <AllCapsDetail as="h4">{slide.subtitle}</AllCapsDetail>
-                    <HeaderSerif as="h3">{slide.title}</HeaderSerif>
+                    {slide.subtitle && (
+                      <AllCapsDetail as="h4">{slide.subtitle}</AllCapsDetail>
+                    )}
+                    {slide.title && (
+                      <HeaderSerif as="h3">{slide.title}</HeaderSerif>
+                    )}
                     {slide.caption && (
                       <ParagraphLarge>{slide.caption}</ParagraphLarge>
                     )}
@@ -87,10 +90,9 @@ const Slider = ({ slides }) => {
 
                   <div className="content__bottom">
                     {typeof slide._rawLink.link === 'string' ? (
-                      <ButtonLink
+                      <ExternalLink
                         label={slide._rawLink.title}
                         to={slide._rawLink.link}
-                        as="a"
                         theme="var(--white)"
                       />
                     ) : (
@@ -206,4 +208,9 @@ const Skrim = styled.div`
 
 Slider.propTypes = {
   slides: PropTypes.array.isRequired,
+  hasInstagramLink: PropTypes.bool,
+};
+
+Slider.defaultProps = {
+  hasInstagramLink: true,
 };
