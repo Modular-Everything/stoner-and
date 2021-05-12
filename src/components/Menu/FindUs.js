@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
@@ -7,10 +8,11 @@ import { MdOpenInNew as NewWindowIcon } from 'react-icons/md';
 import Container from '../Container';
 import { AllCapsDetail } from '../Type/Headings';
 import { ParagraphSmall } from '../Type/Copy';
+import { ButtonCallback } from '../Button';
 
 //
 
-const FindUs = () => {
+const FindUs = ({ setMenuPage }) => {
   const query = graphql`
     query FindUsQuery {
       findUs: sanityFindUs(_id: { regex: "/findUs/" }) {
@@ -78,6 +80,14 @@ const FindUs = () => {
                 </ParagraphSmall>
               ))}
             </ul>
+          </div>
+
+          <div className="details--section">
+            <ButtonCallback
+              label="Get in touch"
+              theme="var(--black)"
+              onClick={() => setMenuPage('contact')}
+            />
           </div>
         </div>
       </FindUsContainer>
@@ -203,3 +213,7 @@ const MapWrapper = styled.div`
     }
   }
 `;
+
+FindUs.propTypes = {
+  setMenuPage: PropTypes.func.isRequired,
+};
