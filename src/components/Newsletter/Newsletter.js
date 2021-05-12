@@ -218,6 +218,7 @@ const NewsletterSC = styled.section`
         padding: calc(var(--gutter) / 1.5);
         transition: var(--ease-links);
         border: 0;
+        border-radius: 0;
         outline: 0;
         opacity: 1;
         background-color: ${({ theme }) => theme.primary};
