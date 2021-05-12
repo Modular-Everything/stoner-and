@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
 import SwiperCore, { Scrollbar, A11y } from 'swiper';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,7 +22,45 @@ SwiperCore.use([Scrollbar, A11y]);
 const Slider = ({ slides }) => {
   const { theme } = useContext(ThemeContext);
 
-  if (!slides) return null;
+  const query = graphql`
+    query SliderInstagramQuery {
+      settings: sanitySettings {
+        socialLinks {
+          title
+          link
+        }
+        instagramImage {
+          alt
+          asset {
+            gatsbyImageData(width: 720, formats: AUTO)
+          }
+        }
+      }
+    }
+  `;
+
+  const { settings } = useStaticQuery(query);
+
+  const allSlides = slides;
+
+  const instaSlide = settings.socialLinks.find(
+    (item) => item.title === 'Instagram'
+  );
+
+  useEffect(() => {
+    if (instaSlide) {
+      allSlides.splice(2, 0, {
+        background: settings.instagramImage,
+        subtitle: null,
+        title: null,
+        _key: 'inserted-instagram-link',
+        _rawLink: {
+          link: instaSlide.link,
+          title: 'Follow us on Instagram',
+        },
+      });
+    }
+  }, [allSlides, instaSlide, settings.instagramImage]);
 
   return (
     <SliderSC theme={theme}>
@@ -31,25 +70,36 @@ const Slider = ({ slides }) => {
           slidesPerView="auto"
           scrollbar={{ draggable: true }}
         >
-          {slides.map((slide) => {
+          {allSlides.map((slide) => {
             const image = getImage(slide.background.asset.gatsbyImageData);
             const { alt } = slide.background;
 
             return (
-              <SwiperSlide>
+              <SwiperSlide key={slide._key}>
                 <div className="content">
                   <div className="content__top">
                     <AllCapsDetail as="h4">{slide.subtitle}</AllCapsDetail>
                     <HeaderSerif as="h3">{slide.title}</HeaderSerif>
-                    <ParagraphLarge>{slide.caption}</ParagraphLarge>
+                    {slide.caption && (
+                      <ParagraphLarge>{slide.caption}</ParagraphLarge>
+                    )}
                   </div>
 
                   <div className="content__bottom">
-                    <ButtonLink
-                      label={slide._rawLink.title}
-                      to={`/${slide._rawLink.link._type}`}
-                      theme="var(--white)"
-                    />
+                    {typeof slide._rawLink.link === 'string' ? (
+                      <ButtonLink
+                        label={slide._rawLink.title}
+                        to={slide._rawLink.link}
+                        as="a"
+                        theme="var(--white)"
+                      />
+                    ) : (
+                      <ButtonLink
+                        label={slide._rawLink.title}
+                        to={`/${slide._rawLink.link._type}`}
+                        theme="var(--white)"
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -78,7 +128,7 @@ const SliderSC = styled.section`
       height: 55.6rem;
     }
 
-    &:nth-of-type(2) {
+    &:nth-of-type(odd) {
       .content {
         flex-direction: column-reverse;
       }
@@ -155,5 +205,5 @@ const Skrim = styled.div`
 `;
 
 Slider.propTypes = {
-  slides: PropTypes.object.isRequired,
+  slides: PropTypes.array.isRequired,
 };
