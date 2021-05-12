@@ -35,7 +35,7 @@ const Menu = ({ open, page }) => {
           exit={{ opacity: 0 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <FindUs />
+          <FindUs setMenuPage={page.setMenuPage} />
         </motion.div>
       );
       break;
@@ -46,7 +46,7 @@ const Menu = ({ open, page }) => {
           exit={{ opacity: 0 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Contact style={{ width: '75vw' }} />
+          <Contact setMenuPage={page.setMenuPage} />
         </motion.div>
       );
       break;
