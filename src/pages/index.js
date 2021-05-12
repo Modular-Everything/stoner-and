@@ -18,6 +18,7 @@ export const query = graphql`
     page: sanityHomepage(_id: { regex: "/homepage/" }) {
       title
       slides: slider {
+        _key
         title
         subtitle
         background {

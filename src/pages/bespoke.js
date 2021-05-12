@@ -44,6 +44,7 @@ export const query = graphql`
         }
       }
       slides: slider {
+        _key
         title
         subtitle
         background {
