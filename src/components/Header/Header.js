@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Pivot as Hamburger } from 'hamburger-react';
+import { graphql, useStaticQuery } from 'gatsby';
 import TransitionLink from 'gatsby-plugin-transition-link';
 import { BsArrowLeft as BackIcon } from 'react-icons/bs';
 
@@ -18,6 +19,19 @@ const Header = ({ gradient }) => {
   const [menuPage, setMenuPage] = useState('navigation');
   const { theme } = useContext(ThemeContext);
 
+  const query = graphql`
+    query HeaderQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `;
+
+  const { site } = useStaticQuery(query);
+  const { title } = site.siteMetadata;
+
   return (
     <AnimateIn>
       <HeaderSC theme={theme} menuOpen={menuOpen}>
@@ -32,7 +46,7 @@ const Header = ({ gradient }) => {
                 delay: 0.6,
               }}
             >
-              <Logo />
+              <Logo alt={title} aria-label={title} />
             </TransitionLink>
           </div>
 
