@@ -47,9 +47,10 @@ const SEO = ({ title, description, article }) => {
   } = siteMetadata;
 
   const seo = {
-    title: title.includes('Loading')
-      ? defaultTitle
-      : title || settings.shortDesc || defaultTitle,
+    title:
+      title && title.includes('Loading')
+        ? defaultTitle
+        : title || settings.shortDesc || defaultTitle,
     titleTemplate: `${settings.title}%s` || titleTemplate,
     description: description || settings.description || defaultDescription,
     siteUrl,
