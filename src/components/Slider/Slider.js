@@ -78,7 +78,7 @@ const Slider = ({ slides, hasInstagramLink }) => {
                 <div className="content">
                   <div className="content__top">
                     {slide.subtitle && (
-                      <AllCapsDetail as="h4">{slide.subtitle}</AllCapsDetail>
+                      <AllCapsDetail as="h2">{slide.subtitle}</AllCapsDetail>
                     )}
                     {slide.title && (
                       <HeaderSerif as="h3">{slide.title}</HeaderSerif>
@@ -151,7 +151,7 @@ const SliderSC = styled.section`
         color: var(--white);
       }
 
-      h4 {
+      h2 {
         margin-bottom: calc(var(--gutter) / 2);
         color: var(--white);
       }
