@@ -20,7 +20,7 @@ const LegacyPage = () => {
   return (
     <Layout>
       ...
-      <SEO />
+      <SEO title="Legacy" />
     </Layout>
   );
 };
