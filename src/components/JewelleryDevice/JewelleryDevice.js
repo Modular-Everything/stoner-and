@@ -186,7 +186,7 @@ const JewelleryDeviceSC = styled.section`
 JewelleryDevice.propTypes = {
   subtitle: PropTypes.string,
   title: PropTypes.string,
-  copy: PropTypes.array,
+  copy: PropTypes.string,
 };
 
 JewelleryDevice.defaultProps = {
