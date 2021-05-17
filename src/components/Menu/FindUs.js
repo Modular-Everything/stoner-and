@@ -123,6 +123,7 @@ const FindUsSC = styled.div`
   .details {
     width: 100%;
     margin-bottom: calc(var(--gutter) * 2);
+    color: var(--black);
 
     @media (min-width: 768px) {
       width: calc(25% - calc(var(--gutter) * 2));
