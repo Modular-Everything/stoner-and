@@ -17,7 +17,7 @@ const Footer = () => (
         <article>
           <ul>
             <ParagraphSmall as="li">
-              <HeaderSmall as="h6">Customer Service</HeaderSmall>
+              <HeaderSmall as="h5">Customer Service</HeaderSmall>
             </ParagraphSmall>
 
             <ParagraphSmall as="li">
@@ -41,7 +41,7 @@ const Footer = () => (
         <article>
           <ul>
             <ParagraphSmall as="li">
-              <HeaderSmall as="h6">Stoner&amp;</HeaderSmall>
+              <HeaderSmall as="h5">Stoner&amp;</HeaderSmall>
             </ParagraphSmall>
 
             <ParagraphSmall as="li">
@@ -62,7 +62,7 @@ const Footer = () => (
         <article>
           <ul>
             <ParagraphSmall as="li">
-              <HeaderSmall as="h6">Get in Touch</HeaderSmall>
+              <HeaderSmall as="h5">Get in Touch</HeaderSmall>
             </ParagraphSmall>
 
             <ParagraphSmall as="li">
@@ -92,7 +92,7 @@ const Footer = () => (
         <article>
           <ul className="social">
             <ParagraphSmall as="li">
-              <HeaderSmall as="h6">On the Web</HeaderSmall>
+              <HeaderSmall as="h5">On the Web</HeaderSmall>
             </ParagraphSmall>
 
             <ParagraphSmall as="li">
@@ -251,7 +251,7 @@ const FooterSt = styled.footer`
       }
     }
 
-    h6 {
+    h5 {
       margin-bottom: calc(var(--gutter) / 2);
     }
 
