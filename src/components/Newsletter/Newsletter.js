@@ -68,7 +68,7 @@ const Newsletter = ({ image }) => {
         </div>
 
         <div className="content">
-          <HeaderThree as="h3">
+          <HeaderThree as="h2">
             18-Karat* News and Offers
             {name && name.includes(' ') && (
               <> &mdash; just for you, {name.split(' ')[0]}!</>
@@ -182,7 +182,7 @@ const NewsletterSC = styled.section`
       width: calc(50% - (var(--gutter) * 7));
     }
 
-    h3,
+    h2,
     p {
       max-width: 40rem;
       margin-bottom: var(--gutter);
