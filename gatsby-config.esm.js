@@ -9,11 +9,28 @@ const isProd = process.env.NODE_ENV === 'production';
 //
 
 export default {
+  flags: { PRESERVE_WEBPACK_CACHE: true },
+
   siteMetadata: {
     title: 'Jewellery',
     siteUrl: 'https://stonerand.co/',
+    siteName: 'Stoner&',
     titleTemplate: 'Stoner&%s',
     description: 'Design that comes to life.',
+    author: 'Christopher Stoner',
+    keywords: [
+      'Jewellery',
+      'Watches',
+      'Diamonds',
+      'Gems',
+      'Rings',
+      'Engagement',
+      'Weddings',
+      'Marriage',
+      'Restoration',
+      'Bespoke',
+      'Design',
+    ],
   },
 
   plugins: [
