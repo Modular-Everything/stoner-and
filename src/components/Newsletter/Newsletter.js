@@ -80,38 +80,32 @@ const Newsletter = ({ image }) => {
           </ParagraphSmall>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="name">
-              <p>Your Name</p>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                {...register('name', { required: true })}
-                className={errors.name && 'formError'}
-              />
-            </label>
+            <input
+              type="text"
+              name="name"
+              aria-label="Enter your name"
+              placeholder="Your Name"
+              {...register('name', { required: true })}
+              className={errors.name && 'formError'}
+            />
 
-            <label htmlFor="email">
-              <p>Email Address</p>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                {...register('email', { required: true })}
-                className={errors.email && 'formError'}
-              />
-            </label>
+            <input
+              type="email"
+              name="email"
+              aria-label="Enter your email address"
+              placeholder="Email Address"
+              {...register('email', { required: true })}
+              className={errors.email && 'formError'}
+            />
 
             <div className="submit">
-              <label htmlFor="submit">
-                <p>Submit</p>
-                <input
-                  type="submit"
-                  name="submit"
-                  value={submitted}
-                  disabled={submitted === '...'}
-                />
-              </label>
+              <input
+                type="submit"
+                name="submit"
+                aria-label="submit"
+                value={submitted}
+                disabled={submitted === '...'}
+              />
               <small>
                 We’ll never share your details with any third parties and you
                 can unsubscribe at any time
@@ -229,17 +223,9 @@ const NewsletterSC = styled.section`
         align-items: center;
       }
 
-      label {
-        width: 100%;
-        max-width: 40rem;
-
-        @media (min-width: 500px) {
-          width: 35%;
-        }
-      }
-
       input[type='submit'] {
         width: 100%;
+        max-width: 40rem;
         padding: 1.6rem 3.2rem;
         transition: var(--ease-links);
         border: 0;
@@ -254,6 +240,10 @@ const NewsletterSC = styled.section`
         text-align: center;
         text-transform: uppercase;
         cursor: pointer;
+
+        @media (min-width: 500px) {
+          width: 35%;
+        }
 
         &:hover {
           opacity: 0.8;
