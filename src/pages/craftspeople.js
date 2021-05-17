@@ -46,7 +46,11 @@ ColumnCopyNode.propTypes = {
 const ImageGridDefaultNode = ({ collection }) => (
   <section className="imageGrid">
     {collection.map((image) => (
-      <GenericImage src={image.asset.gatsbyImageData} alt={image.alt} />
+      <GenericImage
+        key={image._key}
+        src={image.asset.gatsbyImageData}
+        alt={image.alt}
+      />
     ))}
   </section>
 );
@@ -64,11 +68,9 @@ const ImageGridCarouselNode = ({ collection }) => {
     <section className="imageGrid--carousel">
       <Swiper pagination={{ clickable: false }} spaceBetween={16}>
         {collection.map((image) => (
-          <>
-            <SwiperSlide>
-              <GenericImage src={image.asset.gatsbyImageData} alt={image.alt} />
-            </SwiperSlide>
-          </>
+          <SwiperSlide key={image._key}>
+            <GenericImage src={image.asset.gatsbyImageData} alt={image.alt} />
+          </SwiperSlide>
         ))}
       </Swiper>
     </section>
@@ -116,6 +118,7 @@ export const query = graphql`
           _key
           _type
           image {
+            _key
             alt
             asset {
               gatsbyImageData(width: 1000, height: 1200, formats: AUTO)
@@ -130,6 +133,8 @@ export const query = graphql`
 const CraftspeoplePage = ({ data }) => {
   const { setTheme } = useContext(ThemeContext);
   const { page } = data;
+
+  // console.log(page);
 
   useEffect(() => {
     setTheme({
@@ -156,7 +161,7 @@ const CraftspeoplePage = ({ data }) => {
                   <GenericImageNode
                     key={node._key}
                     src={node.asset.gatsbyImageData}
-                    alt={node.asset.alt}
+                    alt={node.alt}
                   />
                 );
 
