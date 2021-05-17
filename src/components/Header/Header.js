@@ -36,7 +36,7 @@ const Header = ({ gradient }) => {
             </TransitionLink>
           </div>
 
-          <nav role="main">
+          <div>
             {menuPage === 'navigation' ? (
               <div
                 className={`hamburgerHandler ${menuOpen ? 'open' : 'closed'}`}
@@ -58,7 +58,7 @@ const Header = ({ gradient }) => {
                 <BackIcon />
               </BackButton>
             )}
-          </nav>
+          </div>
         </HeaderContainer>
       </HeaderSC>
 
