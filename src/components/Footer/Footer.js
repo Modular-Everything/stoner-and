@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { FiInstagram, FiTwitter, FiFacebook, FiSmile } from 'react-icons/fi';
 
+import { ThemeContext } from '../../contexts/ThemeContext';
 import Container from '../Container';
 import { ParagraphSmall } from '../Type/Copy';
 import { HeaderSmall } from '../Type/Headings';
@@ -10,145 +11,149 @@ import { AnimateIn } from '../AnimateIn';
 
 //
 
-const Footer = () => (
-  <AnimateIn>
-    <FooterSt>
-      <GridContainer>
-        <article>
-          <ul>
-            <ParagraphSmall as="li">
-              <HeaderSmall as="h3">Customer Service</HeaderSmall>
-            </ParagraphSmall>
+const Footer = () => {
+  const { theme } = useContext(ThemeContext);
 
-            <ParagraphSmall as="li">
-              <Link to="/bespoke">Bespoke Designs</Link>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <Link to="/engaged">Engagement Rings</Link>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <Link to="/legacy">Legacy Services</Link>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <Link to="/delivery-and-returns">Delivery &amp; Returns</Link>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <Link to="/care-and-repair">Care &amp; Repair</Link>
-            </ParagraphSmall>
-          </ul>
-        </article>
+  return (
+    <AnimateIn>
+      <FooterSt theme={theme}>
+        <GridContainer>
+          <article>
+            <ul>
+              <ParagraphSmall as="li">
+                <HeaderSmall as="h3">Customer Service</HeaderSmall>
+              </ParagraphSmall>
 
-        <article>
-          <ul>
-            <ParagraphSmall as="li">
-              <HeaderSmall as="h3">Stoner&amp;</HeaderSmall>
-            </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/bespoke">Bespoke Designs</Link>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/engaged">Engagement Rings</Link>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/legacy">Legacy Services</Link>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/delivery-and-returns">Delivery &amp; Returns</Link>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/care-and-repair">Care &amp; Repair</Link>
+              </ParagraphSmall>
+            </ul>
+          </article>
 
-            <ParagraphSmall as="li">
-              <Link to="/sustainability">Sustainability</Link>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <Link to="/uk-modern-slavery-act">UK Modern Slavery Act</Link>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <Link to="/website-policies">Website Policies</Link>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <Link to="/site-index">Site Index</Link>
-            </ParagraphSmall>
-          </ul>
-        </article>
+          <article>
+            <ul>
+              <ParagraphSmall as="li">
+                <HeaderSmall as="h3">Stoner&amp;</HeaderSmall>
+              </ParagraphSmall>
 
-        <article>
-          <ul>
-            <ParagraphSmall as="li">
-              <HeaderSmall as="h3">Get in Touch</HeaderSmall>
-            </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/sustainability">Sustainability</Link>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/uk-modern-slavery-act">UK Modern Slavery Act</Link>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/website-policies">Website Policies</Link>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <Link to="/site-index">Site Index</Link>
+              </ParagraphSmall>
+            </ul>
+          </article>
 
-            <ParagraphSmall as="li">
-              <address>
-                Christopher Stoner
-                <br />
-                Windsor House
-                <br />
-                Harrogate
-                <br />
-                HG1 2PW
-              </address>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <a href="mailto:info@stonerand.co" className="underline">
-                info@stonerand.co
-              </a>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <a href="tel:+441423523596" className="underline">
-                01423 523596
-              </a>
-            </ParagraphSmall>
-          </ul>
-        </article>
+          <article>
+            <ul>
+              <ParagraphSmall as="li">
+                <HeaderSmall as="h3">Get in Touch</HeaderSmall>
+              </ParagraphSmall>
 
-        <article>
-          <ul className="social">
-            <ParagraphSmall as="li">
-              <HeaderSmall as="h3">On the Web</HeaderSmall>
-            </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <address>
+                  Christopher Stoner
+                  <br />
+                  Windsor House
+                  <br />
+                  Harrogate
+                  <br />
+                  HG1 2PW
+                </address>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <a href="mailto:info@stonerand.co" className="underline">
+                  info@stonerand.co
+                </a>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <a href="tel:+441423523596" className="underline">
+                  01423 523596
+                </a>
+              </ParagraphSmall>
+            </ul>
+          </article>
 
-            <ParagraphSmall as="li">
-              <a
-                href="https://instagram.com/christopherstonerbespoke"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <FiInstagram />
-                </span>
-                <span className="label">Instagram</span>
-              </a>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <a
-                href="https://twitter.com/stonerdiamonds"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <FiTwitter />
-                </span>
-                <span className="label">Twitter</span>
-              </a>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <a
-                href="https://facebook.com/christopherstonerjewellery"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <FiFacebook />
-                </span>
-                <span className="label">Facebook</span>
-              </a>
-            </ParagraphSmall>
-            <ParagraphSmall as="li">
-              <a
-                href="https://trustpilot.com/christopherstonerjewellery"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <FiSmile />
-                </span>
-                <span className="label">Customer Reviews</span>
-              </a>
-            </ParagraphSmall>
-          </ul>
-        </article>
-      </GridContainer>
-    </FooterSt>
-  </AnimateIn>
-);
+          <article>
+            <ul className="social">
+              <ParagraphSmall as="li">
+                <HeaderSmall as="h3">On the Web</HeaderSmall>
+              </ParagraphSmall>
+
+              <ParagraphSmall as="li">
+                <a
+                  href="https://instagram.com/christopherstonerbespoke"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="icon">
+                    <FiInstagram />
+                  </span>
+                  <span className="label">Instagram</span>
+                </a>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <a
+                  href="https://twitter.com/stonerdiamonds"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="icon">
+                    <FiTwitter />
+                  </span>
+                  <span className="label">Twitter</span>
+                </a>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <a
+                  href="https://facebook.com/christopherstonerjewellery"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="icon">
+                    <FiFacebook />
+                  </span>
+                  <span className="label">Facebook</span>
+                </a>
+              </ParagraphSmall>
+              <ParagraphSmall as="li">
+                <a
+                  href="https://trustpilot.com/christopherstonerjewellery"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="icon">
+                    <FiSmile />
+                  </span>
+                  <span className="label">Customer Reviews</span>
+                </a>
+              </ParagraphSmall>
+            </ul>
+          </article>
+        </GridContainer>
+      </FooterSt>
+    </AnimateIn>
+  );
+};
 
 export default Footer;
 
@@ -253,6 +258,11 @@ const FooterSt = styled.footer`
 
     h3 {
       margin-bottom: calc(var(--gutter) / 2);
+      color: ${({ theme }) =>
+        theme.contrast === 'var(--off-white)' ||
+        theme.contrast === 'var(--white)'
+          ? 'var(--black)'
+          : theme.contrast};
     }
 
     address {
