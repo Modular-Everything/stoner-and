@@ -53,7 +53,7 @@ const Slider = ({ slides, hasInstagramLink }) => {
       background: settings.instagramImage,
       subtitle: null,
       title: null,
-      _key: 'inserted-instagram-link',
+      _key: Date.now(),
       _rawLink: {
         link: instaSlide.link,
         title: 'Follow us on Instagram',
