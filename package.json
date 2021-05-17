@@ -4,7 +4,7 @@
   "description": "Website for Stoner&",
   "license": "ISC",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"-r esm\" gatsby build",
+    "build": "cross-env NODE_OPTIONS=\"-r esm\" gatsby build --host=0.0.0.0",
     "develop": "cross-env NODE_OPTIONS=\"-r esm\" gatsby develop",
     "start": "npm run develop",
     "serve": "cross-env NODE_OPTIONS=\"-r esm\" gatsby serve",
