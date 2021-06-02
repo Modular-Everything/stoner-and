@@ -1,18 +1,45 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
-import { FiInstagram, FiTwitter, FiFacebook, FiSmile } from 'react-icons/fi';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Container from '../Container';
 import { ParagraphSmall } from '../Type/Copy';
 import { HeaderSmall } from '../Type/Headings';
 import { AnimateIn } from '../AnimateIn';
+import iconPicker from '../../helpers/iconPicker';
 
 //
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
+
+  const query = graphql`
+    query FooterQuery {
+      settings: sanitySettings(_id: { regex: "/settings/" }) {
+        address
+        email
+        telephone
+        socialLinks {
+          _key
+          icon
+          url: link
+        }
+      }
+      footer: sanityFooterSettings(_id: { regex: "/footerSettings/" }) {
+        columnOne {
+          title
+          _rawPages(resolveReferences: { maxDepth: 1 })
+        }
+        columnTwo {
+          title
+          _rawPages(resolveReferences: { maxDepth: 1 })
+        }
+      }
+    }
+  `;
+
+  const { settings, footer } = useStaticQuery(query);
 
   return (
     <AnimateIn>
@@ -21,45 +48,36 @@ const Footer = () => {
           <article>
             <ul>
               <ParagraphSmall as="li">
-                <HeaderSmall as="h3">Customer Service</HeaderSmall>
+                <HeaderSmall as="h3">{footer.columnOne.title}</HeaderSmall>
               </ParagraphSmall>
 
-              <ParagraphSmall as="li">
-                <Link to="/bespoke">Bespoke Designs</Link>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <Link to="/engaged">Engagement Rings</Link>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <Link to="/legacy">Legacy Services</Link>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <Link to="/delivery-and-returns">Delivery &amp; Returns</Link>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <Link to="/care-and-repair">Care &amp; Repair</Link>
-              </ParagraphSmall>
+              {footer.columnOne._rawPages.map((page) => (
+                <ParagraphSmall as="li">
+                  <Link
+                    to={`/${(page.slug && page.slug.current) || page._type}`}
+                  >
+                    {page.title}
+                  </Link>
+                </ParagraphSmall>
+              ))}
             </ul>
           </article>
 
           <article>
             <ul>
               <ParagraphSmall as="li">
-                <HeaderSmall as="h3">Stoner&amp;</HeaderSmall>
+                <HeaderSmall as="h3">{footer.columnTwo.title}</HeaderSmall>
               </ParagraphSmall>
 
-              <ParagraphSmall as="li">
-                <Link to="/sustainability">Sustainability</Link>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <Link to="/uk-modern-slavery-act">UK Modern Slavery Act</Link>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <Link to="/website-policies">Website Policies</Link>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <Link to="/site-index">Site Index</Link>
-              </ParagraphSmall>
+              {footer.columnTwo._rawPages.map((page) => (
+                <ParagraphSmall as="li">
+                  <Link
+                    to={`/${(page.slug && page.slug.current) || page._type}`}
+                  >
+                    {page.title}
+                  </Link>
+                </ParagraphSmall>
+              ))}
             </ul>
           </article>
 
@@ -70,24 +88,19 @@ const Footer = () => {
               </ParagraphSmall>
 
               <ParagraphSmall as="li">
-                <address>
-                  Christopher Stoner
-                  <br />
-                  Windsor House
-                  <br />
-                  Harrogate
-                  <br />
-                  HG1 2PW
-                </address>
+                <address>{settings.address}</address>
               </ParagraphSmall>
               <ParagraphSmall as="li">
-                <a href="mailto:info@stonerand.co" className="underline">
-                  info@stonerand.co
+                <a href={`mailto:${settings.email}`} className="underline">
+                  {settings.email}
                 </a>
               </ParagraphSmall>
               <ParagraphSmall as="li">
-                <a href="tel:+441423523596" className="underline">
-                  01423 523596
+                <a
+                  href={`tel:${settings.telephone.replace(/\s/g, '')}`}
+                  className="underline"
+                >
+                  {settings.telephone}
                 </a>
               </ParagraphSmall>
             </ul>
@@ -99,54 +112,14 @@ const Footer = () => {
                 <HeaderSmall as="h3">On the Web</HeaderSmall>
               </ParagraphSmall>
 
-              <ParagraphSmall as="li">
-                <a
-                  href="https://instagram.com/christopherstonerbespoke"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="icon">
-                    <FiInstagram />
-                  </span>
-                  <span className="label">Instagram</span>
-                </a>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <a
-                  href="https://twitter.com/stonerdiamonds"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="icon">
-                    <FiTwitter />
-                  </span>
-                  <span className="label">Twitter</span>
-                </a>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <a
-                  href="https://facebook.com/christopherstonerjewellery"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="icon">
-                    <FiFacebook />
-                  </span>
-                  <span className="label">Facebook</span>
-                </a>
-              </ParagraphSmall>
-              <ParagraphSmall as="li">
-                <a
-                  href="https://trustpilot.com/christopherstonerjewellery"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="icon">
-                    <FiSmile />
-                  </span>
-                  <span className="label">Customer Reviews</span>
-                </a>
-              </ParagraphSmall>
+              {settings.socialLinks.map((link) => (
+                <ParagraphSmall as="li" key={link._key}>
+                  <a href={link.url}>
+                    <span className="icon">{iconPicker(link.icon)}</span>
+                    <span className="label">{link.title}</span>
+                  </a>
+                </ParagraphSmall>
+              ))}
             </ul>
           </article>
         </GridContainer>
@@ -267,6 +240,7 @@ const FooterSt = styled.footer`
 
     address {
       font-style: normal;
+      white-space: pre-wrap;
     }
   }
 `;
