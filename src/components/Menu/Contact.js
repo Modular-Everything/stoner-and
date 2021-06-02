@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useForm } from 'react-hook-form';
-// import addToMailchimp from 'gatsby-plugin-mailchimp';
+import emailjs from 'emailjs-com';
 
 import Container from '../Container';
 import iconPicker from '../../helpers/iconPicker';
@@ -30,6 +30,7 @@ const Contact = ({ setMenuPage }) => {
   const { settings } = useStaticQuery(query);
 
   const [submitted, setSubmitted] = useState('Send Message');
+  const [response, setResponse] = useState(null);
   // const [mailchimp, setMailchimp] = useState(null);
 
   const {
@@ -43,17 +44,36 @@ const Contact = ({ setMenuPage }) => {
 
     console.log(data);
 
-    setTimeout(() => setSubmitted('Send Message'), 2000);
+    const templateParams = {
+      contact_subject: data.contactSubject,
+      contact_name: data.contactName,
+      contact_reply_to: data.contactEmail,
+      contact_message: data.contactMessage,
+    };
 
-    // addToMailchimp(
-    //   data.contactEmail,
-    //   {
-    //     NAME: data.contactName,
-    //     SUBJECT: data.contactSubject,
-    //     // MESSAGE: data.contactMessage,
-    //   },
-    //   'https://us1.list-manage.com/contact-form?u=86e604503fc42249d937a8c23&form_id=e85ee9bdbbf6a97e1c73dc89f981c67d'
-    // );
+    emailjs
+      .send(
+        'mailjet',
+        'template_cpp63cx',
+        templateParams,
+        process.env.GATSBY_CONTACT_ID
+      )
+      .then(
+        () => {
+          setSubmitted('Message Sent');
+          setResponse({
+            sent: true,
+            message:
+              'Thanks! Your message was sent successfully. We aim to respond within 2-3 working days.',
+          });
+        },
+        (error) => {
+          setResponse({
+            sent: false,
+            message: error,
+          });
+        }
+      );
   };
 
   return (
@@ -92,8 +112,11 @@ const Contact = ({ setMenuPage }) => {
               <input
                 type="submit"
                 value={submitted}
-                disabled={submitted === 'Submitting...'}
+                disabled={
+                  submitted === 'Sending...' || (response && response.sent)
+                }
               />
+              {response && response.sent && <small>{response.message}</small>}
             </div>
           </form>
         </FormWrapper>
@@ -118,17 +141,14 @@ const Contact = ({ setMenuPage }) => {
 
           <div className="details--section">
             <ParagraphSmall as="ul">
-              {settings.socialLinks.map((link) => {
-                console.log(iconPicker(link.icon));
-                return (
-                  <li key={link._key}>
-                    <a href={link.url}>
-                      {iconPicker(link.icon)}
-                      <span>{link.title}</span>
-                    </a>
-                  </li>
-                );
-              })}
+              {settings.socialLinks.map((link) => (
+                <li key={link._key}>
+                  <a href={link.url}>
+                    {iconPicker(link.icon)}
+                    <span>{link.title}</span>
+                  </a>
+                </li>
+              ))}
             </ParagraphSmall>
           </div>
 
@@ -274,35 +294,57 @@ const FormWrapper = styled.div`
       margin-bottom: var(--gutter);
     }
 
-    input[type='submit'] {
-      width: 100%;
-      max-width: 40rem;
-      padding: 1.6rem 3.2rem;
-      transition: var(--ease-links);
-      border: 0;
-      border-radius: 0;
-      outline: 0;
-      opacity: 1;
-      background-color: var(--rich-black);
-      color: var(--white);
-      font-size: 1.4rem;
-      letter-spacing: 0.4rem;
-      line-height: 2rem;
-      text-align: center;
-      text-transform: uppercase;
-      cursor: pointer;
+    .submit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       @media (min-width: 500px) {
-        width: 35%;
+        flex-direction: row;
       }
 
-      &:hover {
-        opacity: 0.8;
+      input[type='submit'] {
+        width: 100%;
+        max-width: 40rem;
+        margin-bottom: 0;
+        padding: 1.6rem 3.2rem;
+        transition: var(--ease-links);
+        border: 0;
+        border-radius: 0;
+        outline: 0;
+        opacity: 1;
+        background-color: var(--rich-black);
+        color: var(--white);
+        font-size: 1.4rem;
+        letter-spacing: 0.4rem;
+        line-height: 2rem;
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        @media (min-width: 500px) {
+          width: 35%;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
       }
 
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
+      small {
+        max-width: 28rem;
+        margin: var(--gutter) 0 0 0;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+
+        @media (min-width: 500px) {
+          margin: 0 0 0 var(--gutter);
+        }
       }
     }
 
